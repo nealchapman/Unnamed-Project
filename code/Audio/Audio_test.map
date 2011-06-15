@@ -1,0 +1,907 @@
+Archive member included because of file (symbol)
+
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+                              /tmp/ccMifgZS.o (___divsf3)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+                              /tmp/ccMifgZS.o (___mulsf3)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+                              /tmp/ccMifgZS.o (___fixsfsi)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+                              /tmp/ccMifgZS.o (___floatsisf)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+                              /tmp/ccMifgZS.o (___muldf3)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+                              /tmp/ccMifgZS.o (___fixdfsi)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+                              /tmp/ccMifgZS.o (___extendsfdf2)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o) (___clzsi2)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o) (___clz_tab)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o (_atexit)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o (_exit)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o) (__global_impure_ptr)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+                              /tmp/ccMifgZS.o (_malloc)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o) (__malloc_r)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o (_memset)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o) (___malloc_lock)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o) (__sbrk_r)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o) (___register_exitproc)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o) (___call_exitprocs)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o) (__free_r)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o) (_errno)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o) (__sbrk)
+/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+                              /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o) (__exit)
+
+Allocating common symbols
+Common symbol       size              file
+
+sLeftChannelOut     0x2               /tmp/ccMifgZS.o
+sCodecRegsReadBack  0x78              /tmp/ccMifgZS.o
+g_sInput            0x4               /tmp/ccMifgZS.o
+sRightChannelOut    0x2               /tmp/ccMifgZS.o
+sLeftChannelIn      0x2               /tmp/ccMifgZS.o
+sRightChannelIn     0x2               /tmp/ccMifgZS.o
+g_fSineWaveIn_Right
+                    0x4               /tmp/ccMifgZS.o
+errno               0x4               /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+g_fSineWaveIn_Left  0x4               /tmp/ccMifgZS.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+MEM_L1_CODE      0xffa00000         0x00008000
+MEM_L1_CODE_CACHE 0xffa10000         0x00004000
+MEM_L1_SCRATCH   0xffb00000         0x00001000
+MEM_L1_DATA_B    0xff900000         0x00008000
+MEM_L1_DATA_A    0xff800000         0x00008000
+MEM_L2           0xfeb00000         0x00020000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtlibid.o
+LOAD /tmp/ccMifgZS.o
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a
+START GROUP
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a
+END GROUP
+                0x00000000                PROVIDE (__executable_start, 0x0)
+                0x00000000                . = 0x0
+
+.interp
+ *(.interp)
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+
+.rela.text
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+
+.rela.rodata
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+
+.rel.data.rel.ro
+ *(.rel.data.rel.ro* .rel.gnu.linkonce.d.rel.ro.*)
+
+.rela.data.rel.ro
+ *(.rela.data.rel.ro* .rela.gnu.linkonce.d.rel.ro.*)
+
+.rel.data
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+
+.rela.data
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+
+.rel.tdata
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+
+.rela.tdata
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+
+.rel.tbss
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+
+.rela.tbss
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.sdata
+ *(.rel.sdata .rel.sdata.* .rel.gnu.linkonce.s.*)
+
+.rela.sdata
+ *(.rela.sdata .rela.sdata.* .rela.gnu.linkonce.s.*)
+
+.rel.sbss
+ *(.rel.sbss .rel.sbss.* .rel.gnu.linkonce.sb.*)
+
+.rela.sbss
+ *(.rela.sbss .rela.sbss.* .rela.gnu.linkonce.sb.*)
+
+.rel.sdata2
+ *(.rel.sdata2 .rel.sdata2.* .rel.gnu.linkonce.s2.*)
+
+.rela.sdata2
+ *(.rela.sdata2 .rela.sdata2.* .rela.gnu.linkonce.s2.*)
+
+.rel.sbss2
+ *(.rel.sbss2 .rel.sbss2.* .rel.gnu.linkonce.sb2.*)
+
+.rela.sbss2
+ *(.rela.sbss2 .rela.sbss2.* .rela.gnu.linkonce.sb2.*)
+
+.rel.bss
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+
+.rela.bss
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.l2
+ *(.l2 .l2.*)
+
+.text           0xffa00000     0x1f10
+ *(.text .stub .text.* .gnu.linkonce.t.* .l1.text .l1.text.*)
+ .text          0xffa00000      0x198 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
+                0xffa00000                __start
+ .text          0xffa00198        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
+ .text          0xffa00198       0xd8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ .text          0xffa00270        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtlibid.o
+ .text          0xffa00270      0x3dc /tmp/ccMifgZS.o
+                0xffa00270                _audioReset
+                0xffa00424                _main
+ .text          0xffa0064c      0x244 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+                0xffa0064c                ___divsf3
+ .text          0xffa00890      0x264 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+                0xffa00890                ___mulsf3
+ .text          0xffa00af4       0x68 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+                0xffa00af4                ___fixsfsi
+ .text          0xffa00b5c       0xe4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+                0xffa00b5c                ___floatsisf
+ .text          0xffa00c40      0x4e0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+                0xffa00c40                ___muldf3
+ .text          0xffa01120       0x7c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+                0xffa01120                ___fixdfsi
+ .text          0xffa0119c       0xc0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+                0xffa0119c                ___extendsfdf2
+ .text          0xffa0125c       0x50 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+                0xffa0125c                ___clzsi2
+ .text          0xffa012ac        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+ .text          0xffa012ac       0x18 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+                0xffa012ac                _atexit
+ .text          0xffa012c4       0x2c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+                0xffa012c4                _exit
+ .text          0xffa012f0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .text          0xffa012f0       0x30 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+                0xffa012f0                _free
+                0xffa01308                _malloc
+ .text          0xffa01320      0x55c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+                0xffa01320                __malloc_r
+ .text          0xffa0187c       0x9c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+                0xffa0187c                _memset
+ .text          0xffa01918       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+                0xffa01918                ___malloc_lock
+                0xffa01928                ___malloc_unlock
+ .text          0xffa01938       0x30 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+                0xffa01938                __sbrk_r
+ .text          0xffa01968       0x80 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+                0xffa01968                ___register_exitproc
+ .text          0xffa019e8       0xbc /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+                0xffa019e8                ___call_exitprocs
+ .text          0xffa01aa4      0x2bc /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+                0xffa01aa4                __malloc_trim_r
+                0xffa01b5c                __free_r
+ .text          0xffa01d60      0x138 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+                0xffa01dc4                _cleanup_glue
+                0xffa01d60                __wrapup_reent
+                0xffa01de8                __reclaim_reent
+ .text          0xffa01e98       0x38 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+                0xffa01e98                __sbrk
+ .text          0xffa01ed0        0x8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+                0xffa01ed0                __exit
+ .text          0xffa01ed8       0x38 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+ .text          0xffa01f10        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+ *(.text.*personality*)
+ *(.gnu.warning)
+
+.init           0xffa01f10       0x12
+ *(.init)
+ .init          0xffa01f10        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
+                0xffa01f10                __init
+ .init          0xffa01f14        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ .init          0xffa01f18        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+ .init          0xffa01f1c        0x6 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+
+.plt
+ *(.plt)
+
+.fini           0xffa01f22        0xe
+ *(.fini)
+ .fini          0xffa01f22        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
+                0xffa01f22                __fini
+ .fini          0xffa01f26        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ .fini          0xffa01f2a        0x6 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+                0xffa01f30                PROVIDE (__etext, .)
+                0xffa01f30                PROVIDE (_etext, .)
+                0xffa01f30                PROVIDE (etext, .)
+
+.rodata         0xff800000      0x1c8
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0xff800000       0x40 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .rodata        0xff800040       0x40 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .rodata        0xff800080       0x40 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .rodata        0xff8000c0      0x100 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+                0xff8000c0                ___clz_tab
+ .rodata        0xff8001c0        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+                0xff8001c0                __global_impure_ptr
+ .rodata.str1.4
+                0xff8001c4        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+
+.rodata1
+ *(.rodata1)
+
+.sdata2
+ *(.sdata2 .sdata2.* .gnu.linkonce.s2.*)
+
+.sbss2
+ *(.sbss2 .sbss2.* .gnu.linkonce.sb2.*)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0xff8001c8      0x110
+ *(.eh_frame)
+ .eh_frame      0xff8001c8        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ .eh_frame      0xff8001c8       0x3c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .eh_frame      0xff800204       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+                                 0x38 (size before relaxing)
+ .eh_frame      0xff80022c       0x18 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+                                 0x28 (size before relaxing)
+ .eh_frame      0xff800244       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+                                 0x30 (size before relaxing)
+ .eh_frame      0xff800264       0x2c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+                                 0x3c (size before relaxing)
+ .eh_frame      0xff800290       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+                                 0x30 (size before relaxing)
+ .eh_frame      0xff8002b0       0x24 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+                                 0x34 (size before relaxing)
+ .eh_frame      0xff8002d4        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+                0xff8012d8                . = (ALIGN (0x1000) + (. & 0xfff))
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0xff8002d8        0x0
+                0xff8002d8                PROVIDE (___preinit_array_start, .)
+ *(.preinit_array)
+                0xff8002d8                PROVIDE (___preinit_array_end, .)
+
+.init_array     0xff8002d8        0x0
+                0xff8002d8                PROVIDE (___init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0xff8002d8                PROVIDE (___init_array_end, .)
+
+.fini_array     0xff8002d8        0x0
+                0xff8002d8                PROVIDE (___fini_array_start, .)
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0xff8002d8                PROVIDE (___fini_array_end, .)
+
+.ctors          0xff8002d8        0x8
+ *crtbegin*.o(.ctors)
+ *(EXCLUDE_FILE(*crtend*.o) .ctors)
+ .ctors         0xff8002d8        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ *(SORT(.ctors.*))
+ *(.ctors)
+ .ctors         0xff8002dc        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+
+.dtors          0xff8002e0        0x8
+ *crtbegin*.o(.dtors)
+ *(EXCLUDE_FILE(*crtend*.o) .dtors)
+ .dtors         0xff8002e0        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ *(SORT(.dtors.*))
+ *(.dtors)
+ .dtors         0xff8002e4        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+                0xff8002e4                ___DTOR_END__
+
+.jcr            0xff8002e8        0x4
+ *(.jcr)
+ .jcr           0xff8002e8        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ .jcr           0xff8002e8        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+
+.data           0xff8002ec      0x8a8
+ *(.data .data.* .gnu.linkonce.d.* .l1.data .l1.data.*)
+ .data          0xff8002ec        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
+ .data          0xff8002ec        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
+ .data          0xff8002ec        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+                0xff8002ec                ___dso_handle
+ .data          0xff8002f0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtlibid.o
+ .data          0xff8002f0       0x90 /tmp/ccMifgZS.o
+                0xff800304                _g_iSampleIndex
+                0xff800308                _sCodecRegs
+                0xff8002f0                _Tx0Buffer
+                0xff800300                _sAc97Tag
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .data          0xff800380        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .data          0xff800380      0x404 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+                0xff800380                __impure_ptr
+ .data          0xff800784        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .data          0xff800784      0x410 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+                0xff800784                ___malloc_av_
+                0xff800b8c                ___malloc_trim_threshold
+                0xff800b90                ___malloc_sbrk_base
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+ .data          0xff800b94        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+ *(.gnu.linkonce.d.*personality*)
+
+.data1
+ *(.data1)
+
+.got
+ *(.got.plt)
+ *(.got)
+
+.sdata
+ *(.sdata .sdata.* .gnu.linkonce.s.*)
+                0xff800b94                __edata = .
+                0xff800b94                PROVIDE (_edata, .)
+
+.sbss           0xff800b94        0x0
+                0xff800b94                __bss_start = .
+ *(.dynsbss)
+ *(.sbss .sbss.* .gnu.linkonce.sb.*)
+ *(.scommon)
+
+.bss            0xff800b94      0x108
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0xff800b94        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
+ .bss           0xff800b98        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
+ .bss           0xff800b98       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ .bss           0xff800bb8        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtlibid.o
+ .bss           0xff800bb8       0x18 /tmp/ccMifgZS.o
+                0xff800bcc                _g_iIndex
+                0xff800bc8                _g_iSampleCount
+                0xff800bb8                _Rx0Buffer
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .bss           0xff800bd0        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .bss           0xff800bd0       0x34 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+                0xff800bd0                ___malloc_top_pad
+                0xff800bdc                ___malloc_current_mallinfo
+                0xff800bd4                ___malloc_max_sbrked_mem
+                0xff800bd8                ___malloc_max_total_mem
+ .bss           0xff800c04        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .bss           0xff800c04        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .bss           0xff800c04        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .bss           0xff800c04        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .bss           0xff800c04        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .bss           0xff800c04        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .bss           0xff800c04        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .bss           0xff800c04        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .bss           0xff800c08        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .bss           0xff800c08        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+ .bss           0xff800c08        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+ *(COMMON)
+ COMMON         0xff800c08       0x90 /tmp/ccMifgZS.o
+                0xff800c08                _sLeftChannelOut
+                0xff800c0a                _sCodecRegsReadBack
+                0xff800c84                _g_sInput
+                0xff800c88                _sRightChannelOut
+                0xff800c8a                _sLeftChannelIn
+                0xff800c8c                _sRightChannelIn
+                0xff800c90                _g_fSineWaveIn_Right
+                0xff800c94                _g_fSineWaveIn_Left
+ COMMON         0xff800c98        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+                0xff800c98                _errno
+                0xff800c9c                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0xff800c9c                __bss_end = .
+                0xff800c9c                . = ALIGN (0x4)
+                0xff800c9c                . = ALIGN (0x4)
+                0xff800c9c                __end = .
+                0xff800c9c                PROVIDE (_end, .)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000      0x320
+ *(.comment)
+ .comment       0x00000000        0xe /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
+ .comment       0x0000000e       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ .comment       0x0000002b       0x12 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtlibid.o
+ .comment       0x0000003d       0x1d /tmp/ccMifgZS.o
+ .comment       0x0000005a       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .comment       0x00000077       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .comment       0x00000094       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .comment       0x000000b1       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .comment       0x000000ce       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .comment       0x000000eb       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .comment       0x00000108       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .comment       0x00000125       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .comment       0x00000142       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+ .comment       0x0000015f       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .comment       0x0000017c       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .comment       0x00000199       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .comment       0x000001b6       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .comment       0x000001d3       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+ .comment       0x000001f0       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .comment       0x0000020d       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .comment       0x0000022a       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .comment       0x00000247       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .comment       0x00000264       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .comment       0x00000281       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .comment       0x0000029e       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .comment       0x000002bb       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .comment       0x000002d8       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .comment       0x000002f5       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+ .comment       0x00000312        0xe /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x2e0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
+ .debug_aranges
+                0x00000020       0x20 /tmp/ccMifgZS.o
+ .debug_aranges
+                0x00000040       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .debug_aranges
+                0x00000060       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .debug_aranges
+                0x00000080       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .debug_aranges
+                0x000000a0       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .debug_aranges
+                0x000000c0       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .debug_aranges
+                0x000000e0       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .debug_aranges
+                0x00000100       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .debug_aranges
+                0x00000120       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .debug_aranges
+                0x00000140       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_aranges
+                0x00000160       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_aranges
+                0x00000180       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .debug_aranges
+                0x000001a0       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+ .debug_aranges
+                0x000001c0       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_aranges
+                0x000001e0       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .debug_aranges
+                0x00000200       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .debug_aranges
+                0x00000220       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_aranges
+                0x00000240       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_aranges
+                0x00000260       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .debug_aranges
+                0x00000280       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .debug_aranges
+                0x000002a0       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .debug_aranges
+                0x000002c0       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+
+.debug_pubnames
+                0x00000000      0x53e
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x138 /tmp/ccMifgZS.o
+ .debug_pubnames
+                0x00000138       0x1f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .debug_pubnames
+                0x00000157       0x1f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .debug_pubnames
+                0x00000176       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .debug_pubnames
+                0x00000196       0x22 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .debug_pubnames
+                0x000001b8       0x1f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .debug_pubnames
+                0x000001d7       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .debug_pubnames
+                0x000001f7       0x24 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .debug_pubnames
+                0x0000021b       0x1f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .debug_pubnames
+                0x0000023a       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+ .debug_pubnames
+                0x0000025a       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_pubnames
+                0x00000277       0x1b /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_pubnames
+                0x00000292       0x39 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .debug_pubnames
+                0x000002cb       0x26 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .debug_pubnames
+                0x000002f1       0xce /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+ .debug_pubnames
+                0x000003bf       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_pubnames
+                0x000003dc       0x38 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .debug_pubnames
+                0x00000414       0x1e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .debug_pubnames
+                0x00000432       0x2a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_pubnames
+                0x0000045c       0x27 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_pubnames
+                0x00000483       0x31 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .debug_pubnames
+                0x000004b4       0x52 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .debug_pubnames
+                0x00000506       0x1c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .debug_pubnames
+                0x00000522       0x1c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+
+.debug_info     0x00000000     0x7ecd
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000       0xd0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
+ .debug_info    0x000000d0      0x39b /tmp/ccMifgZS.o
+ .debug_info    0x0000046b      0x297 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .debug_info    0x00000702      0x2f0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .debug_info    0x000009f2      0x18f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .debug_info    0x00000b81      0x1a9 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .debug_info    0x00000d2a      0x58d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .debug_info    0x000012b7      0x1ab /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .debug_info    0x00001462      0x251 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .debug_info    0x000016b3      0x125 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .debug_info    0x000017d8       0xbe /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+ .debug_info    0x00001896       0xba /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_info    0x00001950      0x923 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_info    0x00002273      0x91a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .debug_info    0x00002b8d      0x94f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .debug_info    0x000034dc      0xcb4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+ .debug_info    0x00004190      0x108 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_info    0x00004298      0x938 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .debug_info    0x00004bd0      0x94a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .debug_info    0x0000551a      0x98f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_info    0x00005ea9      0x998 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_info    0x00006841      0xbad /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .debug_info    0x000073ee      0x9ff /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .debug_info    0x00007ded       0x91 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .debug_info    0x00007e7e       0x4f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+
+.debug_abbrev   0x00000000     0x1d5c
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0x14 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
+ .debug_abbrev  0x00000014      0x1ac /tmp/ccMifgZS.o
+ .debug_abbrev  0x000001c0      0x112 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .debug_abbrev  0x000002d2      0x112 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .debug_abbrev  0x000003e4      0x116 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .debug_abbrev  0x000004fa      0x10c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .debug_abbrev  0x00000606      0x143 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .debug_abbrev  0x00000749      0x114 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .debug_abbrev  0x0000085d      0x107 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .debug_abbrev  0x00000964       0xb3 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .debug_abbrev  0x00000a17       0x6a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+ .debug_abbrev  0x00000a81       0x7f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_abbrev  0x00000b00      0x175 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_abbrev  0x00000c75      0x15e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .debug_abbrev  0x00000dd3      0x18e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .debug_abbrev  0x00000f61      0x21d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+ .debug_abbrev  0x0000117e       0xb0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_abbrev  0x0000122e      0x171 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .debug_abbrev  0x0000139f      0x195 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .debug_abbrev  0x00001534      0x1d8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_abbrev  0x0000170c      0x1bf /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_abbrev  0x000018cb      0x1e0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .debug_abbrev  0x00001aab      0x1e1 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .debug_abbrev  0x00001c8c       0x8d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .debug_abbrev  0x00001d19       0x43 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+
+.debug_line     0x00000000     0x1baf
+ *(.debug_line)
+ .debug_line    0x00000000      0x125 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
+ .debug_line    0x00000125      0x16d /tmp/ccMifgZS.o
+ .debug_line    0x00000292       0xc7 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .debug_line    0x00000359       0xd7 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .debug_line    0x00000430       0xb9 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .debug_line    0x000004e9       0xb5 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .debug_line    0x0000059e       0xe0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .debug_line    0x0000067e       0xbb /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .debug_line    0x00000739       0xc3 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .debug_line    0x000007fc       0xa6 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .debug_line    0x000008a2       0x7f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+ .debug_line    0x00000921       0x93 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_line    0x000009b4      0x156 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_line    0x00000b0a      0x142 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .debug_line    0x00000c4c      0x160 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .debug_line    0x00000dac      0x2bc /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+ .debug_line    0x00001068      0x10e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_line    0x00001176      0x154 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .debug_line    0x000012ca      0x156 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .debug_line    0x00001420      0x180 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_line    0x000015a0      0x194 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_line    0x00001734      0x1d6 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .debug_line    0x0000190a      0x193 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .debug_line    0x00001a9d       0x8e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .debug_line    0x00001b2b       0x84 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+
+.debug_frame    0x00000000      0x558
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xc8 /tmp/ccMifgZS.o
+ .debug_frame   0x000000c8       0x3c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .debug_frame   0x00000104       0x38 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .debug_frame   0x0000013c       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .debug_frame   0x00000164       0x30 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .debug_frame   0x00000194       0x3c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .debug_frame   0x000001d0       0x30 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .debug_frame   0x00000200       0x34 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .debug_frame   0x00000234       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .debug_frame   0x0000025c       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_frame   0x00000284       0x30 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_frame   0x000002b4       0x40 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .debug_frame   0x000002f4       0x3c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+ .debug_frame   0x00000330       0x34 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_frame   0x00000364       0x40 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .debug_frame   0x000003a4       0x30 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .debug_frame   0x000003d4       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_frame   0x000003fc       0x3c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_frame   0x00000438       0x58 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .debug_frame   0x00000490       0x78 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .debug_frame   0x00000508       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .debug_frame   0x00000530       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+
+.debug_str      0x00000000     0x11f4
+ *(.debug_str)
+ .debug_str     0x00000000      0x202 /tmp/ccMifgZS.o
+                                0x23b (size before relaxing)
+ .debug_str     0x00000202       0x97 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+                                0x12e (size before relaxing)
+ .debug_str     0x00000299       0xa5 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+                                0x164 (size before relaxing)
+ .debug_str     0x0000033e       0x7b /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+                                0x13a (size before relaxing)
+ .debug_str     0x000003b9       0x7c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+                                0x143 (size before relaxing)
+ .debug_str     0x00000435       0xd7 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+                                0x1af (size before relaxing)
+ .debug_str     0x0000050c       0x6b /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+                                0x14c (size before relaxing)
+ .debug_str     0x00000577       0x73 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+                                0x15b (size before relaxing)
+ .debug_str     0x000005ea       0xdf /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+                                0x18b (size before relaxing)
+ .debug_str     0x00000000      0x16e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clz.o)
+ .debug_str     0x000006c9       0x86 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+                                0x116 (size before relaxing)
+ .debug_str     0x0000074f      0x3ce /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+                                0x49b (size before relaxing)
+ .debug_str     0x00000b1d       0x61 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+                                0x49e (size before relaxing)
+ .debug_str     0x00000b7e       0x6e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+                                0x49f (size before relaxing)
+ .debug_str     0x00000bec      0x223 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+                                0x680 (size before relaxing)
+ .debug_str     0x00000e0f       0x71 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+                                0x101 (size before relaxing)
+ .debug_str     0x00000e80       0x88 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+                                0x4a6 (size before relaxing)
+ .debug_str     0x00000f08       0x6b /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+                                0x49b (size before relaxing)
+ .debug_str     0x00000f73       0x7a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+                                0x4e5 (size before relaxing)
+ .debug_str     0x00000fed       0x7c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+                                0x4b7 (size before relaxing)
+ .debug_str     0x00001069       0x3c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+                                0x5d2 (size before relaxing)
+ .debug_str     0x000010a5       0x8e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+                                0x4c3 (size before relaxing)
+ .debug_str     0x00001133       0x67 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+                                 0x86 (size before relaxing)
+ .debug_str     0x0000119a       0x5a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+                                 0x66 (size before relaxing)
+
+.debug_loc      0x00000000     0x30fe
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x161 /tmp/ccMifgZS.o
+ .debug_loc     0x00000161      0x5ca /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .debug_loc     0x0000072b      0x61c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .debug_loc     0x00000d47       0xb5 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .debug_loc     0x00000dfc      0x10e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .debug_loc     0x00000f0a      0xaa9 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .debug_loc     0x000019b3      0x10a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .debug_loc     0x00001abd      0x14c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .debug_loc     0x00001c09       0x3d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .debug_loc     0x00001c46       0x3d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_loc     0x00001c83       0x49 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_loc     0x00001ccc       0x7a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(malloc.o)
+ .debug_loc     0x00001d46      0x976 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+ .debug_loc     0x000026bc      0x100 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_loc     0x000027bc       0x3e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mlock.o)
+ .debug_loc     0x000027fa       0x85 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(sbrkr.o)
+ .debug_loc     0x0000287f       0x92 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_loc     0x00002911      0x143 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_loc     0x00002a54      0x3b7 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(freer.o)
+ .debug_loc     0x00002e0b      0x258 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(reent.o)
+ .debug_loc     0x00003063       0x7c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(sbrk.o)
+ .debug_loc     0x000030df       0x1f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+                0xffb01000                __stack_end = 0xffb01000
+
+/DISCARD/
+ *(.note.GNU-stack)
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+OUTPUT(Audio_test elf32-bfin)
+
+.debug_ranges   0x00000000      0x410
+ .debug_ranges  0x00000000       0x30 /tmp/ccMifgZS.o
+ .debug_ranges  0x00000030       0x50 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(divsf3.o)
+ .debug_ranges  0x00000080       0x38 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(mulsf3.o)
+ .debug_ranges  0x000000b8       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixsfsi.o)
+ .debug_ranges  0x000000d8       0x30 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(floatsisf.o)
+ .debug_ranges  0x00000108      0x1c0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(muldf3.o)
+ .debug_ranges  0x000002c8       0x40 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(fixdfsi.o)
+ .debug_ranges  0x00000308       0x38 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(extendsfdf2.o)
+ .debug_ranges  0x00000340       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_clzsi2.o)
+ .debug_ranges  0x00000368       0x80 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(mallocr.o)
+ .debug_ranges  0x000003e8       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
