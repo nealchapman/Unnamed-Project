@@ -4,7 +4,7 @@
 
 #include <builtins.h>
 #include <signal.h>
-#include <math_bf.h>
+#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <blackfin.h>
@@ -429,7 +429,7 @@ int main(void)
 	// create out sine wave
 	for( i = 0; i < MAX_SAMPLES; i++ )
 	{
-	    g_sInput[i] = (int)(AMPLITUDE * sin( (2.0 * PI * DESIRED_FREQ * ( ((float)(i+1)) / SAMPLE_RATE))) );
+		g_sInput[i] = (int)(AMPLITUDE * sin( (2.0 * PI * DESIRED_FREQ * ( ((float)(i+1)) / SAMPLE_RATE))) );
 	}
 
 	// initialize some global variables
