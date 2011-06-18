@@ -1,5 +1,6 @@
 CROSS = bfin-elf-
 CC = $(CROSS)gcc
+LD = $(CROSS)ld
 LDR = $(CROSS)ldr
 OBJCOPY = $(CROSS)objcopy
 CPU = bf548
@@ -7,24 +8,30 @@ CFLAGS = -g -O2
 CFLAGS += -mcpu=$(CPU)
 CFLAGS += -Wall
 CFLAGS += -Wl,-Map,Audio_test.map
+LDFLAGS = 
 LIBS = -lm
 
-all: Audio_test.ldr 
+TARGET = Audio_test
 
+SRCS = Audio_test.c
 
-Audio_test: Audio_test.c
-	$(CC) $(CFLAGS) $< $(LIBS) -o $@
+OBJS = $(SRCS,.c=.o) 
 
-Audio_test.ldr: Audio_test
+all: $(TARGET).ldr
+
+$(TARGET).elf: $(OBJS)
+	$(LD) $(LDFLAGS) $< $(LIBS) -o $@
+
+%.ldr: %.elf
 	$(LDR) -f -T $(CPU) -c $@ $<
 
-Audio_test.bin:
-	$(OBJCOPY) -Obinary Audio_test Audio_test.bin
+%.bin: %.elf
+	$(OBJCOPY) -Obinary $< $@
 
-load: Audio_test.ldr
+load: $(TARGET).ldr
 	$(LDR) -l $< /dev/ttyS0
 
 clean:
-	rm -f *.o Audio_test Audio_test.ldr Audio_test.map Audio_test.bin
+	rm -f $(TARGET).elf $(TARGET).ldr $(TARGET).map $(TARGET).bin $(OBJS)
 
 .PHONY: all clean load
