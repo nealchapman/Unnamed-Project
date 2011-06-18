@@ -1,21 +1,20 @@
 CROSS = bfin-elf-
 CC = $(CROSS)gcc
-LD = $(CROSS)ld
+LD = $(CROSS)gcc
 LDR = $(CROSS)ldr
 OBJCOPY = $(CROSS)objcopy
 CPU = bf548
 CFLAGS = -g -O2
 CFLAGS += -mcpu=$(CPU)
 CFLAGS += -Wall
-CFLAGS += -Wl,-Map,Audio_test.map
-LDFLAGS = 
+LDFLAGS = -mcpu=$(CPU) -Wl,-Map,Audio_test.map
 LIBS = -lm
 
 TARGET = Audio_test
 
 SRCS = Audio_test.c
 
-OBJS = $(SRCS,.c=.o) 
+OBJS = $(SRCS:.c=.o)
 
 all: $(TARGET).ldr
 
