@@ -13,7 +13,7 @@ all: Audio_test.ldr
 
 
 Audio_test: Audio_test.c
-	$(CC) -g -O2 $(CFLAGS) $< $(LIBS) -o $@
+	$(CC) $(CFLAGS) $< $(LIBS) -o $@
 
 Audio_test.ldr: Audio_test
 	$(LDR) -f -T $(CPU) -c $@ $<
