@@ -153,7 +153,7 @@ short 	sLeftChannelOut, sRightChannelOut;		// PCM output data
 // Test paramaters
 #define MAX_SAMPLES	 				256
 #define REQUIRED_SAMPLES			((MAX_SAMPLES) * 250)
-#define DESIRED_FREQ 				((float)3000.0)
+#define DESIRED_FREQ 				((float)800.0)
 #define SAMPLE_RATE 				((float)48000.0)
 #define AMPLITUDE					((float)32767)
 #define PI							((float)3.141592765309)
@@ -214,6 +214,18 @@ short 	sCodecRegs[SIZE_OF_CODEC_REGS] =						// array for codec registers
 
 short 	sCodecRegsReadBack[SIZE_OF_CODEC_REGS];
 
+typedef enum LEDS_tag{
+	LED1 = (1<<6),
+	LED2 = (1<<7),
+	LED3 = (1<<8),
+	LED4 = (1<<9),
+	LED5 = (1<<10),
+	LED6 = (1<<12),
+	LAST_LED = (1<<13)
+}enLED;
+
+
+
 /*Function Prototypes*/
 static void initSPORT0(void);
 static void initDMA(void);
@@ -221,7 +233,6 @@ static void initAD1980(void);
 static void waitForCodecInit(void);
 static void enableSPORT0DMATDMStreams(void);
 static void enableCodecSlot16Mode(void);
-
 __attribute__((interrupt_handler))
 static void sport0TXISR(void);
 
@@ -414,10 +425,112 @@ void enableCodecSlot16Mode(void)
 
 void initAD1980(void)
 {
+	int iCounter;
+	int jCounter;
+	int bMatch = 0;
+
+	clearSetLED(LED1,1);
+
+	//wait for frame valid flag from codec (first bit in receive buffer)
+	while((Tx0Buffer[TAG_PHASE] & 0x8000) == 0);
+
+	clearSetLED(LED2,1);
+
+	// configure codec
+	for(iCounter = 0; iCounter < SIZE_OF_CODEC_REGS; iCounter = iCounter + 2)
+	{
+		do
+		{								// send complete register set to codec
+			Tx0Buffer[COMMAND_ADDRESS_SLOT] = sCodecRegs[iCounter];
+			Tx0Buffer[COMMAND_DATA_SLOT] = sCodecRegs[iCounter+1];
+
+			for(jCounter = 0x0000; jCounter < DELAY_COUNT; jCounter++) jCounter= jCounter;
+
+			idle(); ssync();
+			idle(); ssync();	// ...wait for 2 TDM frames... 
+
+			asm("nop;");asm("nop;");asm("nop;");asm("nop;");
+			asm("nop;");asm("nop;");asm("nop;");asm("nop;");
+			asm("nop;");asm("nop;");asm("nop;");asm("nop;");
+			asm("nop;");asm("nop;");asm("nop;");asm("nop;");
+
+			Tx0Buffer[COMMAND_ADDRESS_SLOT] = (sCodecRegs[iCounter] | 0x8000);
+			idle(); ssync();
+			idle(); ssync();
+
+			for(jCounter = 0x0000; jCounter < DELAY_COUNT; jCounter++) jCounter= jCounter;
+
+			sCodecRegsReadBack[iCounter] = Rx0Buffer[STATUS_ADDRESS_SLOT];
+			sCodecRegsReadBack[iCounter+1] = Rx0Buffer[STATUS_DATA_SLOT];
+
+			if( sCodecRegsReadBack[iCounter] == sCodecRegs[iCounter] )
+				bMatch = 1;
+
+		}while( !bMatch );
+
+		bMatch = 0;
+ 	}
+
+
+ 	Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
+ 	Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
+
+ 	for(iCounter = 0; iCounter < SIZE_OF_CODEC_REGS; iCounter = iCounter + 2)
+	{
+		Tx0Buffer[COMMAND_ADDRESS_SLOT] = (sCodecRegs[iCounter] | 0x8000);
+		idle(); ssync();
+		idle(); ssync();
+
+		for(jCounter = 0x0000; jCounter < DELAY_COUNT; jCounter++) jCounter= jCounter;
+
+		sCodecRegsReadBack[iCounter] = Rx0Buffer[STATUS_ADDRESS_SLOT];
+		sCodecRegsReadBack[iCounter+1] = Rx0Buffer[STATUS_DATA_SLOT];
+	}
+
+}
+
+void Delay(unsigned long ulMs)
+{
+	unsigned long sleep = ulMs * 5000;
+	while (sleep--)
+		asm("nop");
+}
+
+void initLEDs(void)
+{
+	*pPORTG_FER &= ~0x0FC0;
+	*pPORTG_MUX &= ~0x0FC0;
+	*pPORTG_DIR_SET = 0x0FC0;
+}
+
+void clearSetLED(const enLED led, const int bState)
+{
+	static unsigned short leds = 0;
+
+	if (bState == 0) {
+		*pPORTG_CLEAR = led; /* clear */
+		leds &= ~led;
+	}
+	else if (bState == 1) {
+		*pPORTG_SET = led; /* set */
+		leds |= led;
+	}
+	else if (leds & led) {
+		*pPORTG_CLEAR = led; /* toggle */
+		leds &= ~led;
+	}
+	else {
+		*pPORTG_SET = led; /* toggle */
+		leds |= led;
+	}
 }
 
 int main(void)
 {
+
+	initLEDs();
+	clearSetLED(LED1, 1);
+
 
 	int i = 0;
 
@@ -426,28 +539,45 @@ int main(void)
 	g_fSineWaveIn_Left = malloc(sizeof(short) * MAX_SAMPLES);
 	g_fSineWaveIn_Right = malloc(sizeof(short) * MAX_SAMPLES);
 
+	clearSetLED(LED2,1);
+
 	// create out sine wave
 	for( i = 0; i < MAX_SAMPLES; i++ )
 	{
 		g_sInput[i] = (int)(AMPLITUDE * sin( (2.0 * PI * DESIRED_FREQ * ( ((float)(i+1)) / SAMPLE_RATE))) );
 	}
 
+	clearSetLED(LED3, 1);
+
 	// initialize some global variables
 	g_iIndex = 0;
 	g_iSampleCount = 0;
 	g_iSampleIndex = 1;
 
+	clearSetLED(LED4, 1);
+
 	audioReset();
+
+	clearSetLED(LED1, 0);	
 	
 	initSPORT0();
 	initDMA();
+
+	clearSetLED(LED2, 0);
 	
 	enableSPORT0DMATDMStreams();
 	enableCodecSlot16Mode();
 
+	clearSetLED(LED3,0);
+
 	initAD1980();
 
+	clearSetLED(LED4,0);
+	
 	*pEVT9 = sport0TXISR;
+
+
+
 
 	/*ADD start outputing audio here*/
 
