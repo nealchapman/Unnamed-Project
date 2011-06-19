@@ -53,11 +53,11 @@
 #define		VENDOR_ID_2			0x7E00
 
 // names for slots in ac97 frame
-#define SLOT_TAG			0
+#define SLOT_TAG				0
 #define SLOT_COMMAND_ADDRESS	1
 #define SLOT_COMMAND_DATA		2
 #define SLOT_PCM_LEFT			3
-#define SLOT_PCM_RIGHT		4
+#define SLOT_PCM_RIGHT			4
 
 #define SIZE_OF_CODEC_REGS		60		// size of array iCodecRegs
 
@@ -73,7 +73,7 @@
 /* Macros for setting Bits 15, 14 and 13 in Slot 0 Tag Phase */
 #define	ENABLE_VFbit_SLOT1_SLOT2	0xE000
 #define	ENABLE_VFbit_SLOT1			0xC000
-#define 	ENABLE_VFbit_STEREO		0x9800
+#define ENABLE_VFbit_STEREO			0x9800
 
 /* AD1981B AC-Link TDM Timeslot Definitions (indexed by 16-bit short words)*/
 #define	TAG_PHASE				0
@@ -132,10 +132,9 @@
 #define SLEN_16	0x000f
 
 #define FLOW_AUTO		0x1000		/* Autobuffer Mode							*/
-//#define MCMEN			0x0010 		/* Multichannel Frame Mode Enable				*/
 #define MFD_1			0x1000		/* Multichannel Frame Delay = 1					*/
-#define PMAP_SPORT0RX	0x0000			/* SPORT0 Receive DMA							*/
-#define PMAP_SPORT0TX	0x1000			/* SPORT0 Transmit DMA						*/
+#define PMAP_SPORT0RX	0x0000		/* SPORT0 Receive DMA							*/
+#define PMAP_SPORT0TX	0x1000		/* SPORT0 Transmit DMA						*/
 #define WDSIZE_16		0x0004		/* Transfer Word Size = 16						*/
 
 /* SPORT1 DMA receive buffer */
@@ -242,7 +241,7 @@ static void sport0TXISR(void);
 
 void audioReset(void)
 {
-    int iCounter;
+	int iCounter;
 
 	*pPORTB_FER = 0x0000;
 	*pPORTB_MUX = 0x0000;
@@ -253,7 +252,7 @@ void audioReset(void)
 	*pPORTB_CLEAR = Px3;
 	for(iCounter = 0x0000; iCounter < 0xFFFF; iCounter++) iCounter = iCounter;
 	*pPORTB_SET = Px3;
-	for(iCounter = 0x0000; iCounter < 0xffff; iCounter++) iCounter = iCounter;
+	for(iCounter = 0x0000; iCounter < 0xFFFF; iCounter++) iCounter = iCounter;
 }
 
 void initSPORT0(void)
@@ -298,8 +297,9 @@ __attribute__((interrupt_handler))
 static void  sport0TXISRDummy(void)
 {
 	// confirm interrupt handling
-	*pDMA1_IRQ_STATUS = 0x0001;
+	//*pDMA1_IRQ_STATUS = 0x0001;
 	waitForCodecInit();
+
 }
 
 void enableSPORT0DMATDMStreams(void)
@@ -340,11 +340,14 @@ void enableSPORT0DMATDMStreams(void)
 __attribute__((interrupt_handler))
 static void sport0TXISR()
 {
+
 	// mask interrupts so we can finish all processing
 	unsigned int uiTIMASK = cli();
 
 	// confirm interrupt handling
-	*pDMA1_IRQ_STATUS = 0x0001;
+	//*pDMA1_IRQ_STATUS = 0x0001;
+
+	*pPORTG_SET = LED2; /* set */
 
 	// save new slot values in variables
 	sAc97Tag 			= Rx0Buffer[TAG_PHASE];
@@ -429,12 +432,8 @@ void initAD1980(void)
 	int jCounter;
 	int bMatch = 0;
 
-	clearSetLED(LED1,1);
-
 	//wait for frame valid flag from codec (first bit in receive buffer)
 	while((Tx0Buffer[TAG_PHASE] & 0x8000) == 0);
-
-	clearSetLED(LED2,1);
 
 	// configure codec
 	for(iCounter = 0; iCounter < SIZE_OF_CODEC_REGS; iCounter = iCounter + 2)
@@ -529,8 +528,6 @@ int main(void)
 {
 
 	initLEDs();
-	clearSetLED(LED1, 1);
-
 
 	int i = 0;
 
@@ -539,45 +536,28 @@ int main(void)
 	g_fSineWaveIn_Left = malloc(sizeof(short) * MAX_SAMPLES);
 	g_fSineWaveIn_Right = malloc(sizeof(short) * MAX_SAMPLES);
 
-	clearSetLED(LED2,1);
-
 	// create out sine wave
 	for( i = 0; i < MAX_SAMPLES; i++ )
 	{
 		g_sInput[i] = (int)(AMPLITUDE * sin( (2.0 * PI * DESIRED_FREQ * ( ((float)(i+1)) / SAMPLE_RATE))) );
 	}
 
-	clearSetLED(LED3, 1);
-
 	// initialize some global variables
 	g_iIndex = 0;
 	g_iSampleCount = 0;
 	g_iSampleIndex = 1;
 
-	clearSetLED(LED4, 1);
-
 	audioReset();
 
-	clearSetLED(LED1, 0);	
-	
 	initSPORT0();
 	initDMA();
 
-	clearSetLED(LED2, 0);
-	
 	enableSPORT0DMATDMStreams();
 	enableCodecSlot16Mode();
 
-	clearSetLED(LED3,0);
-
 	initAD1980();
 
-	clearSetLED(LED4,0);
-	
 	*pEVT9 = sport0TXISR;
-
-
-
 
 	/*ADD start outputing audio here*/
 

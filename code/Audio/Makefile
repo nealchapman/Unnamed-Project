@@ -4,7 +4,7 @@ LD = $(CROSS)gcc
 LDR = $(CROSS)ldr
 OBJCOPY = $(CROSS)objcopy
 CPU = bf548
-CFLAGS = -g -O2
+CFLAGS = -g #-O2
 CFLAGS += -mcpu=$(CPU)
 CFLAGS += -Wall
 LDFLAGS = -mcpu=$(CPU) -Wl,-Map,Audio_test.map
