@@ -17,10 +17,10 @@ tar -xjf ${TOOLCHAIN_ARCHIVE}
 
 CWD=`pwd`
 
-echo >>~/.bash_profile <<zzzEOFzzz
+cat >>~/.bash_profile <<zzzEOFzzz
 
 ### Blackfin Toolchain ###
-PATH=${CWD}/bfin-elf/bin:${PATH}
+PATH=${CWD}/bfin-elf/bin:\${PATH}
 ####
 
 zzzEOFzzz
