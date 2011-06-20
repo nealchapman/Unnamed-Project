@@ -234,6 +234,8 @@ static void enableSPORT0DMATDMStreams(void);
 static void enableCodecSlot16Mode(void);
 __attribute__((interrupt_handler))
 static void sport0TXISR(void);
+__attribute__((interrupt_handler))
+static void sport0TXISRDummy(void);
 
 /*--------------------*/
 /*Function Definitions*/
@@ -246,14 +248,14 @@ void audioReset(void)
 	*pPORTB_FER = 0x0000;
 	*pPORTB_MUX = 0x0000;
 
-	*pPORTB_DIR_SET = Px3;
-	*pPORTB_SET = Px3;
+	*pPORTB_DIR_SET = (1<<3);
+	*pPORTB_SET = (1<<3);
 	//AD1980 Datasheet says 1us pulse for reset
 	//Set reset pulse time to 2us for safety 0x4B0
 	for(iCounter = 0x0000; iCounter < 0x04B0; iCounter++) iCounter = iCounter;
-	*pPORTB_CLEAR = Px3;
+	*pPORTB_CLEAR = (1<<3);
 	for(iCounter = 0x0000; iCounter < 0x04B0; iCounter++) iCounter = iCounter;
-	*pPORTB_SET = Px3;
+	*pPORTB_SET = (1<<3);
 	for(iCounter = 0x0000; iCounter < 0x04B0; iCounter++) iCounter = iCounter;
 }
 
@@ -297,7 +299,7 @@ void initDMA(void)
 	*pDMA0_X_COUNT = 8;
 	*pDMA0_X_MODIFY = 2;
 
-	*pDMA1_CONFIG = FLOW_AUTO | DI_EN | WDSIZE_16 | WNR;
+	*pDMA1_CONFIG = FLOW_AUTO | DI_EN | WDSIZE_16;
 	*pDMA1_START_ADDR = (void *)Tx0Buffer;
 	*pDMA1_X_COUNT = 8;
 	*pDMA1_X_MODIFY = 2;
@@ -356,7 +358,7 @@ static void sport0TXISR()
 	unsigned int uiTIMASK = cli();
 
 	// confirm interrupt handling
-	//*pDMA1_IRQ_STATUS = 0x0001;
+	*pDMA1_IRQ_STATUS = 0x0001;
 
 	*pPORTG_SET = LED2; /* set */
 
@@ -392,9 +394,9 @@ static void sport0TXISR()
 	}
 
 	// copy data from previous frame into transmit buffer
-//	Tx0Buffer[TAG_PHASE] = sAc97Tag;
-//	Tx0Buffer[PCM_LEFT] = sLeftChannelOut;
-//	Tx0Buffer[PCM_RIGHT] = sRightChannelOut;
+	Tx0Buffer[TAG_PHASE] = sAc97Tag;
+	Tx0Buffer[PCM_LEFT] = sLeftChannelOut;
+	Tx0Buffer[PCM_RIGHT] = sRightChannelOut;
 
 	// restore masked values
 	sti(uiTIMASK);
