@@ -248,23 +248,34 @@ void audioReset(void)
 
 	*pPORTB_DIR_SET = Px3;
 	*pPORTB_SET = Px3;
-	for(iCounter = 0x0000; iCounter < 0xFFFF; iCounter++) iCounter = iCounter;
+	//AD1980 Datasheet says 1us pulse for reset
+	//Set reset pulse time to 2us for safety 0x4B0
+	for(iCounter = 0x0000; iCounter < 0x04B0; iCounter++) iCounter = iCounter;
 	*pPORTB_CLEAR = Px3;
-	for(iCounter = 0x0000; iCounter < 0xFFFF; iCounter++) iCounter = iCounter;
+	for(iCounter = 0x0000; iCounter < 0x04B0; iCounter++) iCounter = iCounter;
 	*pPORTB_SET = Px3;
-	for(iCounter = 0x0000; iCounter < 0xFFFF; iCounter++) iCounter = iCounter;
+	for(iCounter = 0x0000; iCounter < 0x04B0; iCounter++) iCounter = iCounter;
 }
 
 void initSPORT0(void)
 {
+	//Sets port C to SPORT0
 	*pPORTC_MUX = 0x0000;
+	//Switches 4 PORTC pins to be SPORT0 instead of GPIO
+	//Includes signals DT0PRI, RFS0, DR0PRI, RSCK0
 	*pPORTC_FER = (1<<2) | (1<<4) | (1<<6) | (1<<7);
+	//Set receive frame sync divider to 255	
 	*pSPORT0_RFSDIV = 0x00FF;
-	*pSPORT0_RCLKDIV = 0x0000;
+	//Set Transmit frame sync divider to 0.
+	//AD1980 generates this signal.
 	*pSPORT0_TFSDIV = 0x0000;
+	//Set Receive/Transmit clock divider to 0
+	*pSPORT0_RCLKDIV = 0x0000;
 	*pSPORT0_TCLKDIV = 0x0000;
 
+	//Requires receive framesync on each word, Internal Frame Sync Select	
 	*pSPORT0_RCR1 = RFSR | IRFS;
+	//Serial recieve word length is SLEN_16+1
 	*pSPORT0_RCR2 = SLEN_16;
 
 	*pSPORT0_TCR1 = 0x0000;
@@ -297,7 +308,7 @@ __attribute__((interrupt_handler))
 static void  sport0TXISRDummy(void)
 {
 	// confirm interrupt handling
-	//*pDMA1_IRQ_STATUS = 0x0001;
+	*pDMA1_IRQ_STATUS = 0x0001;
 	waitForCodecInit();
 
 }
@@ -381,9 +392,9 @@ static void sport0TXISR()
 	}
 
 	// copy data from previous frame into transmit buffer
-	Tx0Buffer[TAG_PHASE] = sAc97Tag;
-	Tx0Buffer[PCM_LEFT] = sLeftChannelOut;
-	Tx0Buffer[PCM_RIGHT] = sRightChannelOut;
+//	Tx0Buffer[TAG_PHASE] = sAc97Tag;
+//	Tx0Buffer[PCM_LEFT] = sLeftChannelOut;
+//	Tx0Buffer[PCM_RIGHT] = sRightChannelOut;
 
 	// restore masked values
 	sti(uiTIMASK);
@@ -527,39 +538,35 @@ void clearSetLED(const enLED led, const int bState)
 int main(void)
 {
 
-	initLEDs();
-
 	int i = 0;
 
-	// allocate storage for our buffers
-	g_sInput = malloc(sizeof(short) * MAX_SAMPLES);
-	g_fSineWaveIn_Left = malloc(sizeof(short) * MAX_SAMPLES);
-	g_fSineWaveIn_Right = malloc(sizeof(short) * MAX_SAMPLES);
+	//NEC APPROVED	
+	initLEDs();
 
+	//NEC APPROVED
 	// create out sine wave
-	for( i = 0; i < MAX_SAMPLES; i++ )
+	for(i = 0; i < (SAMPLE_RATE/DESIRED_FREQ); i++ )
 	{
 		g_sInput[i] = (int)(AMPLITUDE * sin( (2.0 * PI * DESIRED_FREQ * ( ((float)(i+1)) / SAMPLE_RATE))) );
 	}
 
-	// initialize some global variables
-	g_iIndex = 0;
-	g_iSampleCount = 0;
-	g_iSampleIndex = 1;
-
-	audioReset();
-
+	//NEC APPROVED*
+	//*Went on faith that the original author knew what the AD1980 wants
 	initSPORT0();
+
+	//NEC APPROVED
+	//Toggles Reset line for 2us up and down followed by a 2us delay.
+	audioReset();
+	
 	initDMA();
 
 	enableSPORT0DMATDMStreams();
+
 	enableCodecSlot16Mode();
 
 	initAD1980();
 
 	*pEVT9 = sport0TXISR;
-
-	/*ADD start outputing audio here*/
 
 	while(1);
 	return 0;
