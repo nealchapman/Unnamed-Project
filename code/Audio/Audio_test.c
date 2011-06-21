@@ -150,12 +150,12 @@ short 	sLeftChannelOut, sRightChannelOut;		// PCM output data
 
 
 // Test paramaters
-#define MAX_SAMPLES	 				256
 #define REQUIRED_SAMPLES			((MAX_SAMPLES) * 250)
 #define DESIRED_FREQ 				((float)800.0)
 #define SAMPLE_RATE 				((float)48000.0)
 #define AMPLITUDE					((float)32767)
 #define PI							((float)3.141592765309)
+#define MAX_SAMPLES					(SAMPLE_RATE / DESIRED_FREQ)
 
 #define ACCEPTABLE_DEVIATION_PCT	((float)0.015)
 #define ACCEPTABLE_DEVIATION		(DESIRED_FREQ  * ACCEPTABLE_DEVIATION_PCT)
@@ -165,11 +165,7 @@ short 	sLeftChannelOut, sRightChannelOut;		// PCM output data
 #define MAX_NOISE_THRESHOLD			(float)10.0
 
 volatile int  g_iSampleIndex = 1;
-volatile int  g_iSampleCount = 0;
-volatile int  g_iIndex = 0;
 
-short *g_fSineWaveIn_Left;
-short *g_fSineWaveIn_Right;
 short *g_sInput;
 
 /*********************************************************************************/
@@ -313,6 +309,8 @@ static void  sport0TXISRDummy(void)
 	*pDMA1_IRQ_STATUS = 0x0001;
 	waitForCodecInit();
 
+	*pPORTG_SET = LED2; /* set */
+
 }
 
 void enableSPORT0DMATDMStreams(void)
@@ -360,8 +358,8 @@ static void sport0TXISR()
 	// confirm interrupt handling
 	*pDMA1_IRQ_STATUS = 0x0001;
 
-	*pPORTG_SET = LED2; /* set */
-
+	*pPORTG_SET = LED5; /* set */
+	
 	// save new slot values in variables
 	sAc97Tag 			= Rx0Buffer[TAG_PHASE];
 	sLeftChannelIn 		= Rx0Buffer[PCM_LEFT];
@@ -370,22 +368,15 @@ static void sport0TXISR()
 	// do data processing if input data are marked as valid
 	if((sAc97Tag & 0x1800) != 0)
 	{
-		g_fSineWaveIn_Left[g_iSampleIndex] = sLeftChannelIn<<2;
-		g_fSineWaveIn_Right[g_iSampleIndex] = sRightChannelIn<<2;
 
-		sLeftChannelOut 	= g_sInput[g_iIndex]>>2;
-		sRightChannelOut 	= g_sInput[g_iIndex++]>>2;
-
-		// reset index
-		if( g_iIndex == 256 )
-			g_iIndex = 0;
+		sLeftChannelOut 	= g_sInput[g_iSampleIndex]>>2;
+		sRightChannelOut 	= g_sInput[g_iSampleIndex++]>>2;
 
 		g_iSampleIndex++;
 
 		if( g_iSampleIndex > MAX_SAMPLES-1 )
 			g_iSampleIndex = 0;
 
-		g_iSampleCount++;
 	}
 	else
 	{
@@ -400,6 +391,7 @@ static void sport0TXISR()
 
 	// restore masked values
 	sti(uiTIMASK);
+
 }
 
 void waitForCodecInit(void)
@@ -547,7 +539,7 @@ int main(void)
 
 	//NEC APPROVED
 	// create out sine wave
-	for(i = 0; i < (SAMPLE_RATE/DESIRED_FREQ); i++ )
+	for(i = 0; i < (MAX_SAMPLES); i++ )
 	{
 		g_sInput[i] = (int)(AMPLITUDE * sin( (2.0 * PI * DESIRED_FREQ * ( ((float)(i+1)) / SAMPLE_RATE))) );
 	}
@@ -569,6 +561,10 @@ int main(void)
 	initAD1980();
 
 	*pEVT9 = sport0TXISR;
+
+	clearSetLED(LED1,1);
+
+	//Enable Interrupts to begin outputing audio	
 
 	while(1);
 	return 0;
