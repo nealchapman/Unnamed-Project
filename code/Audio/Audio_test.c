@@ -145,13 +145,11 @@ volatile short Tx0Buffer[8] = {0xe000,0x7400,0x9900,0x0000,0x0000,0x0000,0x0000,
 
 short 	sAc97Tag = 0x8000;  // variable to save incoming AC97 tag in SPORT0 TX ISR
 
-short 	sLeftChannelIn, sRightChannelIn;		// PCM input data
 short 	sLeftChannelOut, sRightChannelOut;		// PCM output data
-
 
 // Test paramaters
 #define REQUIRED_SAMPLES			((MAX_SAMPLES) * 250)
-#define DESIRED_FREQ 				((float)800.0)
+#define DESIRED_FREQ 				((float)400.0)
 #define SAMPLE_RATE 				((float)48000.0)
 #define AMPLITUDE					((float)32767)
 #define PI							((float)3.141592765309)
@@ -309,8 +307,6 @@ static void  sport0TXISRDummy(void)
 	*pDMA1_IRQ_STATUS = 0x0001;
 	waitForCodecInit();
 
-	*pPORTG_SET = LED2; /* set */
-
 }
 
 void enableSPORT0DMATDMStreams(void)
@@ -332,10 +328,11 @@ void enableSPORT0DMATDMStreams(void)
 	/* Remap the vector table pointer from the default __I9HANDLER
 	   to the new "Sport0_TX_ISR()" interrupt service routine */
 	// SPORT0 TX ISR -> IVG 9
-	*pEVT9 =  sport0TXISRDummy;		// SPORT0 TX ISR -> IVG 9
+	*pEVT9 =  (void *)sport0TXISRDummy;		// SPORT0 TX ISR -> IVG 9
 
 	/* Unmask peripheral SPORT0 RX interrupt in System Interrupt Mask Register `
 	   (SIC_IMASK bit 9 - DMA1/SPORT0 RX */
+	*pIMASK |= EVT_IVG9;
 	*pSIC_IMASK0	= (*pSIC_IMASK0 | IRQ_DMA1);
 	ssync();
 
@@ -358,12 +355,9 @@ static void sport0TXISR()
 	// confirm interrupt handling
 	*pDMA1_IRQ_STATUS = 0x0001;
 
-	*pPORTG_SET = LED5; /* set */
 	
 	// save new slot values in variables
 	sAc97Tag 			= Rx0Buffer[TAG_PHASE];
-	sLeftChannelIn 		= Rx0Buffer[PCM_LEFT];
-	sRightChannelIn 	= Rx0Buffer[PCM_RIGHT];
 
 	// do data processing if input data are marked as valid
 	if((sAc97Tag & 0x1800) != 0)
@@ -534,6 +528,8 @@ int main(void)
 
 	int i = 0;
 
+	g_sInput = malloc(sizeof(short) * MAX_SAMPLES);
+
 	//NEC APPROVED	
 	initLEDs();
 
@@ -560,7 +556,7 @@ int main(void)
 
 	initAD1980();
 
-	*pEVT9 = sport0TXISR;
+	*pEVT9 = (void *)sport0TXISR;
 
 	clearSetLED(LED1,1);
 
