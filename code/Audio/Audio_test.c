@@ -565,3 +565,20 @@ int main(void)
 	while(1);
 	return 0;
 }
+
+/*FOR LATER
+#define SAMPLE_RATE 48000
+#define PI 3.14159
+
+int Offset = 0;
+bufferSize = 512;
+
+void playSin(Amplitude,bufferSize,frequency)
+{	
+	for(int i = 0; i < bufferSize; i++)
+	{
+		TX_ARRAY[L_channel] = Amplitude[i] * sin( ( offset+ (float) i) * frequency * 2 * PI / SAMPLE_RATE * );
+		RX_ARRAY[R_channel] = TX_ARRAY[L_channel];
+	}
+	
+}*/
