@@ -1,25 +1,36 @@
 CROSS = bfin-elf-
 CC = $(CROSS)gcc
+LD = $(CROSS)gcc
 LDR = $(CROSS)ldr
 OBJCOPY = $(CROSS)objcopy
 CPU = bf548
-CFLAGS ?= -g -O2
+CFLAGS = -g #-O2
 CFLAGS += -mcpu=$(CPU)
 CFLAGS += -Wall
-CFLAGS += -Wl,-Map,blink.map
+LDFLAGS = -mcpu=$(CPU) -Wl,-Map,Audio_test.map
+LIBS = -lm
 
-all: blink.ldr
+TARGET = blink
 
-blink.ldr: blink
+SRCS = blink.c
+
+OBJS = $(SRCS:.c=.o)
+
+all: $(TARGET).ldr
+
+$(TARGET).elf: $(OBJS)
+	$(LD) $(LDFLAGS) $< $(LIBS) -o $@
+
+%.ldr: %.elf
 	$(LDR) -f -T $(CPU) -c $@ $<
 
-blink.bin:
-	$(OBJCOPY) -Obinary blink blink.bin
+%.bin: %.elf
+	$(OBJCOPY) -Obinary $< $@
 
-load: blink.ldr
+load: $(TARGET).ldr
 	$(LDR) -l $< /dev/ttyS0
 
 clean:
-	rm -f *.o blink blink.ldr blink.map blink.bin
+	rm -f $(TARGET).elf $(TARGET).ldr $(TARGET).map $(TARGET).bin $(OBJS)
 
 .PHONY: all clean load

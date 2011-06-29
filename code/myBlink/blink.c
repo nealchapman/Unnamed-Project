@@ -6,7 +6,6 @@
 #define pPORTG_SET       ((volatile unsigned short *)PORTG_SET)
 #define pPORTG_DIR_SET   ((volatile unsigned short *)PORTG_DIR_SET)
 #define pPORTG           ((volatile unsigned short *)PORTG)
-#define pPORTG_MUX       ((volatile unsigned int   *)PORTG_MUX)
 
 #define pPORTB_FER	 ((volatile unsigned short *)PORTB_FER)	
 #define pPORTB		 ((volatile unsigned short *)PORTB)
@@ -14,6 +13,12 @@
 
 #define BLINK_FAST      2000
 #define BLINK_SLOW      (BLINK_FAST * 2)
+
+#define DEBOUNCE_COUNT  0xFFFF
+
+int buttonTest = 0x00;
+int buttonState = 0x00;
+int buttonCount = 0x0000;
 
 typedef enum LEDS_tag{
 	LED1 = (1<<6),
@@ -88,10 +93,39 @@ void LED_Bar(const int iSpeed)
 	}
 }
 
+int pollButtons(void)
+{
+
+	int buttonNow;
+
+	buttonNow = (*pPORTB & 0x0F00);
+
+	if(buttonCount >= DEBOUNCE_COUNT)
+	{
+		buttonState = buttonTest;
+	}
+
+	if(buttonNow == buttonTest)
+	{
+		buttonCount++;
+	}
+	else
+	{	
+		buttonTest = buttonNow;
+		buttonCount = 0;
+	}
+
+	buttonNow = buttonTest;
+
+	return buttonState;
+
+}
+
 int main(void)
 {
 
-	static int buttons = 0;
+	int buttons = 0;
+	int buttonsOld = 0;
 	enLED n;
 
 	n = LED1;
@@ -101,11 +135,12 @@ int main(void)
 	ClearSet_LED_Bank(-1, 0x0000);
 	while (1)
 	{
-		Delay(200);
-		buttons^=(*pPORTB & 0x0F00);
-		if(buttons != 0x0)
+		buttons = pollButtons();
+		if(buttons != buttonsOld)
+		{
 			ClearSet_LED_Bank(buttons>>2,-1);
-		Delay(200);
+			buttonsOld = buttons;
+		}
 	}
 	return 0;
 }
