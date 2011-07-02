@@ -7,7 +7,7 @@ CPU = bf548
 CFLAGS = -g #-O2
 CFLAGS += -mcpu=$(CPU)
 CFLAGS += -Wall
-LDFLAGS = -mcpu=$(CPU) -Wl,-Map,Audio_test.map
+LDFLAGS = -mcpu=$(CPU) -Wl,-Map,$(TARGET).map
 LIBS = -lm
 
 TARGET = blink
