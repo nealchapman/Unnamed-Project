@@ -1,2 +1,0 @@
-void edit(unsigned char *);
-

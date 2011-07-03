@@ -1,4 +1,0 @@
-echo "flushing 10001"
-nc 192.168.0.15 10001 >junk
-rm junk
-

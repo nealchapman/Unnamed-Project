@@ -1,2 +1,0 @@
-cc -g -O2 -I/usr/include/SDL  -L/usr/lib -lSDLmain -lSDL -lSDL_net -lSDL_image -o stereo stereo.c
-
