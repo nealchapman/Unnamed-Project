@@ -1,0 +1,19 @@
+a:active { font-family:  Arial,Helvetica,Sansserif ; text-decoration:  underline ; font-size:  10pt ; color:  #ff6600 }
+a:hover { font-family:  Arial,Helvetica,Sansserif ; color:  #ff6347 ; font-size:  10pt ; text-decoration:  underline }
+a:link { color:  #0000A0 ; font-size:  10pt ; text-decoration:  underline ; font-family:  Arial,Helvetica,Sansserif }
+a:visited { font-size:  10pt ; color:  #666666 ; font-family:  Arial,Helvetica,Sansserif ; text-decoration:  underline }
+b { font-family:  Arial,Helvetica,Sansserif ; color:  #000066 ; font-size:  11pt ; font-weight:  bold }
+body { font-family:  Arial,Helvetica,Sansserif ; background-color:  #FFFFFF ; color:  #000066 ; font-size:  10pt }
+caption { text-decoration:  none ; color:  #000000 ; font-size:  14pt ; font-weight:  bold ; font-family:  Arial,Helvetica,Sansserif }
+div { color:  #000066 ; font-family:  Arial,Helvetica,Sansserif ; font-size:  10pt }
+h1 { font-size:  18pt ; color:  #000066 ; font-family:  Arial,Helvetica,Sansserif }
+h2 { font-size:  14pt ; font-family:  Arial,Helvetica,Sansserif ; color:  #000066 }
+h3 { color:  #000000 ; font-size:  12pt ; font-family:  Arial,Helvetica,Sansserif }
+h4 { color:  #000000 ; font-family:  Arial,Helvetica,Sansserif ; font-size:  10pt }
+i { font-family:  Arial,Helvetica,Sansserif ; color:  #000000 ; font-size:  10pt }
+li { color:  #000000 ; font-family:  Arial,Helvetica,Sansserif ; font-size:  10pt }
+p { text-decoration:  none ; color:  #000000 ; font-family:  Arial,Helvetica,Sansserif ; font-size:  10pt }
+td { color:  #000000 ; text-decoration:  none ; font-family:  Arial,Helvetica,Sansserif ; font-size:  10pt }
+td.clr { text-decoration:  none ; font-family:  Arial,Helvetica,Sansserif ; color:  #000000 ; background-color:  #2628aa ; font-size:  10pt }
+tt { font-family:  Arial,Helvetica,Sansserif ; text-decoration:  none ; font-size:  8pt ; color:  #000000 }
+ul { font-family:  Arial,Helvetica,Sansserif ; color:  #000000 ; text-decoration:  none ; font-size:  10pt }

@@ -1,0 +1,124 @@
+<html>
+<head><title>WebcamSat Help</title></head>
+<body bgcolor="white" style="font-family: Arial,Helvetica,sans-serif; font-size=9pt;" vlink="#0000ff" link="#0000ff" alink="#0000ff">
+<a name="top"></a>
+<table border="0" cellspacing="0" cellpadding="1" width="100%">
+<tr>
+  <td valign="top"><span style="font-size=12pt;"><b>WebcamSat Help</b></font></td>
+  <td align="right" valign="top">
+    <form name="close">
+    <input type="button" name="closeB" value="Close" onClick="window.close();">
+    </form>
+  </td>
+</tr>
+<tr>
+  <td colspan="2"><hr size="1" width="100%" noshade></td>
+</tr>
+</table>
+
+<table border="0" cellspacing="4" cellpadding="1" width="100%" style="font-size: 9pt;">
+
+  <tr><td valign="top" bgcolor="#dddddd">
+    <b>WebcamSat Basics</b>
+  </td></tr>
+  <tr><td valign="top">
+    <ul>
+      <li><a href="#upgrade">Upgrading to Version 2.0</a></li>
+      <li><a href="#users">User Accounts</a></li>
+      <li><a href="#cameras">Camera Accounts</a></li>
+      <li><a href="#frameAPI">Video Frame API</a></li>
+    </ul>
+  </td></tr>
+
+  <tr><td valign="top" bgcolor="#dddddd">
+    <b>Archive Tools</b>
+  </td></tr>
+  <tr><td valign="top">
+    <ul>
+      <li><a href="#archiveRecord">Recording Streams</a></li>
+      <li><a href="#archiveRecall">Recalling Archives</a></li>
+    </ul>
+  </td></tr>
+
+  <tr><td valign="top" bgcolor="#dddddd">
+    <b>Customizing WebcamSat</b>
+  </td></tr>
+  <tr><td valign="top">
+    <ul>
+      <li><a href="#embedding">Embedding Feeds in External Web Pages</a></li>
+      <li><a href="#templates">Login/View Templates</a></li>
+    </ul>
+  </td></tr>
+
+</table>
+
+<span style="font-size: 9pt;">
+
+<hr size="1" width="100%" noshade>
+<a name="upgrade"><b>Upgrading to Version 2.0</b></a>
+<p>To preserve your WebcamSat configuration and user/camera accounts,
+simply copy the following files from your previous WebcamSat installation into 
+your 2.0 directory before starting WebcamSat for the first time: 
+<code>wstreamd.properties</code>, <code>cameras.db.data</code>, <code>cameras.db.properties</code>, and <code>cameras.db.script</code>.</p>
+<font size="-2">[ <a href="#top">Top</a> ]</font>
+
+
+<hr size="1" width="100%" noshade>
+<a name="users"><b>User Accounts</b></a>
+<p></p>
+<font size="-2">[ <a href="#top">Top</a> ]</font>
+
+
+<hr size="1" width="100%" noshade>
+<a name="cameras"><b>Camera Accounts</b></a>
+<p>Each WebcamSat camera account corresponds to one or more related 
+media streams.  WebcamSat supports two types of streams: 'Push' or 'Pull.' 
+Push streams originate from SatCam clients, while WebcamSat is also 
+capable of 'pulling' streams from a variety of other sources, including 
+<a href="http://www.surveyor.com/index_webcam32.html" target="_blank">Webcam32</a> 
+and <a href="http://www.axis.com/products/video/camera/index.htm" target="_blank">Axis Network Cameras</a>.</p>
+<p>
+
+</p>
+<font size="-2">[ <a href="#top">Top</a> ]</font>
+
+<hr size="1" width="100%" noshade>
+<a name="frameAPI"><b>Video Frame API</b></a>
+<p>WebcamSat provides access to JPEG-formatted video frames through the URL: 
+<p><code>http://server:port/XX.jpeg?frames=1</code></p> 
+You may specify the dimensions of the returned frame as follows: 
+<p><code>http://server:port/XX.jpeg?frames=1&amp;width=234&amp;height=123</code></p>  
+To pass the frame directly to your browser's 'Save File As...' dialog, 
+add a <code>localFile</code> parameter: 
+<p><code>http://server:port/XX.jpeg?frames=1&amp;localFile=webcamsat-video-frame.jpg</code></p> 
+The value of the <code>localFile</code> parameter becomes the default 
+local file name (<code>webcamsat-video-frame.jpg</code> in this example).  
+Note that you may add any combination of the <code>width</code>, 
+<code>height</code> and <code>localFile</code> parameters.</p>
+<font size="-2">[ <a href="#top">Top</a> ]</font>
+
+
+<hr size="1" width="100%" noshade>
+<a name="archiveRecord"><b>Recording Streams</b></a>
+<p>Stream recording can be controlled in one of two ways: manually or based on a timer. 
+To manually start or stop recording a particular camera's video stream, use the follwing URL, 
+replacing XX with the desired camera ID:
+<p><code>http://server:port/archiveControl?cameraID=XX</code></p>
+If the current stream is not 
+
+</p>
+<font size="-2">[ <a href="#top">Top</a> ]</font>
+
+<hr size="1" width="100%" noshade>
+<a name="archiveRecall"><b>Recalling Archives</b></a>
+<p>After recording is complete, the WebcamSat administrator may view, delete 
+or download recorded streams through the <b>Archives</b> page.  WebcamSat stores 
+archives in AVI format.  If you experience problems opening WebcamSat archives 
+with external applications such as Window Media Player, install our  
+<a href="mjpegvfw.1.0.zip">MJPEG Codec</a>.
+<font size="-2">[ <a href="#top">Top</a> ]</font>
+
+</span>
+<div></div><div></div><div></div><div></div><div></div>
+</body>
+</html>

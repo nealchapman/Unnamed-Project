@@ -1,0 +1,12 @@
+Note on using the Sabertooth 2x10 -
+
+If you are using this controller with the Surveyor SRV-1 or SVS, we 
+recommend that you only connect the servo signal wire (orange) to the 
+PWM outputs of the SRV-1, and do not connect the +5V (red) or GND 
+(black) wires to anything.  Assuming the SRV-1 uses a common ground with 
+your battery, there is no need for an additional GND connection.  The 
+SRV-1 is a 3.3V system, so you don't want to connect the 5V lead 
+anywhere.
+
+If any questions about this, please contact support@surveyor.com
+

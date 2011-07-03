@@ -1,0 +1,2 @@
+gcc -g -O2 -I/usr/local/include/SDL -D_GNU_SOURCE=1 -D_THREAD_SAFE -Wl,-framework -Wl,Cocoa -Wl,-bind_at_load -L/usr/local/lib -lSDLmain -lSDL -lSDL_net -lSDL_image -o stereo stereo.c 
+

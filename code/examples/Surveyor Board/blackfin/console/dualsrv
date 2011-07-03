@@ -1,0 +1,3 @@
+java SRV1Test -remote_addr 192.168.0.15 -remote_port 10001 -local_port 10001 &
+java SRV1Test -remote_addr 192.168.0.15 -remote_port 10002 -local_port 10002 &
+

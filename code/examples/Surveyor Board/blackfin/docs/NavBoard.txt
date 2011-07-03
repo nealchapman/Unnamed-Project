@@ -1,0 +1,69 @@
+                   Surveyor Navigation Board v1.0
+
+I2C device addresses (7-bit)
+
+    uBlox5 GPS       -  0x42
+    AD7998 A/D       -  0x20
+    LIS3LV02DQ Tilt  -  0x1D
+    HMC5843 Compass  -  0x1E
+
+SRV-1 firmware provides direct support for access to the gps, a/d and tilt via console and picoC functions:
+
+console (SRV_protocol) functions:
+-----------------------------------------------
+    $g   - read gps
+    $Axx - read analog, where xx = channel 01-08
+    $Tx  - read tilt, where x = 1 (X axis), 2 (Y axis), 3 (Z axis)
+    $C   - read compass
+-----------------------------------------------
+
+picoC functions:
+-----------------------------------------------
+  int analog(int channel): read AD7998 8-channel 12-bit A/D
+    channels 1-8 correspond to i2c device 0x20
+
+  int tilt(int axis): return tilt sensor reading from channel 1 (x axis), 2 (y axis) or 3 (z axis)
+    int x = tilt(1); int y = tilt(2); int z = tilt(3);
+
+  int compassx(): read HMC5843 compass on SRV-NAV
+    note that min/max calibration data is accessible as cxmin, cxmax, cymin, cymax
+
+  void gps(): parse $GPGGA string from gps
+    data returned in globals gpslat, gpslon,
+    gpsalt, gpsfix, gpssat, gpsutc
+    36.5deg is represented as 36500000
+    100.5W deg is represented as -100500000
+
+  int gps_dist(int lat1, int lon1, int lat2, int lon2): compute distance in meters
+    between two gps coordinates
+    format of coordinates is deg*1000000
+    36.5deg is represented as 36500000
+    100.5W deg is represented as -100500000
+
+  int gps_head(int lat1, int lon1, int lat2, int lon2): compute heading in degrees
+    between two gps coordinates (N == 0-deg)
+    36.5deg is represented as 36500000
+    100.5W deg is represented as -100500000
+-----------------------------------------------
+
+
+8-pin header connects to I2C and serial interface -
+
+        xx    TP     RX     TX          (TP = timing pulse)
+        GND  3.3V    SDA    SCL
+  x==================================x  (circuit board edge)
+
+
+
+10-pin header connects to analog inputs
+
+  x==================================x  (circuit board edge)
+         A1   A3   A5   A7   GND
+         A8   A6   A4   A2   3.3V
+
+
+Data sheets
+    www.u-blox.com/.../LEA-5x_Data_Sheet(GPS.G5-MS5-07026).pdf
+    www.analog.com/static/imported-files/data.../AD7997_7998.pdf 
+    www.sparkfun.com/datasheets/IC/LIS3LV02DQ.pdf
+    www.ssec.honeywell.com/magnetic/datasheets/HMC5843.pdf

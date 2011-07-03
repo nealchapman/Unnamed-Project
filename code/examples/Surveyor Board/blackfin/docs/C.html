@@ -1,0 +1,221 @@
+<html><head>
+
+<link rel="stylesheet" href="style_product.css" type="text/css"><title>SRV-1 C Interpreter</title></head><body>
+<a href="http://www.surveyor.com/"><img src="http://www.surveyor.com/images/surveyor.gif" border="0"></a><br>
+<h3>SRV-1 C Interpreter - as of 8 May 2010</h3>
+
+<table width="700">
+<tbody>
+<tr><td>
+If you are looking for documentation on the "Small C interpreter" built into SRV-1 firmware prior to 15 March 2009, see <a href="http://www.surveyor.com/SRV_protocol_020609.html">SRV_protocol_020609.html</a><br>
+<br>
+The new SRV-1 C interpreter is based on the <a href="http://code.google.com/p/picoc/">picoC open source C interpreter</a>.  Full documentation for picoC is in the works, but for now, we are providing some code samples that highlight capabilities.<br>
+<br>
+srv1-blackfin-022411.zip : Now (February 24, 2011) the SRV1 firmware has the latest version of PicoC - v2.1. This new version
+brings with it numerous bug fixes as well as some very exciting new features.
+<br>
+<br>
+New Features in PicoC 2.1: (From PicoC site)
+<br>
+<br>
+* "static" declarations are now implemented<br>
+* now recognising and ignoring "register", "extern" and "auto"<br>
+* now supports "goto" - but please don't use it...<br>
+* logical operators now only evaluate the second argument if necessary, as specified in the C standard<br>
+* structures now align with the native C structures, making it easier to pass structures to native calls<br>
+<br>
+<br>
+New Features in PicoC 2.0: (From PicoC site)
+<br>
+<br>
+* typedef is implemented<br>
+* a much larger, more complete C library has been added<br>
+* #if/#else/#endif implemented<br>
+* Plenty of bug fixes<br>
+<br>
+<blockquote>
+<b>/*     comments    */</b><br>
+printf("Hello\n"); /* this is a comment */</b><br>printf("Hello\n");  // this is also a comment<br>
+<br>
+<b>/*     printf     */</b><br>
+int Count;<br>for (Count = -5; Count <= 5; Count++)<br>    &nbsp;&nbsp;printf("Count = %d\n", Count);<br><br>printf("String 'hello', 'there' is '%s', '%s'\n", "hello", "there");<br>printf("Character 'A' is '%c'\n", 65);<br>printf("Character 'a' is '%c'\n", 'a');<br><br>
+<b>/*     structs   */</b><br>
+struct fred<br>{<br>    &nbsp;&nbsp;int boris;<br>    &nbsp;&nbsp;int natasha;<br>};<br>struct fred bloggs;<br><br>bloggs.boris = 12;<br>bloggs.natasha = 34;<br>printf("%d\n", bloggs.boris);<br>printf("%d\n", bloggs.natasha);<br><br>
+<b>/*    array    */</b><br>
+int Count;<br>int Array[10];<br>for (Count = 1; Count <= 10; Count++)<br>    &nbsp;&nbsp;Array[Count-1] = Count * Count;<br>for (Count = 0; Count < 10; Count++)<br>    &nbsp;&nbsp;printf("%d\n", Array[Count]);<br><br>
+<b>/*    switch   */</b><br>
+int Count;<br>for (Count = 0; Count < 4; Count++)<br>{<br>    &nbsp;&nbsp;printf("%d\n", Count);<br>    &nbsp;&nbsp;switch (Count)<br>    &nbsp;&nbsp;{<br>        &nbsp;&nbsp;&nbsp;&nbsp;case 1:<br>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("%d\n", 1);<br>	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>       &nbsp;&nbsp;&nbsp;&nbsp; case 2:<br>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("%d\n", 2);<br>	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>        &nbsp;&nbsp;&nbsp;&nbsp;default:<br>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("%d\n", 0);<br>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>    &nbsp;&nbsp;}<br>}<br><br>
+<b>/*    while + do while  */</b><br>
+int a;<br>int p;<br>int t;<br>a = 1;<br>p = 0;<br>t = 0;<br>while (a < 100)<br>{<br>    &nbsp;&nbsp;printf("%d\n", a);<br>    &nbsp;&nbsp;t = a;<br>    &nbsp;&nbsp;a = t + p;<br>    &nbsp;&nbsp;p = t;<br>}<br>
+<br>do<br>{<br>    &nbsp;&nbsp;printf("%d\n", a);<br>    &nbsp;&nbsp;t = a;<br>    &nbsp;&nbsp;a = t + p;<br>    &nbsp;&nbsp;p = t;<br>} while (a < 100);<br><br>
+<b>/*  pointer */</b><br>
+int a;<br>int *b;<br>int c;<br><br>a = 42;<br>b = &a;<br>printf("a = %d\n", *b);<br><br>struct ziggy<br>{<br>    &nbsp;&nbsp;int a;<br>    &nbsp;&nbsp;int b;<br>    &nbsp;&nbsp;int c;<br>} bolshevic;<br><br>bolshevic.a = 12;<br>bolshevic.b = 34;<br>bolshevic.c = 56;<br><br>printf("bolshevic.a = %d\n", bolshevic.a);<br>printf("bolshevic.b = %d\n", bolshevic.b);<br>printf("bolshevic.c = %d\n", bolshevic.c);<br><br>struct ziggy *tsar = &bolshevic;<br><br>printf("tsar->a = %d\n", tsar->a);<br>printf("tsar->b = %d\n", tsar->b);<br>printf("tsar->c = %d\n", tsar->c);<br><br>
+<b>/*  #define  */</b><br>
+#define FRED 12<br>#define BLOGGS(x) (12*(x))<br><br>printf("%d\n", FRED);<br><br>
+<b>/*  integers  */</b><br>
+int a = 24680;<br>int b = 01234567;<br>int c = 0x2468ac;<br>int d = 0x2468AC;<br>int e = 0b010101010101;<br><br>printf("%d\n", a);<br>printf("%d\n", b);<br>printf("%d\n", c);<br>printf("%d\n", d);<br><br>
+<b>/*   if   */</b><br>
+int a = 1;<br>if (a)<br>    &nbsp;&nbsp;printf("a is true\n");<br>else<br>    &nbsp;&nbsp;printf("a is false\n");<br><br>int b = 0;<br>if (b)<br>    &nbsp;&nbsp;printf("b is true\n");<br>else<br>    &nbsp;&nbsp;printf("b is false\n");<br><br>
+<b>/*   recursion  */</b><br>
+int factorial(int i) <br>{<br>    &nbsp;&nbsp;if (i < 2)<br>        &nbsp;&nbsp;&nbsp;&nbsp;return i;<br>    &nbsp;&nbsp;else<br>        &nbsp;&nbsp;&nbsp;&nbsp;return (i * factorial(i - 1));<br>}<br><br>
+int Count;<br>for (Count = 1; Count <= 10; Count++)<br>    &nbsp;&nbsp;printf("%d\n", factorial(Count));<br><br>
+<b>/*  nesting  */</b><br>int x, y, z;<br>for (x = 0; x < 2; x++)<br>{<br>    &nbsp;&nbsp;for (y = 0; y < 3; y++)<br>    &nbsp;&nbsp;{<br>        &nbsp;&nbsp;&nbsp;&nbsp;for (z = 0; z < 3; z++)<br>        &nbsp;&nbsp;&nbsp;&nbsp;{<br>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("%d %d %d\n", x, y, z);<br>        &nbsp;&nbsp;&nbsp;&nbsp;}<br>    &nbsp;&nbsp;}<br>}<br><br><br>
+<b>/* Robot Functions  */</b>
+<ul>
+<li>void autorun(int seconds): leave picoC if ESC character is received in (int) seconds,<br>
+     &nbsp;&nbsp;- e.g. autorun(5);<br>
+     &nbsp;&nbsp;- only used at beginning of C program<br><br>
+<li>int abs(int data): returns absolute value of int data<br><br>
+<li>int acos(int adjacent, int hypotenuse): arccos(adjacent, hypotenuse)<br><br>
+<li>int analog(int channel): read AD7998 8-channel 12-bit A/D<br>
+     &nbsp;&nbsp;- channels 1-8 correspond to i2c device 0x20<br>
+     &nbsp;&nbsp;- channels 11-18 correspond to i2c device 0x23<br>
+     &nbsp;&nbsp;- channels 21-28 correspond to i2c device 0x24<br><br>
+<li>int analogx(int channel): read analog channel from SRV-4WD<br>
+     &nbsp;&nbsp;- channel 0 = battery<br>
+     &nbsp;&nbsp;- channel 1 = 5V gyro<br>
+     &nbsp;&nbsp;- channel 2 = 3.3V gyro<br>
+     &nbsp;&nbsp;- channel 3 = IR 1<br>
+     &nbsp;&nbsp;- channel 4 = IR 2<br>
+     &nbsp;&nbsp;- channel 6 = IR 3<br>
+     &nbsp;&nbsp;- channel 7 = IR 4<br><br>
+<li>int asin(int opposite, int hypotenuse): arcsin(opposite, hypotenuse)<br><br>
+<li>int atan(int opposite, int adjacent): arctan(opposite, adjacent)<br><br>
+<li>int battery(): check SVS battery detector ... 1=okay, 0=low battery<br><br>
+<li>int compass(): read HMC6352 compass<br><br>
+<li>int compassx(): read HMC5843 compass on SRV-NAV<br>
+     &nbsp;&nbsp;- has a built-in 50-millisecond delay to keep the sensor from locking up<br>
+     &nbsp;&nbsp;- note that min/max calibration data is accessible as cxmin, cxmax, cymin, cymax<br><br>
+<li>void compassxcal(xmin, xmax, ymin, ymax, continuous_calibration): set calibration data for HMC5843<br>
+     &nbsp;&nbsp;-  use $c console command to gather data<br>
+     &nbsp;&nbsp;-  continuous_calibration flag determines whether compassx() function continues to collect <br>
+     &nbsp;&nbsp; &nbsp;&nbsp;  calibration data.  continuous_calibration flag:  off = 0, on = 1 <br>
+     &nbsp;&nbsp;-  this function is useful for scripting an auto-calibration routine - see test4wd.c<br><br>
+<li>int cos(int angle): cos(angle) * 1000<br><br>
+<li>void delay(int milliseconds):  delay xxx milliseconds<br><br>
+<li>void encoders():  compute pulses/second from wheel encoders<br>
+     &nbsp;&nbsp;- data returned in globals lcount and rcount<br><br>
+<li>int encoderx(channel): read cummulative pulse count from specific motor encoder 1-4 on SRV-4WD<br>
+     &nbsp;&nbsp;- count cycles after 65535 pulses<br>
+     &nbsp;&nbsp;- depends on wheel size, but 1000 pulses on 4.5" wheel is approximately 1 foot of travel<br><br>
+<li>void exit():  leave picoC on completion of stored program, bypassing the interactive mode<br><br>
+<li>void gps(): parse $GPGGA string from gps<br>
+    &nbsp;&nbsp;- data returned in globals gpslat, gpslon, <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gpsalt, gpsfix, gpssat, gpsutc<br>
+    &nbsp;&nbsp;36.5deg is represented as 36500000<br>
+    &nbsp;&nbsp;100.5W deg is represented as -100500000<br><br>
+<li>int gps_dist(int lat1, int lon1, int lat2, int lon2): compute distance in meters <br>
+    &nbsp;&nbsp;between two gps coordinates<br>
+    &nbsp;&nbsp;format of coordinates is deg*1000000<br>
+    &nbsp;&nbsp;36.5deg is represented as 36500000<br>
+    &nbsp;&nbsp;100.5W deg is represented as -100500000<br><br>
+<li>int gps_head(int lat1, int lon1, int lat2, int lon2): compute heading in degrees <br>
+    &nbsp;&nbsp;between two gps coordinates (N == 0-deg)<br>
+    &nbsp;&nbsp;36.5deg is represented as 36500000<br>
+    &nbsp;&nbsp;100.5W deg is represented as -100500000<br><br>
+<li>void init_uart1(int baudrate):  initializes 2nd Blackfin UART<br><br>
+<li>int input():  return single character from read of serial channel (same as getch())<br><br>
+<li>int input1():  return single character from read of uart1<br><br>
+<li>void iodir(int iopins):  set GPIO-H15/14/13/12/11/10 as inputs or outputs<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;0 = input, 1 = output<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;iodir(0x31) == H15-out H14-out H13-in H12-in H11-in H10-out<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;iodir(0b110001) == H15-out H14-out H13-in H12-in H11-in H10-out<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;iodir(0x03) == H15-in H14-in H13-in H12-in H11-out H10-out<br><br>
+<li>int ioread():  read GPIO pins H15-H10<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;if H15=1 H14=1 H13=0 H12=0 H11=0 H10=0, <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ioread() would return 48 == 0x30<br><br>
+<li>void iowrite(int iopins):  set GPIO pins H15-H10<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;iowrite(0x31) or iowrite(0b110001) would set<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; H15=1 H14=1 H13=0 H12=0 H11=0 H10=1<br><br>
+<li>void laser(int which_laser): 0=off, 1=left, 2=right, 3=both<br><br>
+<li>void motors(int left, int right): set left and right PWM motor power -100 to 100<br><br>
+<li>void motors2(int left, int right): set left and right PWM2 motor power (tmr6/7) -100 to 100<br><br>
+<li>void motorx(int left, int right): set left and right SRV-4WD motor power -100 to 100<br><br>
+<li>void nninit(): initialize neural net<br><br>
+<li>void nnlearnblob(int pattern_number): scale and save blob to 8x8 pattern<br><br>
+<li>int nnmatchblob(int blob_number): see which pattern is best match to selected blob<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;neuron output values are found in neuron[]<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;return value is index to best match<br><br>
+<li>void nnset(int first8bits, int second8bits, int ..., int, int, int, int, int, int): set nn pattern<br><br>
+<li>void nnshow(int which_pattern): display nn pattern<br><br>
+<li>int nntest(int first8bits, int second8bits, int ..., int, int, int, int, int): test nn pattern<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;neuron output values are found in neuron[]<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;return value is index to best match<br><br>
+<li>void nntrain(): train neural net<br><br>
+<li>void output(int): output a single character to serial channel (uart0)<br><br>
+<li>void output1(int): output a single character to uart1<br><br>
+<li>int peek(int address, int wordsize):  int x = peek(addr, size) where size = 1, 2, 4 bytes <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; - byte/short/word alignment is forced<br><br>
+<li>void poke(int address, int wordsize, int value):  poke(addr, size, val) where size = 1, 2, 4 bytes <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; - byte/short/word alignment is forced<br><br>
+<li>int rand(int number_range): return random number ranging from 0 to xxx<br><br>
+<li>int range(): use laser pointer to estimate range<br><br>
+<li>int read_int(): reads an integer from the console - terminates on anything but '-' or '0'-'9'<br><br>
+<li>int read_str(char *): reads a string from the console into character array and returns number of chars read.
+  terminates on receipt of 0x00 or 0x01, or if read count exceeds 1023.<br><br>
+<li>int readi2c(int device, int register): read byte from I2C port<br><br>
+<li>int readi2c2(int device, int register): read short from I2C port<br><br>
+<li>void servos(int timer2, int timer3): set pin 7/8 (tmr 2/3) PPM levels 0 to 100<br><br>
+<li>void servos2(int timer6, int timer7): set pin 5/6 (tmr 6/7) PPM levels 0 to 100<br><br>
+<li>int signal():  non-blocking check for input on serial channel - non-zero return indicates an input<br><br>
+<li>int signal1():  non-blocking check for input on second serial channel (uart1) - non-zero return indicates an input<br><br>
+<li>int sin(int angle): sin(angle) * 1000<br><br>
+<li>int sonar(int which_channel): ping modules 1, 2, 3 or 4<br><br>
+<li>int sqrt(int value): compute integer square root<br><br>
+<li>int tan(int angle): tan(angle) * 1000<br><br>
+<li>int tilt(int axis):  return tilt sensor reading from channel 1 (x axis), 2 (y axis) or 3 (z axis)<br>
+     &nbsp;&nbsp;- int x = tilt(1);  int y = tilt(2);  int z = tilt(3);<br><br>
+<li>int time():  return time in milliseconds since startup<br><br>
+<li>int vblob(int color_bin, int which_blob): blob search on color xxx - returns number of blobs found <br>
+     &nbsp;&nbsp;- 'int' return value indicates how many matching blobs were found<br>
+     &nbsp;&nbsp;- 2nd value determines which blob (largest to smallest)<br>
+     &nbsp;&nbsp;- data returned in globals blobcnt, blobx1, blobx2, bloby1, bloby2<br><br>
+<li>void vcam(int settings):  enable/disable automatic gain, white balance and exposure camera functions (default is 7)<br>
+     &nbsp;&nbsp;vcam(4) -> AGC enable<br>
+     &nbsp;&nbsp;vcam(2) -> AWB enable<br>
+     &nbsp;&nbsp;vcam(1) -> AEC enable<br>
+     &nbsp;&nbsp;vcam(7) -> AGC+AWB+AEC on<br>
+     &nbsp;&nbsp;vcam(0) -> AGC+AWB+AEC off <br><br>
+<li>void vcap(): capture video frame<br><br>
+<li>void vcolor(int color_bin, int ymin, int ymax, int umin, int umax, int vmin, int vmax): set color bin with<br> 
+     &nbsp;&nbsp;&nbsp;&nbsp;ymin, ymax, umin, umax, vmin, vmax<br><br>
+<li>void vdiff(int flag): enable/disable differencing with vcap()<br>
+     &nbsp;&nbsp;- vdiff(1) enables / vdiff(0) disables<br><br>
+<li>int vfind(int color, int x1, int x2, int y1, int y2):<br>
+     &nbsp;&nbsp;- count number of pixels in color bin <br> 
+     &nbsp;&nbsp;&nbsp;&nbsp;in range of x1 -> x2, y1 -> y2<br><br>
+<li>int vjpeg(int quality): compress image captured by vcap().  use vsend() to transmit:<br>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int size = vjpeg(int quality);<br>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vsend(size);<br>
+returned value is size of jpeg image.  input parameter is quality of jpeg image (1-8, 1 = highest quality)<br><br>
+<li>void vmean(): get YUV means over full frame<br>
+     &nbsp;&nbsp;- data returned in globals y1, u1, v1<br><br>
+<li>void vpix(int x, int y): get YUV values of vpix(x, y)<br>
+     &nbsp;&nbsp;- data returned in globals y1, u1, v1<br>
+     &nbsp;&nbsp;- vpix(0,0) reads the pixel from the upper left corner of the image<br><br>
+<li>void vrcap(): capture reference frame for differencing<br><br>
+<li>int vscan(int columns, int threshold): edge detect function<br>
+    &nbsp;&nbsp;- counts edge pixels and divides image into columns<br>
+    &nbsp;&nbsp;- columns range from 1-9, threshold ranges from 0001-9999 (4000 is good starting point)<br>
+    &nbsp;&nbsp;- returns the distance from bottom of the image to first edge pixel in each column - results found in scanvect[] array, e.g.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int ii;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vcap();<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vscan(3, 4000);  // search 3 columns, set threshold to 4000<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (ii=0; ii<3; ii++)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    printf("column %d   distance %d\r\n", ii, scanvect[ii]);<br><br>
+<li>void vsend(int size): send JPEG image that was captured and compressed using vcap() and vjpeg()<br><br>
+<li>void writei2c(int device, int register, int value): write byte to I2C port<br><br>
+</ul>
+</blockquote>
+</td></tr>
+</tbody></table>
+last updated 8 May 2010 - 23:50 GMT
+<br>
+<script src="urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-226226-1";
+urchinTracker();
+</script>
+
+</body></html>
