@@ -4,6 +4,7 @@
 
 #include <builtins.h>
 #include <math_bf.h>
+#include <math.h>
 #include <blackfin.h>
 #include <cycle_count.h>
 #include <flt2fr.h>
@@ -147,9 +148,9 @@ short 	sLeftChannelOut, sRightChannelOut;		// PCM output data
 #define REQUIRED_SAMPLES			((MAX_SAMPLES) * 250)
 #define DESIRED_FREQ 				((float)400.0)
 #define SAMPLE_RATE 				((float)48000.0)
-//#define AMPLITUDE					((float)32767)
-#define AMPLITUDE					((float)16000)
-#define PIby10						((fract16).3141592765309)
+#define SAMPLE_PERIOD				((short)1365)
+//#define SAMPLE_PERIOD				((fract16)0.020833)
+#define AMPLITUDE					((short)32767)
 #define PI							((float)3.141592765309)
 #define MAX_SAMPLES					(SAMPLE_RATE / DESIRED_FREQ)
 
@@ -177,8 +178,8 @@ cycle_t cycle_stop = 0x0000;
 
 #define BUFFER_SIZE 1
 
-int offset = 0;
-int sinOut[BUFFER_SIZE];
+unsigned short offset = 0;
+short sinOut[BUFFER_SIZE];
 
 /*********************************************************************************/
 /***** Variables                                                             *****/
@@ -244,7 +245,7 @@ __attribute__((interrupt_handler))
 static void sport0TXISR(void);
 __attribute__((interrupt_handler))
 static void sport0TXISRDummy(void);
-static int *sinGen(int,int);
+static short *sinGen(int,int);
 static int pollButtons(void);
 //static void clearSetLED(enLED,int);
 static fract16 sin2pi_fr16(fract16);
@@ -383,10 +384,12 @@ static void sport0TXISR()
 	*pDMA1_IRQ_STATUS = 0x0001;
 
 	int z = 0;
-	int frequency = 0;
-	int amplitude = 1;
+	short frequency = 0;
+	short amplitude = 0;
 
-	z = pollButtons();
+//	z = pollButtons();
+
+	z = (1<<6);
 
 	if(z){
 		amplitude = AMPLITUDE;
@@ -406,7 +409,7 @@ static void sport0TXISR()
 	// do data processing if input data are marked as valid
 	if((sAc97Tag & 0x1800) != 0)
 	{
-		sLeftChannelOut 	= *sinGen(amplitude,frequency);
+		sLeftChannelOut 	= (*sinGen(amplitude,frequency));
 		sRightChannelOut 	= sLeftChannelOut;
 	}
 	else
@@ -552,30 +555,21 @@ int pollButtons(void)
 
 
 
-int *sinGen(Amplitude,frequency)
+short *sinGen(Amplitude,frequency)
 {
 	
-	int i = 0;
-	float w = 0;
-	float W = 0;
-
+	unsigned short i = 0;
+	unsigned short w = 0;
+	
 	while(i < BUFFER_SIZE)
 	{
-
-		W = frequency / SAMPLE_RATE;
-		w = ((offset+i))*frequency/SAMPLE_RATE;
-//		w = ((float)(offset + i) * float_to_fract16(frequency / SAMPLE_RATE)); 
-		sinOut[i] = Amplitude * sin2pi_fr16((offset + i) * float_to_fract16(frequency / SAMPLE_RATE));
-//		sinOut[i] = Amplitude * sin_fr16( ((int)PI *(offset + i)) * frequency / SAMPLE_RATE);
-//		sinOut[i] = Amplitude * sin_fr16(2.0 * PI * (offset + i) * frequency / SAMPLE_RATE);
-//		sinOut[i] = Amplitude * sin( 2.0 * PI * frequency * (offset+ (float)i) / SAMPLE_RATE );
+		sinOut[i] = sin2pi_fr16((fract16)((offset + i) * (frequency * SAMPLE_PERIOD) / 1000 ));
 		i++;
 	}
 
 	offset += BUFFER_SIZE;
-	//offset = offset % (int)(SAMPLE_RATE/frequency);
 	
-	if(offset >= (SAMPLE_RATE/frequency))
+	if(offset >= ( 0x7FFF * 1000/(frequency*SAMPLE_PERIOD)))
 		offset = 0;
 
 	return sinOut;
@@ -589,7 +583,7 @@ fract16 sin2pi_fr16(fract16 x)
 	else if (x == 0x2000)
 		return 0x7fff;
 	else if (x < 0x6000)
-		return sin_fr16((0xc000 + x) * 4);
+		return -sin_fr16((0xc000 + x) * 4);
 	else
 		return sin_fr16((0x8000 + x) * 4);	
 }
