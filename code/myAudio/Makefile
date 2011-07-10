@@ -13,7 +13,7 @@ LIBS = -lm /opt/uClinux/bfin-elf/bfin-elf/lib/libbfdsp.a
 
 TARGET = Audio_test
 
-SRCS = Audio_test.c
+SRCS = Audio_test.c sincos.c
 
 OBJS = $(SRCS:.c=.o)
 

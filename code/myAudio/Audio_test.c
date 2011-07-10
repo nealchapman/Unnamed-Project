@@ -9,6 +9,7 @@
 #include <math.h>
 #include <blackfin.h>
 #include <cycle_count.h>
+#include "sincos.h"
 
 
 /*******************************************************************
@@ -168,7 +169,7 @@ cycle_t cycle_stop = 0x0000;
 
 #define BUFFER_SIZE 1
 
-#define MAKE_FREQUENCY(frequency) ((uint32_t)(frequency * (((uint32_t)1)<<16)))
+//#define MAKE_FREQUENCY(frequency) ((uint32_t)(frequency * (((uint32_t)1)<<16)))
 
 //#define MAKE_SAMPLE_PERIOD(sample_frequency) ((uint32_t)
 
@@ -240,6 +241,9 @@ int32_t scale[12] = {
 	MAKE_FREQUENCY(493.88)
 };
 
+
+int16_t Sin=0, Cos=0x7000, dphase;
+
 /*Function Prototypes*/
 static void initSPORT0(void);
 static void initDMA(void);
@@ -251,9 +255,9 @@ __attribute__((interrupt_handler))
 static void sport0TXISR(void);
 __attribute__((interrupt_handler))
 static void sport0TXISRDummy(void);
-static short *sinGen(fract16 Amplitude, uint16_t frequency, short offset, short * sinOut);
-static int pollButtons(void);
-static fract16 sin2pi_fr16(fract16);
+//static short *sinGen(fract16 Amplitude, fract16 frequency, short offset, short * sinOut);
+//static int pollButtons(void);
+//static fract16 sin2pi_fr16(fract16);
 
 
 /*--------------------*/
@@ -402,23 +406,27 @@ static void sport0TXISR()
 	*pDMA1_IRQ_STATUS = 0x0001;
 
 	int z = 0;
-	uint16_t Frequency = 0;
+	//uint16_t Frequency = 0;
 	short amplitude = 0;
 
-	z = pollButtons();
+//	z = pollButtons();
 
-//	z = (1<<6);
+	z = (1<<6);
 
 	if(z){
 		amplitude = AMPLITUDE;
 		if(z & (1<<6))
-			Frequency = note2Frequency(0);
+			dphase = compute_dphase(MAKE_FREQUENCY(scale[0]),SAMPLE_RATE); 
+//			Frequency = note2Frequency(0);
 		else if(z & (1<<7))
-			Frequency = note2Frequency(1);
+			dphase = compute_dphase(MAKE_FREQUENCY(scale[1]),SAMPLE_RATE); 
+//			Frequency = note2Frequency(1);
 		else if(z & (1<<8))
-			Frequency = note2Frequency(2);
+			dphase = compute_dphase(MAKE_FREQUENCY(scale[2]),SAMPLE_RATE); 
+//			Frequency = note2Frequency(2);
 		else
-			Frequency = note2Frequency(3);
+			dphase = compute_dphase(MAKE_FREQUENCY(scale[3]),SAMPLE_RATE); 
+//			Frequency = note2Frequency(3);
 	}
 
 	// save new slot values in variables
@@ -427,8 +435,14 @@ static void sport0TXISR()
 	// do data processing if input data are marked as valid
 	if((sAc97Tag & 0x1800) != 0)
 	{
-		sLeftChannelOut 	= *sinGen(amplitude,Frequency,offset,sinOut);
-		sRightChannelOut 	= sLeftChannelOut;
+		//sLeftChannelOut 	= *sinGen(amplitude,Frequency,offset,sinOut);
+		//sRightChannelOut 	= sLeftChannelOut;
+
+		fill_buffer(&Sin, &Cos, dphase, sinOut, offset);
+
+		sLeftChannelOut = sinOut[0];
+		sRightChannelOut = sLeftChannelOut;
+
 	}
 	else
 	{
@@ -545,7 +559,7 @@ void initLEDs(void)
 	*pPORTG_DIR_SET = 0x0FC0;
 }
 
-int pollButtons(void)
+/*int pollButtons(void)
 {
 
 	int buttonNow;
@@ -569,11 +583,11 @@ int pollButtons(void)
 
 	return buttonState;
 
-}
+}*/
 
 
 
-short *sinGen(fract16 Amplitude, fract16 frequency, short offset, short * sinOut)
+/*short *sinGen(fract16 Amplitude, fract16 frequency, short offset, short * sinOut)
 {
 	
 	unsigned short i = 0;
@@ -603,7 +617,7 @@ fract16 sin2pi_fr16(fract16 x)
 		return -sin_fr16((0xc000 + x) * 4);
 	else
 		return sin_fr16((0x8000 + x) * 4);	
-}
+}*/
 
 int main(void)
 {
