@@ -2,12 +2,14 @@
 *  include files
 *******************************************************************/
 
+
+#include <stdint.h>
 #include <builtins.h>
 #include <math_bf.h>
 #include <math.h>
 #include <blackfin.h>
 #include <cycle_count.h>
-#include <flt2fr.h>
+
 
 /*******************************************************************
 *  global variables and defines
@@ -145,21 +147,9 @@ short 	sAc97Tag = 0x8000;  // variable to save incoming AC97 tag in SPORT0 TX IS
 short 	sLeftChannelOut, sRightChannelOut;		// PCM output data
 
 // Test paramaters
-#define REQUIRED_SAMPLES			((MAX_SAMPLES) * 250)
-#define DESIRED_FREQ 				((float)400.0)
-#define SAMPLE_RATE 				((float)48000.0)
-#define SAMPLE_PERIOD				((short)1365)
-//#define SAMPLE_PERIOD				((fract16)0.020833)
+#define SAMPLE_RATE 				((uint16_t)48000)
 #define AMPLITUDE					((short)32767)
-#define PI							((float)3.141592765309)
-#define MAX_SAMPLES					(SAMPLE_RATE / DESIRED_FREQ)
-
-#define ACCEPTABLE_DEVIATION_PCT	((float)0.015)
-#define ACCEPTABLE_DEVIATION		(DESIRED_FREQ  * ACCEPTABLE_DEVIATION_PCT)
-#define MAX_DESIRED_FREQ			(DESIRED_FREQ + ACCEPTABLE_DEVIATION)
-#define MIN_DESIRED_FREQ			(DESIRED_FREQ - ACCEPTABLE_DEVIATION)
-#define MIN_SIGNAL_STRENGTH			(float)35.0
-#define MAX_NOISE_THRESHOLD			(float)10.0
+#define PI							((uint16_t)(3.141592765309<<8))
 
 volatile int  g_iSampleIndex = 1;
 
@@ -177,6 +167,10 @@ cycle_t cycle_stop = 0x0000;
 #define DELAY_COUNT 0x888
 
 #define BUFFER_SIZE 1
+
+#define MAKE_FREQUENCY(frequency) ((uint32_t)(frequency * (((uint32_t)1)<<16)))
+
+//#define MAKE_SAMPLE_PERIOD(sample_frequency) ((uint32_t)
 
 unsigned short offset = 0;
 short sinOut[BUFFER_SIZE];
@@ -220,7 +214,7 @@ short 	sCodecRegs[SIZE_OF_CODEC_REGS] =						// array for codec registers
 					VENDOR_ID_2,			0x5370
 };
 
-short 	sCodecRegsReadBack[SIZE_OF_CODEC_REGS];
+short sCodecRegsReadBack[SIZE_OF_CODEC_REGS];
 
 typedef enum LEDS_tag{
 	LED1 = (1<<6),
@@ -229,10 +223,22 @@ typedef enum LEDS_tag{
 	LED4 = (1<<9),
 	LED5 = (1<<10),
 	LED6 = (1<<12),
-	LAST_LED = (1<<13)
-}enLED;
+	LAST_LED = (1<<13)}enLED;
 
-
+int32_t scale[12] = {
+	MAKE_FREQUENCY(261.63),
+	MAKE_FREQUENCY(277.18),
+	MAKE_FREQUENCY(293.66),
+	MAKE_FREQUENCY(311.13),
+	MAKE_FREQUENCY(329.63),
+	MAKE_FREQUENCY(349.23),
+	MAKE_FREQUENCY(369.99),
+	MAKE_FREQUENCY(392.0),
+	MAKE_FREQUENCY(415.30),
+	MAKE_FREQUENCY(440.0),
+	MAKE_FREQUENCY(466.16),
+	MAKE_FREQUENCY(493.88)
+};
 
 /*Function Prototypes*/
 static void initSPORT0(void);
@@ -245,9 +251,8 @@ __attribute__((interrupt_handler))
 static void sport0TXISR(void);
 __attribute__((interrupt_handler))
 static void sport0TXISRDummy(void);
-static short *sinGen(int,int);
+static short *sinGen(fract16 Amplitude, uint16_t frequency, short offset, short * sinOut);
 static int pollButtons(void);
-//static void clearSetLED(enLED,int);
 static fract16 sin2pi_fr16(fract16);
 
 
@@ -371,6 +376,19 @@ void enableSPORT0DMATDMStreams(void)
 	ssync();
 }
 
+uint16_t note2Frequency(int note)
+{
+
+	uint32_t frequency = 0;
+
+	if(note >= 0)
+		frequency = (1<<(note/12))*scale[note % 12];
+	else
+		frequency = scale[12 + (note % 12)] / (1<<(note/12));
+
+	return (uint16_t)((frequency/SAMPLE_RATE));
+}
+
 __attribute__((interrupt_handler))
 static void sport0TXISR()
 {
@@ -384,23 +402,23 @@ static void sport0TXISR()
 	*pDMA1_IRQ_STATUS = 0x0001;
 
 	int z = 0;
-	short frequency = 0;
+	uint16_t Frequency = 0;
 	short amplitude = 0;
 
-//	z = pollButtons();
+	z = pollButtons();
 
-	z = (1<<6);
+//	z = (1<<6);
 
 	if(z){
 		amplitude = AMPLITUDE;
 		if(z & (1<<6))
-			frequency = 440;
+			Frequency = note2Frequency(0);
 		else if(z & (1<<7))
-			frequency = 493.883;
+			Frequency = note2Frequency(1);
 		else if(z & (1<<8))
-			frequency = 523.521;
+			Frequency = note2Frequency(2);
 		else
-			frequency = 587.330;
+			Frequency = note2Frequency(3);
 	}
 
 	// save new slot values in variables
@@ -409,7 +427,7 @@ static void sport0TXISR()
 	// do data processing if input data are marked as valid
 	if((sAc97Tag & 0x1800) != 0)
 	{
-		sLeftChannelOut 	= (*sinGen(amplitude,frequency));
+		sLeftChannelOut 	= *sinGen(amplitude,Frequency,offset,sinOut);
 		sRightChannelOut 	= sLeftChannelOut;
 	}
 	else
@@ -555,21 +573,20 @@ int pollButtons(void)
 
 
 
-short *sinGen(Amplitude,frequency)
+short *sinGen(fract16 Amplitude, fract16 frequency, short offset, short * sinOut)
 {
 	
 	unsigned short i = 0;
-	unsigned short w = 0;
 	
 	while(i < BUFFER_SIZE)
 	{
-		sinOut[i] = sin2pi_fr16((fract16)((offset + i) * (frequency * SAMPLE_PERIOD) / 1000 ));
+		sinOut[i] = sin2pi_fr16((offset + i) * frequency);
 		i++;
 	}
 
 	offset += BUFFER_SIZE;
 	
-	if(offset >= ( 0x7FFF * 1000/(frequency*SAMPLE_PERIOD)))
+	if(offset >= ( 0x7FFF / frequency ))
 		offset = 0;
 
 	return sinOut;
@@ -619,7 +636,3 @@ int main(void)
 	while(1);
 	return 0;
 }
-
-
-
-
