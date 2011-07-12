@@ -9,6 +9,7 @@ CFLAGS += -mcpu=$(CPU)
 CFLAGS += -Wall
 CFLAGS += -D DO_CYCLE_COUNTS
 LDFLAGS = -mcpu=$(CPU) -Wl,-Map,Audio_test.map
+#LIBS = -lm -lbfdsp
 LIBS = -lm /opt/uClinux/bfin-elf/bfin-elf/lib/libbfdsp.a
 
 TARGET = Audio_test
@@ -20,7 +21,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(TARGET).ldr
 
 $(TARGET).elf: $(OBJS)
-	$(LD) $(LDFLAGS) $< $(LIBS) -o $@
+	$(LD) $(LDFLAGS) $^ $(LIBS) -o $@
 
 %.ldr: %.elf
 	$(LDR) -f -T $(CPU) -c $@ $<

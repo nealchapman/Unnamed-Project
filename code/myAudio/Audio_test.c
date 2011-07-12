@@ -148,9 +148,7 @@ short 	sAc97Tag = 0x8000;  // variable to save incoming AC97 tag in SPORT0 TX IS
 short 	sLeftChannelOut, sRightChannelOut;		// PCM output data
 
 // Test paramaters
-#define SAMPLE_RATE 				((uint16_t)48000)
-#define AMPLITUDE					((short)32767)
-#define PI							((uint16_t)(3.141592765309<<8))
+#define SAMPLE_RATE	((uint32_t)48000)
 
 volatile int  g_iSampleIndex = 1;
 
@@ -164,14 +162,8 @@ cycle_t cycle_start = 0x0000;
 cycle_t cycle_stop = 0x0000;
 
 #define DEBOUNCE_COUNT 0XFF
-
 #define DELAY_COUNT 0x888
-
 #define BUFFER_SIZE 1
-
-//#define MAKE_FREQUENCY(frequency) ((uint32_t)(frequency * (((uint32_t)1)<<16)))
-
-//#define MAKE_SAMPLE_PERIOD(sample_frequency) ((uint32_t)
 
 unsigned short offset = 0;
 short sinOut[BUFFER_SIZE];
@@ -256,7 +248,7 @@ static void sport0TXISR(void);
 __attribute__((interrupt_handler))
 static void sport0TXISRDummy(void);
 //static short *sinGen(fract16 Amplitude, fract16 frequency, short offset, short * sinOut);
-//static int pollButtons(void);
+static int pollButtons(void);
 //static fract16 sin2pi_fr16(fract16);
 
 
@@ -405,16 +397,13 @@ static void sport0TXISR()
 	// confirm interrupt handling
 	*pDMA1_IRQ_STATUS = 0x0001;
 
-	int z = 0;
-	//uint16_t Frequency = 0;
-	short amplitude = 0;
+	short z = 0;
 
-//	z = pollButtons();
+	z = pollButtons();
 
-	z = (1<<6);
+//	z = (1<<6);
 
 	if(z){
-		amplitude = AMPLITUDE;
 		if(z & (1<<6))
 			dphase = compute_dphase(MAKE_FREQUENCY(scale[0]),SAMPLE_RATE); 
 //			Frequency = note2Frequency(0);
@@ -428,32 +417,37 @@ static void sport0TXISR()
 			dphase = compute_dphase(MAKE_FREQUENCY(scale[3]),SAMPLE_RATE); 
 //			Frequency = note2Frequency(3);
 	}
+	else dphase = 0;
 
 	// save new slot values in variables
 	sAc97Tag 			= Rx0Buffer[TAG_PHASE];
 
 	// do data processing if input data are marked as valid
-	if((sAc97Tag & 0x1800) != 0)
+//	if((sAc97Tag & 0x1800) != 0)
 	{
 		//sLeftChannelOut 	= *sinGen(amplitude,Frequency,offset,sinOut);
 		//sRightChannelOut 	= sLeftChannelOut;
 
-		fill_buffer(&Sin, &Cos, dphase, sinOut, offset);
+		fill_buffer(&Sin, &Cos, dphase, sinOut, 1);
 
 		sLeftChannelOut = sinOut[0];
 		sRightChannelOut = sLeftChannelOut;
 
+		Tx0Buffer[TAG_PHASE] = sAc97Tag;
+		Tx0Buffer[PCM_LEFT] = sinOut[0];
+		Tx0Buffer[PCM_RIGHT] = Tx0Buffer[PCM_LEFT];
+
 	}
-	else
-	{
-		sLeftChannelOut = 0x0000;
-		sRightChannelOut = 0x0000;
-	}
+//	else
+//	{
+//		sLeftChannelOut = 0x0000;
+//		sRightChannelOut = 0x0000;
+//	}
 
 	// copy data from previous frame into transmit buffer
-	Tx0Buffer[TAG_PHASE] = sAc97Tag;
-	Tx0Buffer[PCM_LEFT] = sLeftChannelOut;
-	Tx0Buffer[PCM_RIGHT] = sRightChannelOut;
+//	Tx0Buffer[TAG_PHASE] = sAc97Tag;
+//	Tx0Buffer[PCM_LEFT] = sLeftChannelOut;
+//	Tx0Buffer[PCM_RIGHT] = sRightChannelOut;
 
 	STOP_CYCLE_COUNT(cycle_stop,cycle_start);
 	
@@ -559,7 +553,7 @@ void initLEDs(void)
 	*pPORTG_DIR_SET = 0x0FC0;
 }
 
-/*int pollButtons(void)
+int pollButtons(void)
 {
 
 	int buttonNow;
@@ -583,7 +577,7 @@ void initLEDs(void)
 
 	return buttonState;
 
-}*/
+}
 
 
 
