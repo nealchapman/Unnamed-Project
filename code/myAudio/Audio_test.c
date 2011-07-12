@@ -401,20 +401,18 @@ static void sport0TXISR()
 
 	z = pollButtons();
 
-//	z = (1<<6);
-
 	if(z){
 		if(z & (1<<6))
-			dphase = compute_dphase(MAKE_FREQUENCY(scale[0]),SAMPLE_RATE); 
+			dphase = compute_dphase(scale[0],SAMPLE_RATE); 
 //			Frequency = note2Frequency(0);
 		else if(z & (1<<7))
-			dphase = compute_dphase(MAKE_FREQUENCY(scale[1]),SAMPLE_RATE); 
+			dphase = compute_dphase(scale[1],SAMPLE_RATE); 
 //			Frequency = note2Frequency(1);
 		else if(z & (1<<8))
-			dphase = compute_dphase(MAKE_FREQUENCY(scale[2]),SAMPLE_RATE); 
+			dphase = compute_dphase(scale[2],SAMPLE_RATE); 
 //			Frequency = note2Frequency(2);
 		else
-			dphase = compute_dphase(MAKE_FREQUENCY(scale[3]),SAMPLE_RATE); 
+			dphase = compute_dphase(scale[3],SAMPLE_RATE); 
 //			Frequency = note2Frequency(3);
 	}
 	else dphase = 0;
