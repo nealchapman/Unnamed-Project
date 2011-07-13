@@ -137,6 +137,8 @@
 #define PMAP_SPORT0TX	0x1000		/* SPORT0 Transmit DMA						*/
 #define WDSIZE_16		0x0004		/* Transfer Word Size = 16						*/
 
+
+
 /* SPORT1 DMA receive buffer */
 volatile short Rx0Buffer[8] = {0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000};
 
@@ -208,6 +210,8 @@ short 	sCodecRegs[SIZE_OF_CODEC_REGS] =						// array for codec registers
 };
 
 short sCodecRegsReadBack[SIZE_OF_CODEC_REGS];
+
+short z = 0;
 
 typedef enum LEDS_tag{
 	LED1 = (1<<6),
@@ -396,62 +400,28 @@ static void sport0TXISR()
 
 	// confirm interrupt handling
 	*pDMA1_IRQ_STATUS = 0x0001;
+	//z = pollButtons();
 
-	short z = 0;
+	z = (1<<9);
 
-	z = pollButtons();
-
-	if(z){
-		if(z & (1<<6))
-			dphase = compute_dphase(scale[0],SAMPLE_RATE); 
-//			Frequency = note2Frequency(0);
-		else if(z & (1<<7))
-			dphase = compute_dphase(scale[1],SAMPLE_RATE); 
-//			Frequency = note2Frequency(1);
-		else if(z & (1<<8))
-			dphase = compute_dphase(scale[2],SAMPLE_RATE); 
-//			Frequency = note2Frequency(2);
-		else
-			dphase = compute_dphase(scale[3],SAMPLE_RATE); 
-//			Frequency = note2Frequency(3);
-	}
+	if(z & (1<<6))
+		dphase = COMPUTE_DPHASE(scale[4],SAMPLE_RATE);
+	else if(z & (1<<7))
+		dphase = COMPUTE_DPHASE(scale[5],SAMPLE_RATE);
+	else if(z & (1<<8))
+		dphase = COMPUTE_DPHASE(scale[6],SAMPLE_RATE);
+	else if(z & (1<<9))
+		dphase = COMPUTE_DPHASE(scale[7],SAMPLE_RATE);
 	else dphase = 0;
-
 	// save new slot values in variables
 	sAc97Tag 			= Rx0Buffer[TAG_PHASE];
-
-	// do data processing if input data are marked as valid
-//	if((sAc97Tag & 0x1800) != 0)
-	{
-		//sLeftChannelOut 	= *sinGen(amplitude,Frequency,offset,sinOut);
-		//sRightChannelOut 	= sLeftChannelOut;
-
-		fill_buffer(&Sin, &Cos, dphase, sinOut, 1);
-
-		sLeftChannelOut = sinOut[0];
-		sRightChannelOut = sLeftChannelOut;
-
-		Tx0Buffer[TAG_PHASE] = sAc97Tag;
-		Tx0Buffer[PCM_LEFT] = sinOut[0];
-		Tx0Buffer[PCM_RIGHT] = Tx0Buffer[PCM_LEFT];
-
-	}
-//	else
-//	{
-//		sLeftChannelOut = 0x0000;
-//		sRightChannelOut = 0x0000;
-//	}
-
-	// copy data from previous frame into transmit buffer
-//	Tx0Buffer[TAG_PHASE] = sAc97Tag;
-//	Tx0Buffer[PCM_LEFT] = sLeftChannelOut;
-//	Tx0Buffer[PCM_RIGHT] = sRightChannelOut;
-
+	fill_buffer(&Sin, &Cos, dphase, sinOut, 1);
+	Tx0Buffer[TAG_PHASE] = sAc97Tag;
+	Tx0Buffer[PCM_LEFT] = sinOut[0];
+	Tx0Buffer[PCM_RIGHT] = Tx0Buffer[PCM_LEFT];
 	STOP_CYCLE_COUNT(cycle_stop,cycle_start);
-	
 	// restore masked values
 	sti(uiTIMASK);
-
 }
 
 void waitForCodecInit(void)
