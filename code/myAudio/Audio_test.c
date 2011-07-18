@@ -402,17 +402,17 @@ static void sport0TXISR()
 	*pDMA1_IRQ_STATUS = 0x0001;
 	//z = pollButtons();
 
-	z = (1<<9);
+//	z = (1<<9);
 
-	if(z & (1<<6))
-		dphase = COMPUTE_DPHASE(scale[4],SAMPLE_RATE);
-	else if(z & (1<<7))
-		dphase = COMPUTE_DPHASE(scale[5],SAMPLE_RATE);
-	else if(z & (1<<8))
-		dphase = COMPUTE_DPHASE(scale[6],SAMPLE_RATE);
-	else if(z & (1<<9))
+//	if(z & (1<<6))
+//		dphase = COMPUTE_DPHASE(scale[4],SAMPLE_RATE);
+//	else if(z & (1<<7))
+//		dphase = COMPUTE_DPHASE(scale[5],SAMPLE_RATE);
+//	else if(z & (1<<8))
+//		dphase = COMPUTE_DPHASE(scale[6],SAMPLE_RATE);
+//	else if(z & (1<<9))
 		dphase = COMPUTE_DPHASE(scale[7],SAMPLE_RATE);
-	else dphase = 0;
+//	else dphase = 0;
 	// save new slot values in variables
 	sAc97Tag 			= Rx0Buffer[TAG_PHASE];
 	fill_buffer(&Sin, &Cos, dphase, sinOut, 1);

@@ -1,0 +1,671 @@
+.file "sincos.c";
+	.section	.debug_abbrev,"",@progbits
+.Ldebug_abbrev0:
+	.section	.debug_info,"",@progbits
+.Ldebug_info0:
+	.section	.debug_line,"",@progbits
+.Ldebug_line0:
+.text;
+.Ltext0:
+	.align 4
+.global _sincos_step;
+.type _sincos_step, STT_FUNC;
+_sincos_step:
+.LFB2:
+	.file 1 "sincos.c"
+	.loc 1 13 0
+	LINK 0;
+.LCFI0:
+	[FP+8] = R0;
+	[FP+12] = R1;
+	R0 = R2;
+	W [FP+16] = R0;
+	.loc 1 18 0
+	P2 = [FP+8];
+	R0 = W [P2] (Z);
+	R2 = R0;
+	P2 = [FP+12];
+	R0 = W [P2] (Z);
+	R1 = R0.L (X);
+	R0 = W [FP+16] (X);
+	R0 *= R1;
+	R0 >>>= 16;
+	R0 = R2 + R0;
+	P2 = [FP+8];
+	W [P2] = R0;
+	.loc 1 23 0
+	P2 = [FP+12];
+	R0 = W [P2] (Z);
+	R2 = R0;
+	P2 = [FP+8];
+	R0 = W [P2] (Z);
+	R1 = R0.L (X);
+	R0 = W [FP+16] (X);
+	R0 *= R1;
+	R0 >>>= 16;
+	R0 = R2 - R0;
+	P2 = [FP+12];
+	W [P2] = R0;
+	.loc 1 27 0
+	UNLINK;
+	rts;
+.LFE2:
+	.size	_sincos_step, .-_sincos_step
+.global ___udivsi3;
+	.align 4
+.global _compute_dphase;
+.type _compute_dphase, STT_FUNC;
+_compute_dphase:
+.LFB3:
+	.loc 1 37 0
+	LINK 12;
+.LCFI1:
+	[FP+8] = R0;
+	R0 = R1;
+	W [FP+12] = R0;
+	.loc 1 38 0
+	R1 = [FP+8];
+	R0 = 402 (X);
+	R2 = R1;
+	R2 *= R0;
+	R0 = W [FP+12] (Z);
+	R0 >>= 3;
+	R1 = R0.L (Z);
+	R0 = R2;
+	call ___udivsi3;
+	.loc 1 39 0
+	UNLINK;
+	rts;
+.LFE3:
+	.size	_compute_dphase, .-_compute_dphase
+	.align 4
+.global _fill_buffer;
+.type _fill_buffer, STT_FUNC;
+_fill_buffer:
+.LFB4:
+	.loc 1 51 0
+	LINK 12;
+.LCFI2:
+	[FP+8] = R0;
+	[FP+12] = R1;
+	R0 = R2;
+	W [FP+16] = R0;
+	.loc 1 54 0
+	P2 = [FP+8];
+	R0 = W [P2] (Z);
+	P2 = [FP+20];
+	W [P2] = R0;
+	.loc 1 55 0
+	R2 = W [FP+16] (X);
+	R1 = [FP+12];
+	R0 = [FP+8];
+	call _sincos_step;
+	.loc 1 58 0
+	UNLINK;
+	rts;
+.LFE4:
+	.size	_fill_buffer, .-_fill_buffer
+	.section	.debug_frame,"",@progbits
+.Lframe0:
+	.4byte	.LECIE0-.LSCIE0
+.LSCIE0:
+	.4byte	0xffffffff
+	.byte	0x1
+	.string	""
+	.uleb128 0x1
+	.sleb128 -4
+	.byte	0x23
+	.byte	0xc
+	.uleb128 0xe
+	.uleb128 0x0
+	.align 4
+.LECIE0:
+.LSFDE0:
+	.4byte	.LEFDE0-.LASFDE0
+.LASFDE0:
+	.4byte	.Lframe0
+	.4byte	.LFB2
+	.4byte	.LFE2-.LFB2
+	.byte	0x4
+	.4byte	.LCFI0-.LFB2
+	.byte	0xc
+	.uleb128 0xf
+	.uleb128 0x8
+	.byte	0x8f
+	.uleb128 0x2
+	.byte	0xa3
+	.uleb128 0x1
+	.align 4
+.LEFDE0:
+.LSFDE2:
+	.4byte	.LEFDE2-.LASFDE2
+.LASFDE2:
+	.4byte	.Lframe0
+	.4byte	.LFB3
+	.4byte	.LFE3-.LFB3
+	.byte	0x4
+	.4byte	.LCFI1-.LFB3
+	.byte	0xc
+	.uleb128 0xf
+	.uleb128 0x8
+	.byte	0x8f
+	.uleb128 0x2
+	.byte	0xa3
+	.uleb128 0x1
+	.align 4
+.LEFDE2:
+.LSFDE4:
+	.4byte	.LEFDE4-.LASFDE4
+.LASFDE4:
+	.4byte	.Lframe0
+	.4byte	.LFB4
+	.4byte	.LFE4-.LFB4
+	.byte	0x4
+	.4byte	.LCFI2-.LFB4
+	.byte	0xc
+	.uleb128 0xf
+	.uleb128 0x8
+	.byte	0x8f
+	.uleb128 0x2
+	.byte	0xa3
+	.uleb128 0x1
+	.align 4
+.LEFDE4:
+.text;
+.Letext0:
+	.section	.debug_loc,"",@progbits
+.Ldebug_loc0:
+.LLST0:
+	.4byte	.LFB2-.Ltext0
+	.4byte	.LCFI0-.Ltext0
+	.2byte	0x1
+	.byte	0x5e
+	.4byte	.LCFI0-.Ltext0
+	.4byte	.LFE2-.Ltext0
+	.2byte	0x2
+	.byte	0x7f
+	.sleb128 8
+	.4byte	0x0
+	.4byte	0x0
+.LLST1:
+	.4byte	.LFB3-.Ltext0
+	.4byte	.LCFI1-.Ltext0
+	.2byte	0x1
+	.byte	0x5e
+	.4byte	.LCFI1-.Ltext0
+	.4byte	.LFE3-.Ltext0
+	.2byte	0x2
+	.byte	0x7f
+	.sleb128 8
+	.4byte	0x0
+	.4byte	0x0
+.LLST2:
+	.4byte	.LFB4-.Ltext0
+	.4byte	.LCFI2-.Ltext0
+	.2byte	0x1
+	.byte	0x5e
+	.4byte	.LCFI2-.Ltext0
+	.4byte	.LFE4-.Ltext0
+	.2byte	0x2
+	.byte	0x7f
+	.sleb128 8
+	.4byte	0x0
+	.4byte	0x0
+	.file 2 "/opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/include/stdint.h"
+	.section	.debug_info
+	.4byte	0x186
+	.2byte	0x2
+	.4byte	.Ldebug_abbrev0
+	.byte	0x4
+	.uleb128 0x1
+	.4byte	.LASF21
+	.byte	0x1
+	.4byte	.LASF22
+	.4byte	.LASF23
+	.4byte	.Ltext0
+	.4byte	.Letext0
+	.4byte	.Ldebug_line0
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x6
+	.4byte	.LASF0
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x8
+	.4byte	.LASF1
+	.uleb128 0x3
+	.4byte	.LASF3
+	.byte	0x2
+	.byte	0x39
+	.4byte	0x3e
+	.uleb128 0x2
+	.byte	0x2
+	.byte	0x5
+	.4byte	.LASF2
+	.uleb128 0x3
+	.4byte	.LASF4
+	.byte	0x2
+	.byte	0x3a
+	.4byte	0x50
+	.uleb128 0x2
+	.byte	0x2
+	.byte	0x7
+	.4byte	.LASF5
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x5
+	.4byte	.LASF6
+	.uleb128 0x3
+	.4byte	.LASF7
+	.byte	0x2
+	.byte	0x54
+	.4byte	0x69
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x7
+	.4byte	.LASF8
+	.uleb128 0x2
+	.byte	0x8
+	.byte	0x5
+	.4byte	.LASF9
+	.uleb128 0x2
+	.byte	0x8
+	.byte	0x7
+	.4byte	.LASF10
+	.uleb128 0x4
+	.byte	0x4
+	.byte	0x5
+	.string	"int"
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x7
+	.4byte	.LASF11
+	.uleb128 0x5
+	.byte	0x4
+	.byte	0x7
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x6
+	.4byte	.LASF12
+	.uleb128 0x2
+	.byte	0x8
+	.byte	0x4
+	.4byte	.LASF13
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x4
+	.4byte	.LASF14
+	.uleb128 0x2
+	.byte	0x8
+	.byte	0x4
+	.4byte	.LASF15
+	.uleb128 0x6
+	.byte	0x1
+	.4byte	.LASF24
+	.byte	0x1
+	.byte	0xd
+	.byte	0x1
+	.4byte	.LFB2
+	.4byte	.LFE2
+	.4byte	.LLST0
+	.4byte	0xef
+	.uleb128 0x7
+	.string	"sin"
+	.byte	0x1
+	.byte	0xc
+	.4byte	0xef
+	.byte	0x2
+	.byte	0x91
+	.sleb128 0
+	.uleb128 0x7
+	.string	"cos"
+	.byte	0x1
+	.byte	0xc
+	.4byte	0xef
+	.byte	0x2
+	.byte	0x91
+	.sleb128 4
+	.uleb128 0x8
+	.4byte	.LASF16
+	.byte	0x1
+	.byte	0xc
+	.4byte	0x33
+	.byte	0x2
+	.byte	0x91
+	.sleb128 8
+	.byte	0x0
+	.uleb128 0x9
+	.byte	0x4
+	.4byte	0x33
+	.uleb128 0xa
+	.byte	0x1
+	.4byte	.LASF25
+	.byte	0x1
+	.byte	0x25
+	.byte	0x1
+	.4byte	0x33
+	.4byte	.LFB3
+	.4byte	.LFE3
+	.4byte	.LLST1
+	.4byte	0x12f
+	.uleb128 0x8
+	.4byte	.LASF17
+	.byte	0x1
+	.byte	0x24
+	.4byte	0x5e
+	.byte	0x2
+	.byte	0x91
+	.sleb128 0
+	.uleb128 0x8
+	.4byte	.LASF18
+	.byte	0x1
+	.byte	0x24
+	.4byte	0x45
+	.byte	0x2
+	.byte	0x91
+	.sleb128 4
+	.byte	0x0
+	.uleb128 0xb
+	.byte	0x1
+	.4byte	.LASF26
+	.byte	0x1
+	.byte	0x33
+	.byte	0x1
+	.4byte	.LFB4
+	.4byte	.LFE4
+	.4byte	.LLST2
+	.uleb128 0x7
+	.string	"sin"
+	.byte	0x1
+	.byte	0x32
+	.4byte	0xef
+	.byte	0x2
+	.byte	0x91
+	.sleb128 0
+	.uleb128 0x7
+	.string	"cos"
+	.byte	0x1
+	.byte	0x32
+	.4byte	0xef
+	.byte	0x2
+	.byte	0x91
+	.sleb128 4
+	.uleb128 0x8
+	.4byte	.LASF19
+	.byte	0x1
+	.byte	0x32
+	.4byte	0x33
+	.byte	0x2
+	.byte	0x91
+	.sleb128 8
+	.uleb128 0x8
+	.4byte	.LASF20
+	.byte	0x1
+	.byte	0x32
+	.4byte	0xef
+	.byte	0x2
+	.byte	0x91
+	.sleb128 12
+	.uleb128 0x7
+	.string	"n"
+	.byte	0x1
+	.byte	0x32
+	.4byte	0x7e
+	.byte	0x2
+	.byte	0x91
+	.sleb128 16
+	.byte	0x0
+	.byte	0x0
+	.section	.debug_abbrev
+	.uleb128 0x1
+	.uleb128 0x11
+	.byte	0x1
+	.uleb128 0x25
+	.uleb128 0xe
+	.uleb128 0x13
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x1b
+	.uleb128 0xe
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x10
+	.uleb128 0x6
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x2
+	.uleb128 0x24
+	.byte	0x0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0x16
+	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x4
+	.uleb128 0x24
+	.byte	0x0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0x8
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x5
+	.uleb128 0x24
+	.byte	0x0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x6
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0x6
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x7
+	.uleb128 0x5
+	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0xa
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x8
+	.uleb128 0x5
+	.byte	0x0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0xa
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0x9
+	.uleb128 0xf
+	.byte	0x0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0xa
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0x6
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0x0
+	.byte	0x0
+	.uleb128 0xb
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0x6
+	.byte	0x0
+	.byte	0x0
+	.byte	0x0
+	.section	.debug_pubnames,"",@progbits
+	.4byte	0x41
+	.2byte	0x2
+	.4byte	.Ldebug_info0
+	.4byte	0x18a
+	.4byte	0xab
+	.string	"sincos_step"
+	.4byte	0xf5
+	.string	"compute_dphase"
+	.4byte	0x12f
+	.string	"fill_buffer"
+	.4byte	0x0
+	.section	.debug_aranges,"",@progbits
+	.4byte	0x1c
+	.2byte	0x2
+	.4byte	.Ldebug_info0
+	.byte	0x4
+	.byte	0x0
+	.2byte	0x0
+	.2byte	0x0
+	.4byte	.Ltext0
+	.4byte	.Letext0-.Ltext0
+	.4byte	0x0
+	.4byte	0x0
+	.section	.debug_str,"MS",@progbits,1
+.LASF24:
+	.string	"sincos_step"
+.LASF25:
+	.string	"compute_dphase"
+.LASF14:
+	.string	"float"
+.LASF19:
+	.string	"dphase"
+.LASF1:
+	.string	"unsigned char"
+.LASF8:
+	.string	"long unsigned int"
+.LASF5:
+	.string	"short unsigned int"
+.LASF21:
+	.string	"GNU C 4.3.5"
+.LASF23:
+	.string	"/home/neal/gits/Unnamed-Project/code/myAudio"
+.LASF13:
+	.string	"double"
+.LASF22:
+	.string	"sincos.c"
+.LASF16:
+	.string	"d_phase"
+.LASF11:
+	.string	"unsigned int"
+.LASF10:
+	.string	"long long unsigned int"
+.LASF17:
+	.string	"frequency"
+.LASF3:
+	.string	"int16_t"
+.LASF20:
+	.string	"sinValues"
+.LASF9:
+	.string	"long long int"
+.LASF12:
+	.string	"char"
+.LASF2:
+	.string	"short int"
+.LASF4:
+	.string	"uint16_t"
+.LASF7:
+	.string	"uint32_t"
+.LASF6:
+	.string	"long int"
+.LASF26:
+	.string	"fill_buffer"
+.LASF15:
+	.string	"long double"
+.LASF18:
+	.string	"sample_rate"
+.LASF0:
+	.string	"signed char"
+	.ident	"GCC: (ADI-2010R1-RC4) 4.3.5"
