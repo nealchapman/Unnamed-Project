@@ -8,7 +8,7 @@
 
 #define TWOPI_32 ((int32_t)(2*M_PI*(((int32_t)1)<<6)))
 
-#define COMPUTE_DPHASE(frequency,sample_rate) (frequency*TWOPI_32)/(sample_rate>>3)
+#define COMPUTE_DPHASE(frequency,sample_rate) (uint32_t)((((uint32_t)frequency)*((uint32_t)TWOPI_32))/((uint32_t)(sample_rate>>3)))
 
 
 // compute the next value of sin and cos after moving one

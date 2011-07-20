@@ -243,7 +243,7 @@ int32_t scale[12] = {
 };
 
 
-int16_t Sin=0, Cos=0x7000, dphase;
+int16_t Sin=0, Cos=0x7000, dphase=45;
 
 /*Function Prototypes*/
 static void initSPORT0(void);
