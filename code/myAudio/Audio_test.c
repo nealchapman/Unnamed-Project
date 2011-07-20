@@ -243,7 +243,7 @@ int32_t scale[12] = {
 };
 
 
-int16_t Sin=0, Cos=0x7000, dphase=45;
+int16_t Sin=0, Cos=0x7000, dphase=3361;
 
 /*Function Prototypes*/
 static void initSPORT0(void);
@@ -376,7 +376,6 @@ static void  sport0TXISRDummy(void)
 		Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1_SLOT2;			// data into TX SLOT '0'
 		Tx0Buffer[COMMAND_ADDRESS_SLOT] = SERIAL_CONFIGURATION;  	// data into TX SLOT '1'
 		Tx0Buffer[COMMAND_DATA_SLOT] = 0x9000;  					// data into TX SLOT '2'
-		dphase++;
 		if(Rx0Buffer[TAG_PHASE] & 0x8000);
 			slot16Mode = 1;
 	}
@@ -442,11 +441,11 @@ uint16_t note2Frequency(int note)
 __attribute__((interrupt_handler))
 static void sport0TXISR()
 {
+	START_CYCLE_COUNT(cycle_start);
 
 	// mask interrupts so we can finish all processing
 	unsigned int uiTIMASK = cli();
 
-	START_CYCLE_COUNT(cycle_start);
 
 	// confirm interrupt handling
 	*pDMA1_IRQ_STATUS = 0x0001;
@@ -461,11 +460,16 @@ static void sport0TXISR()
 //	else if(z & (1<<8))
 //		dphase = COMPUTE_DPHASE(scale[6],SAMPLE_RATE);
 //	else if(z & (1<<9))
-		dphase = COMPUTE_DPHASE(scale[7],SAMPLE_RATE);
+//		dphase = COMPUTE_DPHASE(scale[7],SAMPLE_RATE);
 //	else dphase = 0;
 	// save new slot values in variables
 	sAc97Tag 			= Rx0Buffer[TAG_PHASE];
-	fill_buffer(&Sin, &Cos, dphase, sinOut, 1);
+//	fill_buffer(&Sin, &Cos, dphase, sinOut, 1);
+
+	sincos_step(sinOut, &Cos, dphase);
+
+//	sinOut = Sin;	
+
 	Tx0Buffer[TAG_PHASE] = sAc97Tag;
 	Tx0Buffer[PCM_LEFT] = sinOut[0];
 	Tx0Buffer[PCM_RIGHT] = Tx0Buffer[PCM_LEFT];
