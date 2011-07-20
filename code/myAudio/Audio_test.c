@@ -170,6 +170,9 @@ cycle_t cycle_stop = 0x0000;
 unsigned short offset = 0;
 short sinOut[BUFFER_SIZE];
 
+uint32_t delayCounter = 0;
+uint16_t kCounter = 0;
+
 /*********************************************************************************/
 /***** Variables                                                             *****/
 /***** The values in the array sCodecRegs can be modified to set up the      *****/
@@ -244,7 +247,7 @@ int16_t Sin=0, Cos=0x7000, dphase;
 static void initSPORT0(void);
 static void initDMA(void);
 static void initAD1980(void);
-static void waitForCodecInit(void);
+//static void waitForCodecInit(void);
 static void enableSPORT0DMATDMStreams(void);
 static void enableCodecSlot16Mode(void);
 __attribute__((interrupt_handler))
@@ -252,7 +255,7 @@ static void sport0TXISR(void);
 __attribute__((interrupt_handler))
 static void sport0TXISRDummy(void);
 //static short *sinGen(fract16 Amplitude, fract16 frequency, short offset, short * sinOut);
-static int pollButtons(void);
+//static int pollButtons(void);
 //static fract16 sin2pi_fr16(fract16);
 
 
@@ -334,9 +337,27 @@ void initDMA(void)
 __attribute__((interrupt_handler))
 static void  sport0TXISRDummy(void)
 {
+
+	unsigned int uiTIMASK = cli();
+
 	// confirm interrupt handling
 	*pDMA1_IRQ_STATUS = 0x0001;
-	waitForCodecInit();
+	Tx0Buffer[COMMAND_DATA_SLOT] = sCodecRegs[kCounter+1];
+	Tx0Buffer[COMMAND_ADDRESS_SLOT] = (sCodecRegs[kCounter] | 0x8000);
+
+	sCodecRegsReadBack[kCounter] = Rx0Buffer[STATUS_ADDRESS_SLOT];
+	sCodecRegsReadBack[kCounter+1] = Rx0Buffer[STATUS_DATA_SLOT];
+
+	if((sCodecRegsReadBack[kCounter]==sCodecRegs[kCounter]) & (sCodecRegsReadBack[kCounter+1]==sCodecRegs[kCounter+1]))
+		kCounter = kCounter + 2;
+
+	if(kCounter == SIZE_OF_CODEC_REGS)
+	{
+		Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
+ 		Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
+	}
+
+	sti(uiTIMASK);
 
 }
 
@@ -424,9 +445,9 @@ static void sport0TXISR()
 	sti(uiTIMASK);
 }
 
-void waitForCodecInit(void)
-{
-}
+//void waitForCodecInit(void)
+//{
+//}
 
 void enableCodecSlot16Mode(void)
 {
@@ -451,45 +472,41 @@ void enableCodecSlot16Mode(void)
 
 void initAD1980(void)
 {
-	int iCounter;
-	int jCounter;
-	int bMatch = 0;
+	//int iCounter;
+	//int jCounter;
+//	int bMatch = 0;
 
 	//wait for frame valid flag from codec (first bit in receive buffer)
 	while((Tx0Buffer[TAG_PHASE] & 0x8000) == 0);
 
 	// configure codec
-	for(iCounter = 0; iCounter < SIZE_OF_CODEC_REGS; iCounter = iCounter + 2)
+/*	for(iCounter = 0; iCounter < SIZE_OF_CODEC_REGS; iCounter = iCounter + 2)
 	{
 		do
 		{								// send complete register set to codec
 			Tx0Buffer[COMMAND_ADDRESS_SLOT] = sCodecRegs[iCounter];
 			Tx0Buffer[COMMAND_DATA_SLOT] = sCodecRegs[iCounter+1];
-			for(jCounter = 0x0000; jCounter < DELAY_COUNT; jCounter++) jCounter= jCounter;
+			for(jCounter = 0x0000; jCounter < DELAY_COUNT; jCounter++) jCounter = jCounter;
 			Tx0Buffer[COMMAND_ADDRESS_SLOT] = (sCodecRegs[iCounter] | 0x8000);
 
 			sCodecRegsReadBack[iCounter] = Rx0Buffer[STATUS_ADDRESS_SLOT];
 			sCodecRegsReadBack[iCounter+1] = Rx0Buffer[STATUS_DATA_SLOT];
 
 			if( sCodecRegsReadBack[iCounter] == sCodecRegs[iCounter] )
+			{
 				bMatch = 1;
+			}
 
-		}while( !bMatch );
+		}while( !bMatch );*/
 
-		bMatch = 0;
- 	}
+//		bMatch = 0;
+
+// 	}
 
 
- 	Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
- 	Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
+ 	//Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
+ 	//Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
 
-}
-
-void Delay(unsigned long ulMs)
-{
-	unsigned long sleep = ulMs * 5000;
-	while (sleep--)
-		asm("nop");
 }
 
 /*void clearSetLED(const enLED led, const int bState)
@@ -521,7 +538,7 @@ void initLEDs(void)
 	*pPORTG_DIR_SET = 0x0FC0;
 }
 
-int pollButtons(void)
+/*int pollButtons(void)
 {
 
 	int buttonNow;
@@ -545,7 +562,7 @@ int pollButtons(void)
 
 	return buttonState;
 
-}
+}*/
 
 
 
@@ -604,6 +621,9 @@ int main(void)
 	enableCodecSlot16Mode();
 
 	initAD1980();
+
+	while(kCounter < SIZE_OF_CODEC_REGS )
+	{}	
 
 	*pEVT9 = (void *)sport0TXISR;
 
