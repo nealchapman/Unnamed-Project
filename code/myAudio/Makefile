@@ -4,7 +4,7 @@ LD = $(CROSS)gcc
 LDR = $(CROSS)ldr
 OBJCOPY = $(CROSS)objcopy
 CPU = bf548
-CFLAGS = -g #-O1#-O2
+CFLAGS = -g -O0#-O2
 CFLAGS += -mcpu=$(CPU)
 CFLAGS += -Wall
 CFLAGS += -D DO_CYCLE_COUNTS

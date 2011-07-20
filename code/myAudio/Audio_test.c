@@ -172,6 +172,8 @@ short sinOut[BUFFER_SIZE];
 
 uint32_t delayCounter = 0;
 uint16_t kCounter = 0;
+uint16_t firstSend = 1;
+uint16_t slot16Mode = 0;
 
 /*********************************************************************************/
 /***** Variables                                                             *****/
@@ -340,25 +342,53 @@ static void  sport0TXISRDummy(void)
 
 	unsigned int uiTIMASK = cli();
 
-	// confirm interrupt handling
-	*pDMA1_IRQ_STATUS = 0x0001;
-	Tx0Buffer[COMMAND_DATA_SLOT] = sCodecRegs[kCounter+1];
-	Tx0Buffer[COMMAND_ADDRESS_SLOT] = (sCodecRegs[kCounter] | 0x8000);
 
-	sCodecRegsReadBack[kCounter] = Rx0Buffer[STATUS_ADDRESS_SLOT];
-	sCodecRegsReadBack[kCounter+1] = Rx0Buffer[STATUS_DATA_SLOT];
-
-	if((sCodecRegsReadBack[kCounter]==sCodecRegs[kCounter]) & (sCodecRegsReadBack[kCounter+1]==sCodecRegs[kCounter+1]))
-		kCounter = kCounter + 2;
-
-	if(kCounter == SIZE_OF_CODEC_REGS)
+	if(slot16Mode)
 	{
-		Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
- 		Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
+			// confirm interrupt handling
+			*pDMA1_IRQ_STATUS = 0x0001;
+			if(firstSend)
+			{
+				Tx0Buffer[COMMAND_ADDRESS_SLOT] = sCodecRegs[kCounter];
+				firstSend = 0;
+			}
+			else
+				Tx0Buffer[COMMAND_ADDRESS_SLOT] = (sCodecRegs[kCounter] | 0x8000);
+
+			Tx0Buffer[COMMAND_DATA_SLOT] = sCodecRegs[kCounter+1];
+
+			sCodecRegsReadBack[kCounter] = Rx0Buffer[STATUS_ADDRESS_SLOT];
+			sCodecRegsReadBack[kCounter+1] = Rx0Buffer[STATUS_DATA_SLOT];
+
+			if((sCodecRegsReadBack[kCounter]==sCodecRegs[kCounter]))
+			{
+				kCounter = kCounter + 2;
+				firstSend = 1;
+			}
+
+			if(kCounter == SIZE_OF_CODEC_REGS)
+			{
+				Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
+				Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
+			}
+
+
+			//delayCounter++;	
+
+
+	}
+	else
+	{
+		Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1_SLOT2;			// data into TX SLOT '0'
+		Tx0Buffer[COMMAND_ADDRESS_SLOT] = SERIAL_CONFIGURATION;  	// data into TX SLOT '1'
+		Tx0Buffer[COMMAND_DATA_SLOT] = 0x9000;  					// data into TX SLOT '2'
+		delayCounter++;
+		if(Rx0Buffer[TAG_PHASE]  & 0x8000);
+			slot16Mode = 1;
 	}
 
 	sti(uiTIMASK);
-
+		
 }
 
 void enableSPORT0DMATDMStreams(void)
@@ -463,10 +493,12 @@ void enableCodecSlot16Mode(void)
 	//  maintain Slot-16 mode.
 
 	/* Clear CHEN bit in AD1980 Serial Configuration Register (addr 0x74) */
-	Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1_SLOT2;			// data into TX SLOT '0'
-	Tx0Buffer[COMMAND_ADDRESS_SLOT] = SERIAL_CONFIGURATION;  	// data into TX SLOT '1'
-	Tx0Buffer[COMMAND_DATA_SLOT] = 0x9000;  					// data into TX SLOT '2'
-	while( Rx0Buffer[TAG_PHASE]  & 0x8000);
+	//Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1_SLOT2;			// data into TX SLOT '0'
+	//Tx0Buffer[COMMAND_ADDRESS_SLOT] = SERIAL_CONFIGURATION;  	// data into TX SLOT '1'
+	//Tx0Buffer[COMMAND_DATA_SLOT] = 0x9000;  					// data into TX SLOT '2'
+	//while( Rx0Buffer[TAG_PHASE]  & 0x8000);
+
+	//slot16Mode = 1;
 
 }
 
@@ -474,7 +506,7 @@ void initAD1980(void)
 {
 	//int iCounter;
 	//int jCounter;
-//	int bMatch = 0;
+	//int bMatch = 0;
 
 	//wait for frame valid flag from codec (first bit in receive buffer)
 	while((Tx0Buffer[TAG_PHASE] & 0x8000) == 0);
