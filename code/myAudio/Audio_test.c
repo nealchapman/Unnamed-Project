@@ -248,10 +248,10 @@ int16_t Sin=0, Cos=0x7000, dphase=45;
 /*Function Prototypes*/
 static void initSPORT0(void);
 static void initDMA(void);
-static void initAD1980(void);
+//static void initAD1980(void);
 //static void waitForCodecInit(void);
 static void enableSPORT0DMATDMStreams(void);
-static void enableCodecSlot16Mode(void);
+//static void enableCodecSlot16Mode(void);
 __attribute__((interrupt_handler))
 static void sport0TXISR(void);
 __attribute__((interrupt_handler))
@@ -340,12 +340,13 @@ __attribute__((interrupt_handler))
 static void  sport0TXISRDummy(void)
 {
 
+	*pDMA1_IRQ_STATUS = 0x0001;
+
 	unsigned int uiTIMASK = cli();
 
 	if(slot16Mode)
 	{
 		// confirm interrupt handling
-		*pDMA1_IRQ_STATUS = 0x0001;
 		if(firstSend)
 		{
 			Tx0Buffer[COMMAND_ADDRESS_SLOT] = sCodecRegs[kCounter];
@@ -375,8 +376,14 @@ static void  sport0TXISRDummy(void)
 		Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1_SLOT2;			// data into TX SLOT '0'
 		Tx0Buffer[COMMAND_ADDRESS_SLOT] = SERIAL_CONFIGURATION;  	// data into TX SLOT '1'
 		Tx0Buffer[COMMAND_DATA_SLOT] = 0x9000;  					// data into TX SLOT '2'
+		dphase++;
 		if(Rx0Buffer[TAG_PHASE] & 0x8000);
 			slot16Mode = 1;
+	}
+
+	if(kCounter > SIZE_OF_CODEC_REGS)
+	{
+		*pEVT9 = (void *)sport0TXISR;	
 	}
 
 	sti(uiTIMASK);
@@ -471,7 +478,7 @@ static void sport0TXISR()
 //{
 //}
 
-void enableCodecSlot16Mode(void)
+/*void enableCodecSlot16Mode(void)
 {
 	//  Note that after initial SLOT16 command by writing a 0x9900 to to
 	//  Serial Configuration Register (addr 0x74) with initialized data
@@ -484,7 +491,7 @@ void enableCodecSlot16Mode(void)
 	//  value of "0x9000", this value written to codec addr 0x74 will
 	//  maintain Slot-16 mode.
 
-	/* Clear CHEN bit in AD1980 Serial Configuration Register (addr 0x74) */
+	// Clear CHEN bit in AD1980 Serial Configuration Register (addr 0x74) 
 	//Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1_SLOT2;			// data into TX SLOT '0'
 	//Tx0Buffer[COMMAND_ADDRESS_SLOT] = SERIAL_CONFIGURATION;  	// data into TX SLOT '1'
 	//Tx0Buffer[COMMAND_DATA_SLOT] = 0x9000;  					// data into TX SLOT '2'
@@ -492,19 +499,19 @@ void enableCodecSlot16Mode(void)
 
 	//slot16Mode = 1;
 
-}
+}*/
 
-void initAD1980(void)
+/*void initAD1980(void)
 {
 	//int iCounter;
 	//int jCounter;
 	//int bMatch = 0;
 
 	//wait for frame valid flag from codec (first bit in receive buffer)
-	while((Tx0Buffer[TAG_PHASE] & 0x8000) == 0);
+	//while((Tx0Buffer[TAG_PHASE] & 0x8000) == 0);
 
 	// configure codec
-/*	for(iCounter = 0; iCounter < SIZE_OF_CODEC_REGS; iCounter = iCounter + 2)
+	for(iCounter = 0; iCounter < SIZE_OF_CODEC_REGS; iCounter = iCounter + 2)
 	{
 		do
 		{								// send complete register set to codec
@@ -521,7 +528,7 @@ void initAD1980(void)
 				bMatch = 1;
 			}
 
-		}while( !bMatch );*/
+		}while( !bMatch );
 
 //		bMatch = 0;
 
@@ -531,7 +538,7 @@ void initAD1980(void)
  	//Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
  	//Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
 
-}
+}*/
 
 /*void clearSetLED(const enLED led, const int bState)
 {
@@ -639,17 +646,13 @@ int main(void)
 	audioReset();
 	
 	initDMA();
-
 	enableSPORT0DMATDMStreams();
 
-	enableCodecSlot16Mode();
+	//enableCodecSlot16Mode();
 
-	initAD1980();
+	//initAD1980();
 
-	while(kCounter < SIZE_OF_CODEC_REGS )
-	{}	
-
-	*pEVT9 = (void *)sport0TXISR;
+	//*pEVT9 = (void *)sport0TXISR;
 
 	//Enable Interrupts to begin outputing audio	
 
