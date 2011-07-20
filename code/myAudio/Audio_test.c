@@ -342,48 +342,40 @@ static void  sport0TXISRDummy(void)
 
 	unsigned int uiTIMASK = cli();
 
-
 	if(slot16Mode)
 	{
-			// confirm interrupt handling
-			*pDMA1_IRQ_STATUS = 0x0001;
-			if(firstSend)
-			{
-				Tx0Buffer[COMMAND_ADDRESS_SLOT] = sCodecRegs[kCounter];
-				firstSend = 0;
-			}
-			else
-				Tx0Buffer[COMMAND_ADDRESS_SLOT] = (sCodecRegs[kCounter] | 0x8000);
+		// confirm interrupt handling
+		*pDMA1_IRQ_STATUS = 0x0001;
+		if(firstSend)
+		{
+			Tx0Buffer[COMMAND_ADDRESS_SLOT] = sCodecRegs[kCounter];
+			firstSend = 0;
+		}
+		else
+			Tx0Buffer[COMMAND_ADDRESS_SLOT] = (sCodecRegs[kCounter] | 0x8000);
 
-			Tx0Buffer[COMMAND_DATA_SLOT] = sCodecRegs[kCounter+1];
+		Tx0Buffer[COMMAND_DATA_SLOT] = sCodecRegs[kCounter+1];
 
-			sCodecRegsReadBack[kCounter] = Rx0Buffer[STATUS_ADDRESS_SLOT];
-			sCodecRegsReadBack[kCounter+1] = Rx0Buffer[STATUS_DATA_SLOT];
+		sCodecRegsReadBack[kCounter] = Rx0Buffer[STATUS_ADDRESS_SLOT];
+		sCodecRegsReadBack[kCounter+1] = Rx0Buffer[STATUS_DATA_SLOT];
 
-			if((sCodecRegsReadBack[kCounter]==sCodecRegs[kCounter]))
-			{
-				kCounter = kCounter + 2;
-				firstSend = 1;
-			}
-
+		if((sCodecRegsReadBack[kCounter]==sCodecRegs[kCounter]))
+		{
+			kCounter = kCounter + 2;
+			firstSend = 1;
+		}
 			if(kCounter == SIZE_OF_CODEC_REGS)
-			{
-				Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
-				Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
-			}
-
-
-			//delayCounter++;	
-
-
+		{
+			Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
+			Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
+		}
 	}
 	else
 	{
 		Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1_SLOT2;			// data into TX SLOT '0'
 		Tx0Buffer[COMMAND_ADDRESS_SLOT] = SERIAL_CONFIGURATION;  	// data into TX SLOT '1'
 		Tx0Buffer[COMMAND_DATA_SLOT] = 0x9000;  					// data into TX SLOT '2'
-		delayCounter++;
-		if(Rx0Buffer[TAG_PHASE]  & 0x8000);
+		if(Rx0Buffer[TAG_PHASE] & 0x8000);
 			slot16Mode = 1;
 	}
 
