@@ -9,7 +9,7 @@
 // same for each step so it can be pre-computed
 // on the first step, sin and cos should be initialized based on the
 // desired initial phase and amplitude
-void sincos_step(int16_t *sin, int16_t *cos, int16_t d_phase)
+inline void sincos_step(int16_t *sin, int16_t *cos, int16_t d_phase)
 {
   //int32_t savesin;
 

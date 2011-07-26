@@ -175,6 +175,8 @@ uint16_t kCounter = 0;
 uint16_t firstSend = 1;
 uint16_t slot16Mode = 0;
 
+short delayFinished = 1;
+
 /*********************************************************************************/
 /***** Variables                                                             *****/
 /***** The values in the array sCodecRegs can be modified to set up the      *****/
@@ -251,14 +253,14 @@ static void initDMA(void);
 //static void initAD1980(void);
 //static void waitForCodecInit(void);
 static void enableSPORT0DMATDMStreams(void);
-//static void enableCodecSlot16Mode(void);
 __attribute__((interrupt_handler))
 static void sport0TXISR(void);
 __attribute__((interrupt_handler))
 static void sport0TXISRDummy(void);
-//static short *sinGen(fract16 Amplitude, fract16 frequency, short offset, short * sinOut);
 //static int pollButtons(void);
-//static fract16 sin2pi_fr16(fract16);
+__attribute__((interrupt_handler))
+static void delayTimerISR(void);
+static void delayus(uint32_t);
 
 
 /*--------------------*/
@@ -267,7 +269,6 @@ static void sport0TXISRDummy(void);
 
 void audioReset(void)
 {
-	int iCounter;
 
 	*pPORTB_FER = 0x0000;
 	*pPORTB_MUX = 0x0000;
@@ -276,11 +277,12 @@ void audioReset(void)
 	*pPORTB_SET = (1<<3);
 	//AD1980 Datasheet says 1us pulse for reset
 	//Set reset pulse time to 2us for safety 0x4B0
-	for(iCounter = 0x0000; iCounter < 0x04B0; iCounter++) iCounter = iCounter;
+	
+	delayus(2);
 	*pPORTB_CLEAR = (1<<3);
-	for(iCounter = 0x0000; iCounter < 0x04B0; iCounter++) iCounter = iCounter;
+	delayus(2);
 	*pPORTB_SET = (1<<3);
-	for(iCounter = 0x0000; iCounter < 0xF4B0; iCounter++) iCounter = iCounter;
+	delayus(2);
 }
 
 void initButtons(void)
@@ -337,16 +339,19 @@ void initDMA(void)
 }
 
 __attribute__((interrupt_handler))
+static void delayTimerISR(void)
+{
+	delayFinished = 1;
+}
+
+
+
+__attribute__((interrupt_handler))
 static void  sport0TXISRDummy(void)
 {
 
-	*pDMA1_IRQ_STATUS = 0x0001;
-
-	unsigned int uiTIMASK = cli();
-
 	if(slot16Mode)
 	{
-		// confirm interrupt handling
 		if(firstSend)
 		{
 			Tx0Buffer[COMMAND_ADDRESS_SLOT] = sCodecRegs[kCounter];
@@ -385,8 +390,8 @@ static void  sport0TXISRDummy(void)
 		*pEVT9 = (void *)sport0TXISR;	
 	}
 
-	sti(uiTIMASK);
-		
+	*pDMA1_IRQ_STATUS = 0x0001;
+	
 }
 
 void enableSPORT0DMATDMStreams(void)
@@ -438,17 +443,53 @@ uint16_t note2Frequency(int note)
 	return (uint16_t)((frequency/SAMPLE_RATE));
 }
 
+static void initDelay(void)
+{
+
+	*pEVT11 =  (void *)delayTimerISR;
+	
+	*pIMASK |= EVT_IVG11;
+	*pSIC_IMASK0	= (*pSIC_IMASK0 | IRQ_TIMER0);
+	ssync();
+
+}
+
+static void delayus(uint32_t delayTime)
+{
+
+	uint32_t delayCount = 0;
+	delayFinished = 0;
+
+	//SCLK = 133e6
+	//convert from SCLK counts / second * (delayTime / 1e-6)
+
+	delayCount = (133e6*delayTime)/1e6;
+
+	//Check to be sure Timer is disabled
+
+	//Configure Timer0
+	*pTIMER0_CONFIG |= (PWM_OUT | IRQ_ENA | OUT_DIS);
+
+	//Set interrupt condition
+	*pTIMER0_WIDTH = delayCount;
+
+	//current value of counter
+	//TIMER0_COUNTER
+
+	//start timer
+	*pTIMER_ENABLE0 |= TIMEN0;
+
+	while(!delayFinished);
+
+	*pTIMER_DISABLE0 |= TIMDIS0;
+
+}
+
 __attribute__((interrupt_handler))
 static void sport0TXISR()
 {
 	START_CYCLE_COUNT(cycle_start);
 
-	// mask interrupts so we can finish all processing
-	unsigned int uiTIMASK = cli();
-
-
-	// confirm interrupt handling
-	*pDMA1_IRQ_STATUS = 0x0001;
 	//z = pollButtons();
 
 //	z = (1<<9);
@@ -475,7 +516,10 @@ static void sport0TXISR()
 	Tx0Buffer[PCM_RIGHT] = Tx0Buffer[PCM_LEFT];
 	STOP_CYCLE_COUNT(cycle_stop,cycle_start);
 	// restore masked values
-	sti(uiTIMASK);
+	//sti(uiTIMASK);
+
+	*pDMA1_IRQ_STATUS = 0x0001;
+
 }
 
 //void waitForCodecInit(void)
@@ -599,44 +643,11 @@ void initLEDs(void)
 
 }*/
 
-
-
-/*short *sinGen(fract16 Amplitude, fract16 frequency, short offset, short * sinOut)
-{
-	
-	unsigned short i = 0;
-	
-	while(i < BUFFER_SIZE)
-	{
-		sinOut[i] = sin2pi_fr16((offset + i) * frequency);
-		i++;
-	}
-
-	offset += BUFFER_SIZE;
-	
-	if(offset >= ( 0x7FFF / frequency ))
-		offset = 0;
-
-	return sinOut;
-
-}
-
-fract16 sin2pi_fr16(fract16 x)
-{
-	if(x<0x2000)
-		return sin_fr16(x * 4);
-	else if (x == 0x2000)
-		return 0x7fff;
-	else if (x < 0x6000)
-		return -sin_fr16((0xc000 + x) * 4);
-	else
-		return sin_fr16((0x8000 + x) * 4);	
-}*/
-
 int main(void)
 {
 
 	initButtons();
+	initDelay();
 
 	//NEC APPROVED	
 	initLEDs();
@@ -652,13 +663,7 @@ int main(void)
 	initDMA();
 	enableSPORT0DMATDMStreams();
 
-	//enableCodecSlot16Mode();
-
-	//initAD1980();
-
-	//*pEVT9 = (void *)sport0TXISR;
-
-	//Enable Interrupts to begin outputing audio	
+	//Rest of program is interrupt driven
 
 	while(1);
 	return 0;
