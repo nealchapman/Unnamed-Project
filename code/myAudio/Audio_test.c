@@ -166,6 +166,7 @@ cycle_t cycle_stop = 0x0000;
 #define DEBOUNCE_COUNT 0XFF
 #define DELAY_COUNT 0x888
 #define BUFFER_SIZE 1
+#define SCLK 133 //in MHz
 
 unsigned short offset = 0;
 short sinOut[BUFFER_SIZE];
@@ -175,7 +176,7 @@ uint16_t kCounter = 0;
 uint16_t firstSend = 1;
 uint16_t slot16Mode = 0;
 
-short delayFinished = 1;
+volatile short delayFinished = 1;
 
 /*********************************************************************************/
 /***** Variables                                                             *****/
@@ -270,6 +271,7 @@ static void delayus(uint32_t);
 void audioReset(void)
 {
 
+
 	*pPORTB_FER = 0x0000;
 	*pPORTB_MUX = 0x0000;
 
@@ -278,11 +280,10 @@ void audioReset(void)
 	//AD1980 Datasheet says 1us pulse for reset
 	//Set reset pulse time to 2us for safety 0x4B0
 	
-	delayus(2);
 	*pPORTB_CLEAR = (1<<3);
-	delayus(2);
+	delayus(20);
 	*pPORTB_SET = (1<<3);
-	delayus(2);
+	delayus(20);
 }
 
 void initButtons(void)
@@ -336,11 +337,14 @@ void initDMA(void)
 	*pDMA1_X_COUNT = 8;
 	*pDMA1_X_MODIFY = 2;
 
+	delayus(2000);	
+
 }
 
 __attribute__((interrupt_handler))
 static void delayTimerISR(void)
 {
+	*pTIMER_STATUS0	|= TIMIL0;
 	delayFinished = 1;
 }
 
@@ -385,7 +389,7 @@ static void  sport0TXISRDummy(void)
 			slot16Mode = 1;
 	}
 
-	if(kCounter > SIZE_OF_CODEC_REGS)
+	if(kCounter >= SIZE_OF_CODEC_REGS)
 	{
 		*pEVT9 = (void *)sport0TXISR;	
 	}
@@ -445,13 +449,10 @@ uint16_t note2Frequency(int note)
 
 static void initDelay(void)
 {
-
 	*pEVT11 =  (void *)delayTimerISR;
-	
 	*pIMASK |= EVT_IVG11;
-	*pSIC_IMASK0	= (*pSIC_IMASK0 | IRQ_TIMER0);
+	*pSIC_IMASK2	= (*pSIC_IMASK2 | IRQ_TIMER0);
 	ssync();
-
 }
 
 static void delayus(uint32_t delayTime)
@@ -461,9 +462,8 @@ static void delayus(uint32_t delayTime)
 	delayFinished = 0;
 
 	//SCLK = 133e6
-	//convert from SCLK counts / second * (delayTime / 1e-6)
-
-	delayCount = (133e6*delayTime)/1e6;
+	//convert from SCLK counts / second * (delayTime / 1e6)
+	delayCount = (SCLK*delayTime);
 
 	//Check to be sure Timer is disabled
 
@@ -479,7 +479,11 @@ static void delayus(uint32_t delayTime)
 	//start timer
 	*pTIMER_ENABLE0 |= TIMEN0;
 
+	//START_CYCLE_COUNT(cycle_start);
+
 	while(!delayFinished);
+
+	//STOP_CYCLE_COUNT(cycle_stop,cycle_start);
 
 	*pTIMER_DISABLE0 |= TIMDIS0;
 
@@ -488,7 +492,7 @@ static void delayus(uint32_t delayTime)
 __attribute__((interrupt_handler))
 static void sport0TXISR()
 {
-	START_CYCLE_COUNT(cycle_start);
+
 
 	//z = pollButtons();
 
@@ -514,7 +518,7 @@ static void sport0TXISR()
 	Tx0Buffer[TAG_PHASE] = sAc97Tag;
 	Tx0Buffer[PCM_LEFT] = sinOut[0];
 	Tx0Buffer[PCM_RIGHT] = Tx0Buffer[PCM_LEFT];
-	STOP_CYCLE_COUNT(cycle_stop,cycle_start);
+
 	// restore masked values
 	//sti(uiTIMASK);
 
@@ -661,6 +665,7 @@ int main(void)
 	audioReset();
 	
 	initDMA();
+		
 	enableSPORT0DMATDMStreams();
 
 	//Rest of program is interrupt driven
