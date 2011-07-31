@@ -12,9 +12,9 @@ LDFLAGS = -mcpu=$(CPU) -Wl,-Map,$(TARGET).map
 #LIBS = -lm -lbfdsp
 LIBS = -lm /opt/uClinux/bfin-elf/bfin-elf/lib/libbfdsp.a
 
-TARGET = Audio_Firmare
+TARGET = synth
 
-SRCS = Audio_Firmware.c AD1980.c sincos.c
+SRCS = synth.c AD1980.c sincos.c
 
 OBJS = $(SRCS:.c=.o)
 
