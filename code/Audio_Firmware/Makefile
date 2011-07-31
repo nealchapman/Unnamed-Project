@@ -4,22 +4,24 @@ LD = $(CROSS)gcc
 LDR = $(CROSS)ldr
 OBJCOPY = $(CROSS)objcopy
 CPU = bf548
-CFLAGS = -g #-O2
+CFLAGS = -g -O2
 CFLAGS += -mcpu=$(CPU)
 CFLAGS += -Wall
-LDFLAGS = -mcpu=$(CPU) -Wl,-Map,Audio_test.map
-LIBS = -lm
+CFLAGS += -D DO_CYCLE_COUNTS
+LDFLAGS = -mcpu=$(CPU) -Wl,-Map,$(TARGET).map
+#LIBS = -lm -lbfdsp
+LIBS = -lm /opt/uClinux/bfin-elf/bfin-elf/lib/libbfdsp.a
 
-TARGET = Audio_test
+TARGET = Audio_Firmare
 
-SRCS = Audio_test.c
+SRCS = Audio_Firmware.c AD1980.c sincos.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(TARGET).ldr
 
 $(TARGET).elf: $(OBJS)
-	$(LD) $(LDFLAGS) $< $(LIBS) -o $@
+	$(LD) $(LDFLAGS) $^ $(LIBS) -o $@
 
 %.ldr: %.elf
 	$(LDR) -f -T $(CPU) -c $@ $<

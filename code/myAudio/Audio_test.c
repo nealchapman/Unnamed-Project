@@ -251,14 +251,12 @@ int16_t Sin=0, Cos=0x7000, dphase=3361;
 /*Function Prototypes*/
 static void initSPORT0(void);
 static void initDMA(void);
-//static void initAD1980(void);
-//static void waitForCodecInit(void);
 static void enableSPORT0DMATDMStreams(void);
 __attribute__((interrupt_handler))
 static void sport0TXISR(void);
 __attribute__((interrupt_handler))
-static void sport0TXISRDummy(void);
-//static int pollButtons(void);
+static void sport0TXISRSetup(void);
+static int pollButtons(void);
 __attribute__((interrupt_handler))
 static void delayTimerISR(void);
 static void delayus(uint32_t);
@@ -270,8 +268,6 @@ static void delayus(uint32_t);
 
 void audioReset(void)
 {
-
-
 	*pPORTB_FER = 0x0000;
 	*pPORTB_MUX = 0x0000;
 
@@ -337,6 +333,7 @@ void initDMA(void)
 	*pDMA1_X_COUNT = 8;
 	*pDMA1_X_MODIFY = 2;
 
+	//MAGIC!!!
 	delayus(2000);	
 
 }
@@ -349,9 +346,8 @@ static void delayTimerISR(void)
 }
 
 
-
 __attribute__((interrupt_handler))
-static void  sport0TXISRDummy(void)
+static void  sport0TXISRSetup(void)
 {
 
 	if(slot16Mode)
@@ -417,7 +413,7 @@ void enableSPORT0DMATDMStreams(void)
 	/* Remap the vector table pointer from the default __I9HANDLER
 	   to the new "Sport0_TX_ISR()" interrupt service routine */
 	// SPORT0 TX ISR -> IVG 9
-	*pEVT9 =  (void *)sport0TXISRDummy;		// SPORT0 TX ISR -> IVG 9
+	*pEVT9 =  (void *)sport0TXISRSetup;		// SPORT0 TX ISR -> IVG 9
 
 	/* Unmask peripheral SPORT0 RX interrupt in System Interrupt Mask Register `
 	   (SIC_IMASK bit 9 - DMA1/SPORT0 RX */
@@ -473,17 +469,11 @@ static void delayus(uint32_t delayTime)
 	//Set interrupt condition
 	*pTIMER0_WIDTH = delayCount;
 
-	//current value of counter
-	//TIMER0_COUNTER
-
 	//start timer
 	*pTIMER_ENABLE0 |= TIMEN0;
 
-	//START_CYCLE_COUNT(cycle_start);
-
+	//delay until ISR changes value of delayFinished
 	while(!delayFinished);
-
-	//STOP_CYCLE_COUNT(cycle_stop,cycle_start);
 
 	*pTIMER_DISABLE0 |= TIMDIS0;
 
@@ -493,106 +483,38 @@ __attribute__((interrupt_handler))
 static void sport0TXISR()
 {
 
+	START_CYCLE_COUNT(cycle_start);
 
-	//z = pollButtons();
+	z = pollButtons();
 
-//	z = (1<<9);
-
-//	if(z & (1<<6))
-//		dphase = COMPUTE_DPHASE(scale[4],SAMPLE_RATE);
-//	else if(z & (1<<7))
-//		dphase = COMPUTE_DPHASE(scale[5],SAMPLE_RATE);
-//	else if(z & (1<<8))
-//		dphase = COMPUTE_DPHASE(scale[6],SAMPLE_RATE);
-//	else if(z & (1<<9))
-//		dphase = COMPUTE_DPHASE(scale[7],SAMPLE_RATE);
-//	else dphase = 0;
+	if(z & (1<<6))
+		dphase = COMPUTE_DPHASE(scale[4],SAMPLE_RATE);
+	else if(z & (1<<7))
+		dphase = COMPUTE_DPHASE(scale[5],SAMPLE_RATE);
+	else if(z & (1<<8))
+		dphase = COMPUTE_DPHASE(scale[6],SAMPLE_RATE);
+	else if(z & (1<<9))
+		dphase = COMPUTE_DPHASE(scale[7],SAMPLE_RATE);
+	else dphase = 0;
 	// save new slot values in variables
 	sAc97Tag 			= Rx0Buffer[TAG_PHASE];
-//	fill_buffer(&Sin, &Cos, dphase, sinOut, 1);
+	//fill_buffer(&Sin, &Cos, dphase, sinOut, 1);
 
 	sincos_step(sinOut, &Cos, dphase);
-
-//	sinOut = Sin;	
 
 	Tx0Buffer[TAG_PHASE] = sAc97Tag;
 	Tx0Buffer[PCM_LEFT] = sinOut[0];
 	Tx0Buffer[PCM_RIGHT] = Tx0Buffer[PCM_LEFT];
 
-	// restore masked values
-	//sti(uiTIMASK);
-
+	STOP_CYCLE_COUNT(cycle_stop,cycle_start);
+	
 	*pDMA1_IRQ_STATUS = 0x0001;
 
 }
 
-//void waitForCodecInit(void)
-//{
-//}
-
-/*void enableCodecSlot16Mode(void)
-{
-	//  Note that after initial SLOT16 command by writing a 0x9900 to to
-	//  Serial Configuration Register (addr 0x74) with initialized data
-	//  in tx1_buf[ ] on startup, we sent data shifted by 4-bits due
-	//  to AC-97 20-bit slots.  After the codec recongizes this command
-	//  it reshifts register data and then puts the part in chained mode
-	//  Since we are only a single codec configuration, rx1_buf[ ] initially
-	//  shows all "0xFFFFs".  We need to re-program the Serial Config Register
-	//  after Slot-16 mode is active to remove the "CHEN" bit by writing a
-	//  value of "0x9000", this value written to codec addr 0x74 will
-	//  maintain Slot-16 mode.
-
-	// Clear CHEN bit in AD1980 Serial Configuration Register (addr 0x74) 
-	//Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1_SLOT2;			// data into TX SLOT '0'
-	//Tx0Buffer[COMMAND_ADDRESS_SLOT] = SERIAL_CONFIGURATION;  	// data into TX SLOT '1'
-	//Tx0Buffer[COMMAND_DATA_SLOT] = 0x9000;  					// data into TX SLOT '2'
-	//while( Rx0Buffer[TAG_PHASE]  & 0x8000);
-
-	//slot16Mode = 1;
-
-}*/
-
-/*void initAD1980(void)
-{
-	//int iCounter;
-	//int jCounter;
-	//int bMatch = 0;
-
-	//wait for frame valid flag from codec (first bit in receive buffer)
-	//while((Tx0Buffer[TAG_PHASE] & 0x8000) == 0);
-
-	// configure codec
-	for(iCounter = 0; iCounter < SIZE_OF_CODEC_REGS; iCounter = iCounter + 2)
-	{
-		do
-		{								// send complete register set to codec
-			Tx0Buffer[COMMAND_ADDRESS_SLOT] = sCodecRegs[iCounter];
-			Tx0Buffer[COMMAND_DATA_SLOT] = sCodecRegs[iCounter+1];
-			for(jCounter = 0x0000; jCounter < DELAY_COUNT; jCounter++) jCounter = jCounter;
-			Tx0Buffer[COMMAND_ADDRESS_SLOT] = (sCodecRegs[iCounter] | 0x8000);
-
-			sCodecRegsReadBack[iCounter] = Rx0Buffer[STATUS_ADDRESS_SLOT];
-			sCodecRegsReadBack[iCounter+1] = Rx0Buffer[STATUS_DATA_SLOT];
-
-			if( sCodecRegsReadBack[iCounter] == sCodecRegs[iCounter] )
-			{
-				bMatch = 1;
-			}
-
-		}while( !bMatch );
-
-//		bMatch = 0;
-
-// 	}
 
 
- 	//Tx0Buffer[TAG_PHASE] = ENABLE_VFbit_SLOT1;
- 	//Tx0Buffer[COMMAND_DATA_SLOT] = 0x0000;
-
-}*/
-
-/*void clearSetLED(const enLED led, const int bState)
+void clearSetLED(const enLED led, const int bState)
 {
 	static unsigned short leds = 0;
 
@@ -612,7 +534,7 @@ static void sport0TXISR()
 		*pPORTG_SET = led; // toggle 
 		leds |= led;
 	}
-}*/
+}
 
 void initLEDs(void)
 {
@@ -621,7 +543,7 @@ void initLEDs(void)
 	*pPORTG_DIR_SET = 0x0FC0;
 }
 
-/*int pollButtons(void)
+int pollButtons(void)
 {
 
 	int buttonNow;
@@ -645,7 +567,7 @@ void initLEDs(void)
 
 	return buttonState;
 
-}*/
+}
 
 int main(void)
 {

@@ -185,67 +185,68 @@ END GROUP
 .l2
  *(.l2 .l2.*)
 
-.text           0xffa00000      0xccc
+.text           0xffa00000      0xeb4
  *(.text .stub .text.* .gnu.linkonce.t.* .l1.text .l1.text.*)
  .text          0xffa00000      0x198 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
                 0xffa00000                __start
  .text          0xffa00198        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
  .text          0xffa00198       0xd8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
  .text          0xffa00270        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtlibid.o
- .text          0xffa00270      0x620 Audio_test.o
+ .text          0xffa00270      0x808 Audio_test.o
                 0xffa00340                _initButtons
-                0xffa00578                _initLEDs
+                0xffa00600                _initLEDs
                 0xffa004f4                _note2Frequency
                 0xffa00270                _audioReset
-                0xffa005a4                _main
- .text          0xffa00890       0x84 sincos.o
-                0xffa00890                _sincos_step
-                0xffa008dc                _fill_buffer
-                0xffa008c0                _compute_dphase
- .text          0xffa00914       0xa8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
-                0xffa00914                ___divsi3
- .text          0xffa009bc       0x9c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
-                0xffa009bc                ___udivsi3
- .text          0xffa00a58       0x18 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
-                0xffa00a58                ___modsi3
- .text          0xffa00a70       0x18 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
-                0xffa00a70                _atexit
- .text          0xffa00a88       0x2c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
-                0xffa00a88                _exit
- .text          0xffa00ab4        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
- .text          0xffa00ab4       0x9c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
-                0xffa00ab4                _memset
- .text          0xffa00b50       0x80 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
-                0xffa00b50                ___register_exitproc
- .text          0xffa00bd0       0xbc /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
-                0xffa00bd0                ___call_exitprocs
- .text          0xffa00c8c        0x8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
-                0xffa00c8c                __exit
- .text          0xffa00c94       0x38 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
- .text          0xffa00ccc        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+                0xffa00578                _clearSetLED
+                0xffa0062c                _main
+ .text          0xffa00a78       0x84 sincos.o
+                0xffa00a78                _sincos_step
+                0xffa00ac4                _fill_buffer
+                0xffa00aa8                _compute_dphase
+ .text          0xffa00afc       0xa8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
+                0xffa00afc                ___divsi3
+ .text          0xffa00ba4       0x9c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
+                0xffa00ba4                ___udivsi3
+ .text          0xffa00c40       0x18 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
+                0xffa00c40                ___modsi3
+ .text          0xffa00c58       0x18 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+                0xffa00c58                _atexit
+ .text          0xffa00c70       0x2c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+                0xffa00c70                _exit
+ .text          0xffa00c9c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .text          0xffa00c9c       0x9c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+                0xffa00c9c                _memset
+ .text          0xffa00d38       0x80 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+                0xffa00d38                ___register_exitproc
+ .text          0xffa00db8       0xbc /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+                0xffa00db8                ___call_exitprocs
+ .text          0xffa00e74        0x8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+                0xffa00e74                __exit
+ .text          0xffa00e7c       0x38 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+ .text          0xffa00eb4        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
  *(.text.*personality*)
  *(.gnu.warning)
 
-.init           0xffa00ccc       0x12
+.init           0xffa00eb4       0x12
  *(.init)
- .init          0xffa00ccc        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
-                0xffa00ccc                __init
- .init          0xffa00cd0        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
- .init          0xffa00cd4        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
- .init          0xffa00cd8        0x6 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+ .init          0xffa00eb4        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
+                0xffa00eb4                __init
+ .init          0xffa00eb8        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ .init          0xffa00ebc        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+ .init          0xffa00ec0        0x6 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
 
 .plt
  *(.plt)
 
-.fini           0xffa00cde        0xe
+.fini           0xffa00ec6        0xe
  *(.fini)
- .fini          0xffa00cde        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
-                0xffa00cde                __fini
- .fini          0xffa00ce2        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
- .fini          0xffa00ce6        0x6 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
-                0xffa00cec                PROVIDE (__etext, .)
-                0xffa00cec                PROVIDE (_etext, .)
-                0xffa00cec                PROVIDE (etext, .)
+ .fini          0xffa00ec6        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
+                0xffa00ec6                __fini
+ .fini          0xffa00eca        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
+ .fini          0xffa00ece        0x6 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+                0xffa00ed4                PROVIDE (__etext, .)
+                0xffa00ed4                PROVIDE (_etext, .)
+                0xffa00ed4                PROVIDE (etext, .)
 
 .rodata         0xff800000        0x8
  *(.rodata .rodata.* .gnu.linkonce.r.*)
@@ -385,14 +386,14 @@ END GROUP
  *(.sbss .sbss.* .gnu.linkonce.sb.*)
  *(.scommon)
 
-.bss            0xff8004f0       0xe0
+.bss            0xff8004f0       0xe4
  *(.dynbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
  .bss           0xff8004f0        0x4 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
  .bss           0xff8004f4        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crti.o
  .bss           0xff8004f4       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtbegin.o
  .bss           0xff800514        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtlibid.o
- .bss           0xff800514       0x38 Audio_test.o
+ .bss           0xff800514       0x3c Audio_test.o
                 0xff800534                _cycle_stop
                 0xff80054a                _Sin
                 0xff800528                _buttonCount
@@ -405,32 +406,32 @@ END GROUP
                 0xff800524                _buttonTest
                 0xff800514                _Rx0Buffer
                 0xff80053c                _offset
- .bss           0xff80054c        0x0 sincos.o
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
- .bss           0xff80054c        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
+ .bss           0xff800550        0x0 sincos.o
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
+ .bss           0xff800550        0x0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
  *(COMMON)
- COMMON         0xff80054c       0x84 Audio_test.o
-                0xff80054c                _sLeftChannelOut
-                0xff80054e                _sCodecRegsReadBack
-                0xff8005c8                _g_sInput
-                0xff8005cc                _sinOut
-                0xff8005ce                _sRightChannelOut
-                0xff8005d0                . = ALIGN ((. != 0x0)?0x4:0x1)
-                0xff8005d0                __bss_end = .
-                0xff8005d0                . = ALIGN (0x4)
-                0xff8005d0                . = ALIGN (0x4)
-                0xff8005d0                __end = .
-                0xff8005d0                PROVIDE (_end, .)
+ COMMON         0xff800550       0x84 Audio_test.o
+                0xff800550                _sLeftChannelOut
+                0xff800552                _sCodecRegsReadBack
+                0xff8005cc                _g_sInput
+                0xff8005d0                _sinOut
+                0xff8005d2                _sRightChannelOut
+                0xff8005d4                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0xff8005d4                __bss_end = .
+                0xff8005d4                . = ALIGN (0x4)
+                0xff8005d4                . = ALIGN (0x4)
+                0xff8005d4                __end = .
+                0xff8005d4                PROVIDE (_end, .)
 
 .stab
  *(.stab)
@@ -507,117 +508,117 @@ END GROUP
                 0x00000160       0x20 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
 
 .debug_pubnames
-                0x00000000      0x30e
+                0x00000000      0x31e
  *(.debug_pubnames)
  .debug_pubnames
-                0x00000000      0x1ce Audio_test.o
+                0x00000000      0x1de Audio_test.o
  .debug_pubnames
-                0x000001ce       0x45 sincos.o
+                0x000001de       0x45 sincos.o
  .debug_pubnames
-                0x00000213       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+                0x00000223       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
  .debug_pubnames
-                0x00000230       0x1b /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+                0x00000240       0x1b /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
  .debug_pubnames
-                0x0000024b       0x39 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+                0x0000025b       0x39 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
  .debug_pubnames
-                0x00000284       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+                0x00000294       0x1d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
  .debug_pubnames
-                0x000002a1       0x2a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+                0x000002b1       0x2a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
  .debug_pubnames
-                0x000002cb       0x27 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+                0x000002db       0x27 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
  .debug_pubnames
-                0x000002f2       0x1c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+                0x00000302       0x1c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
 
-.debug_info     0x00000000     0x31a2
+.debug_info     0x00000000     0x3283
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000       0xd0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
- .debug_info    0x000000d0      0x50e Audio_test.o
- .debug_info    0x000005de      0x1c7 sincos.o
- .debug_info    0x000007a5       0xd8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
- .debug_info    0x0000087d       0xd8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
- .debug_info    0x00000955       0xd8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
- .debug_info    0x00000a2d       0xba /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
- .debug_info    0x00000ae7      0x923 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
- .debug_info    0x0000140a      0x91a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
- .debug_info    0x00001d24      0x108 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
- .debug_info    0x00001e2c      0x98f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
- .debug_info    0x000027bb      0x998 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
- .debug_info    0x00003153       0x4f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .debug_info    0x000000d0      0x5ef Audio_test.o
+ .debug_info    0x000006bf      0x1c7 sincos.o
+ .debug_info    0x00000886       0xd8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
+ .debug_info    0x0000095e       0xd8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
+ .debug_info    0x00000a36       0xd8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
+ .debug_info    0x00000b0e       0xba /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_info    0x00000bc8      0x923 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_info    0x000014eb      0x91a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .debug_info    0x00001e05      0x108 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_info    0x00001f0d      0x98f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_info    0x0000289c      0x998 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_info    0x00003234       0x4f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
 
-.debug_abbrev   0x00000000      0xacd
+.debug_abbrev   0x00000000      0xb4f
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0x14 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
- .debug_abbrev  0x00000014      0x195 Audio_test.o
- .debug_abbrev  0x000001a9      0x10c sincos.o
- .debug_abbrev  0x000002b5       0x14 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
- .debug_abbrev  0x000002c9       0x14 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
- .debug_abbrev  0x000002dd       0x14 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
- .debug_abbrev  0x000002f1       0x7f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
- .debug_abbrev  0x00000370      0x175 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
- .debug_abbrev  0x000004e5      0x15e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
- .debug_abbrev  0x00000643       0xb0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
- .debug_abbrev  0x000006f3      0x1d8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
- .debug_abbrev  0x000008cb      0x1bf /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
- .debug_abbrev  0x00000a8a       0x43 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .debug_abbrev  0x00000014      0x217 Audio_test.o
+ .debug_abbrev  0x0000022b      0x10c sincos.o
+ .debug_abbrev  0x00000337       0x14 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
+ .debug_abbrev  0x0000034b       0x14 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
+ .debug_abbrev  0x0000035f       0x14 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
+ .debug_abbrev  0x00000373       0x7f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_abbrev  0x000003f2      0x175 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_abbrev  0x00000567      0x15e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .debug_abbrev  0x000006c5       0xb0 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_abbrev  0x00000775      0x1d8 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_abbrev  0x0000094d      0x1bf /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_abbrev  0x00000b0c       0x43 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
 
-.debug_line     0x00000000      0xd6f
+.debug_line     0x00000000      0xdbe
  *(.debug_line)
  .debug_line    0x00000000      0x125 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/basiccrt.o
- .debug_line    0x00000125      0x19b Audio_test.o
- .debug_line    0x000002c0       0xaf sincos.o
- .debug_line    0x0000036f       0xcd /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
- .debug_line    0x0000043c       0xc7 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
- .debug_line    0x00000503       0x9b /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
- .debug_line    0x0000059e       0x93 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
- .debug_line    0x00000631      0x156 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
- .debug_line    0x00000787      0x142 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
- .debug_line    0x000008c9      0x10e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
- .debug_line    0x000009d7      0x180 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
- .debug_line    0x00000b57      0x194 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
- .debug_line    0x00000ceb       0x84 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .debug_line    0x00000125      0x1ea Audio_test.o
+ .debug_line    0x0000030f       0xaf sincos.o
+ .debug_line    0x000003be       0xcd /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_divsi3.o)
+ .debug_line    0x0000048b       0xc7 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_udivsi3.o)
+ .debug_line    0x00000552       0x9b /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/libgcc.a(_modsi3.o)
+ .debug_line    0x000005ed       0x93 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_line    0x00000680      0x156 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_line    0x000007d6      0x142 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .debug_line    0x00000918      0x10e /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_line    0x00000a26      0x180 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_line    0x00000ba6      0x194 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_line    0x00000d3a       0x84 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
 
-.debug_frame    0x00000000      0x33c
+.debug_frame    0x00000000      0x354
  *(.debug_frame)
- .debug_frame   0x00000000      0x1cc Audio_test.o
- .debug_frame   0x000001cc       0x58 sincos.o
- .debug_frame   0x00000224       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
- .debug_frame   0x0000024c       0x30 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
- .debug_frame   0x0000027c       0x34 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
- .debug_frame   0x000002b0       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
- .debug_frame   0x000002d8       0x3c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
- .debug_frame   0x00000314       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .debug_frame   0x00000000      0x1e4 Audio_test.o
+ .debug_frame   0x000001e4       0x58 sincos.o
+ .debug_frame   0x0000023c       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_frame   0x00000264       0x30 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_frame   0x00000294       0x34 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_frame   0x000002c8       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_frame   0x000002f0       0x3c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_frame   0x0000032c       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
 
-.debug_str      0x00000000      0x952
+.debug_str      0x00000000      0x9b6
  *(.debug_str)
- .debug_str     0x00000000      0x270 Audio_test.o
-                                0x2ce (size before relaxing)
- .debug_str     0x00000270       0x4e sincos.o
+ .debug_str     0x00000000      0x2d4 Audio_test.o
+                                0x332 (size before relaxing)
+ .debug_str     0x000002d4       0x4e sincos.o
                                 0x154 (size before relaxing)
- .debug_str     0x000002be       0x86 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_str     0x00000322       0x86 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
                                 0x116 (size before relaxing)
- .debug_str     0x00000344      0x3e7 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_str     0x000003a8      0x3e7 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
                                 0x49b (size before relaxing)
- .debug_str     0x0000072b       0x61 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
+ .debug_str     0x0000078f       0x61 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(impure.o)
                                 0x49e (size before relaxing)
- .debug_str     0x0000078c       0x71 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_str     0x000007f0       0x71 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
                                 0x101 (size before relaxing)
- .debug_str     0x000007fd       0x7f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_str     0x00000861       0x7f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
                                 0x4e5 (size before relaxing)
- .debug_str     0x0000087c       0x7c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_str     0x000008e0       0x7c /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
                                 0x4b7 (size before relaxing)
- .debug_str     0x000008f8       0x5a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .debug_str     0x0000095c       0x5a /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
                                  0x66 (size before relaxing)
 
-.debug_loc      0x00000000      0x7d8
+.debug_loc      0x00000000      0x867
  *(.debug_loc)
- .debug_loc     0x00000000      0x332 Audio_test.o
- .debug_loc     0x00000332      0x12c sincos.o
- .debug_loc     0x0000045e       0x3d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
- .debug_loc     0x0000049b       0x49 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
- .debug_loc     0x000004e4      0x100 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
- .debug_loc     0x000005e4       0x92 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
- .debug_loc     0x00000676      0x143 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
- .debug_loc     0x000007b9       0x1f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
+ .debug_loc     0x00000000      0x3c1 Audio_test.o
+ .debug_loc     0x000003c1      0x12c sincos.o
+ .debug_loc     0x000004ed       0x3d /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(atexit.o)
+ .debug_loc     0x0000052a       0x49 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(exit.o)
+ .debug_loc     0x00000573      0x100 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(memset.o)
+ .debug_loc     0x00000673       0x92 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__atexit.o)
+ .debug_loc     0x00000705      0x143 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+ .debug_loc     0x00000848       0x1f /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libnosys.a(_exit.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -642,7 +643,7 @@ LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtend.o
 LOAD /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/crtn.o
 OUTPUT(Audio_test.elf elf32-bfin)
 
-.debug_ranges   0x00000000       0x58
- .debug_ranges  0x00000000       0x18 Audio_test.o
- .debug_ranges  0x00000018       0x18 sincos.o
- .debug_ranges  0x00000030       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
+.debug_ranges   0x00000000       0x98
+ .debug_ranges  0x00000000       0x58 Audio_test.o
+ .debug_ranges  0x00000058       0x18 sincos.o
+ .debug_ranges  0x00000070       0x28 /opt/uClinux/bfin-elf/lib/gcc/bfin-elf/4.3.5/../../../../bfin-elf/lib/libc.a(__call_atexit.o)
