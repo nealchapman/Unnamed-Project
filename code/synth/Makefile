@@ -14,7 +14,7 @@ LIBS = -lm /opt/uClinux/bfin-elf/bfin-elf/lib/libbfdsp.a
 
 TARGET = synth
 
-SRCS = synth.c AD1980.c sincos.c
+SRCS = $(TARGET).c
 
 OBJS = $(SRCS:.c=.o)
 
