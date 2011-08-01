@@ -1,4 +1,4 @@
-initBF548();
+initDSP();
 initBoard();
 
 initPatch();
