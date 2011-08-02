@@ -1,5 +1,6 @@
-initDSP();
 initBoard();
+
+initDSP();
 
 initPatch();
 
