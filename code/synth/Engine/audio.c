@@ -1,5 +1,5 @@
 __attribute__((interrupt_handler))
-static void sport0TXISR()
+static void audioISR()
 {
 
 	START_CYCLE_COUNT(cycle_start);
@@ -27,4 +27,15 @@ static void sport0TXISR()
 	STOP_CYCLE_COUNT(cycle_stop,cycle_start);
 	
 	*pDMA1_IRQ_STATUS = 0x0001;
+}
+
+void configureAudioOut(const supportedCodecs codec){
+	//~/Hardware/Engine/audio.h
+	configureAudioDMA();
+	setAudioDMAISR();
+}
+
+void enableAudioOut(void){
+	//~/Hardware/Engine/audio.h
+	enableAudioDMAISR();
 }

@@ -19,13 +19,4 @@ void initBoard(void){
 	initAD1980();	
 }
 
-void configureAudioOut(const supportedCodecs codec){
-	//~/Hardware/Engine/audio.h
-	configureAudioDMA();
-	setAudioDMAISR();
-}
 
-void enableAudioOut(void){
-	//~/Hardware/Engine/audio.h
-	enableAudioDMAISR();
-}
