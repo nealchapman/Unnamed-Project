@@ -34,3 +34,9 @@ static void delayus(uint32_t delayTime)
 
 }
 
+__attribute__((interrupt_handler))
+static void delayTimerISR(void)
+{
+	*pTIMER_STATUS0	|= TIMIL0;
+	delayFinished = 1;
+}
