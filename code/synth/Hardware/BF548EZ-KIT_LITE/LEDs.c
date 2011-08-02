@@ -29,7 +29,7 @@ void clearSetLED(const enLED led, const int bState)
 	}
 }
 
-void initLEDs(void)
+void initBF548EZ-KIT_LITELEDs(void);
 {
 	*pPORTG_FER &= ~0x0FC0;
 	*pPORTG_MUX &= ~0x0FC0;

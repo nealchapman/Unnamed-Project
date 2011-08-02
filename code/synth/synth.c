@@ -1,9 +1,8 @@
 //~/Engine/setup.h
-initBoard();
-initDSP();
+initEngine();
 
 //~/Patch/setup.h
 initPatch();
 
-//~/Engine/audio.h
-startAudio();
+//~/Engine/setup.h
+startEngine();

@@ -1,3 +1,14 @@
+typedef enum codecList{
+	AD1980 = 1;
+}supportedCodec;
+
+
+void initAudio(void){
+	initCodec();
+	configureAudioOut(AD1980);
+	enableAudioOut();
+}
+
 __attribute__((interrupt_handler))
 static void audioISR()
 {
@@ -30,12 +41,22 @@ static void audioISR()
 }
 
 void configureAudioOut(const supportedCodecs codec){
-	//~/Hardware/Engine/audio.h
 	configureAudioDMA();
 	setAudioDMAISR();
 }
 
 void enableAudioOut(void){
-	//~/Hardware/Engine/audio.h
 	enableAudioDMAISR();
+}
+
+void initCodec(void){
+	initAD1980();	
+}
+
+void configureAudioDMA(void){
+
+}
+
+void setAudioDMAISR(void){
+
 }
