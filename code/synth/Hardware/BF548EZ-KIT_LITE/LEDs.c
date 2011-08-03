@@ -31,7 +31,8 @@ void clearSetLED(const enLED led, const int bState)
 
 void initBF548EZ-KIT_LITELEDs(void);
 {
-	*pPORTG_FER &= ~0x0FC0;
-	*pPORTG_MUX &= ~0x0FC0;
-	*pPORTG_DIR_SET = 0x0FC0;
+	setPortDirection(G,0x0FC0,1);
+	//*pPORTG_FER &= ~0x0FC0;
+	//*pPORTG_MUX &= ~0x0FC0;
+	//*pPORTG_DIR_SET = 0x0FC0;
 }

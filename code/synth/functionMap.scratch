@@ -1,0 +1,17 @@
+initEngine
+	initDisplay
+		initBF548EZ-KIT_LITELEDs
+	initInterface
+		initBF548EZ-KIT_Buttons
+	initAudio
+		initCodec
+			initAD1980
+				stuffs
+		configureAudioOut
+			configureAudioDMA
+			setAudioDMAISR
+
+initPatch
+	
+startEngine
+	enableAudioISR
