@@ -6,7 +6,6 @@ typedef enum codecList{
 void initAudio(void){
 	initCodec();
 	configureAudioOut(AD1980);
-	enableAudioOut();
 }
 
 __attribute__((interrupt_handler))
@@ -45,11 +44,8 @@ void configureAudioOut(const supportedCodecs codec){
 	setAudioDMAISR();
 }
 
-void enableAudioOut(void){
-	enableAudioDMAISR();
-}
-
 void initCodec(void){
+	//~/Hardware/BF548EZ-KIT_LIGHT/AD1980
 	initAD1980();	
 }
 

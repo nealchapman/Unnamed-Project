@@ -1,7 +1,7 @@
 //~/Engine/setup.h
 initEngine();
 
-//~/Patch/setup.h
+//~/Patch/patch.h
 initPatch();
 
 //~/Engine/setup.h

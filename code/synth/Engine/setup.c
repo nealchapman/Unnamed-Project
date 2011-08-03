@@ -11,5 +11,6 @@ void initEngine(void){
 }
 
 void startEngine(void){
-
+	//~/Engine/audio.h
+	enableAudioISR();
 }	

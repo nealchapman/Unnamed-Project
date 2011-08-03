@@ -6,5 +6,4 @@ void delayus(uint32_t delayTime);
 __attribute__((interrupt_handler))
 static void delayTimerISR(void);
 
-
 #endif //
