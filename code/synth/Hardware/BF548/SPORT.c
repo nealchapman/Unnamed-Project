@@ -15,42 +15,47 @@ volatile short Tx0Buffer[8] = {0xe000,0x7400,0x9900,0x0000,0x0000,0x0000,0x0000,
 
 void enableSPORT0DMATDMStreams(void)
 {
-	*pSPORT0_MCMC1 = 0x1000;
+/*	*pSPORT0_MCMC1 = 0x1000;
 	*pSPORT0_MCMC2 = MFD_1 | MCMEN | MCDRXPE | MCDTXPE;
 	*pSPORT0_MRCS0 = 0x00FF;
 	*pSPORT0_MTCS0 = 0x00FF;
 
-	/* Enable DMA0 for SPORT0 RX autobuffer transfers */
+	// Enable DMA0 for SPORT0 RX autobuffer transfers 
 	*pDMA0_CONFIG	= (*pDMA0_CONFIG | 0x0001);
 
-	/* Enable DMA1 for SPORT0 TX autobuffer transfers */
+	// Enable DMA1 for SPORT0 TX autobuffer transfers
 	*pDMA1_CONFIG	= (*pDMA1_CONFIG | 0x0001);
 
-	/* Set SPORT0 TX (DMA1) interrupt priority to 2 = IVG9 */
+	// Set SPORT0 TX (DMA1) interrupt priority to 2 = IVG9
 	*pSIC_IAR1 = 0x33322221;
 
-	/* Remap the vector table pointer from the default __I9HANDLER
-	   to the new "Sport0_TX_ISR()" interrupt service routine */
+	// Remap the vector table pointer from the default __I9HANDLER
+	   to the new "Sport0_TX_ISR()" interrupt service routine 
 	// SPORT0 TX ISR -> IVG 9
 	*pEVT9 =  (void *)sport0TXISRSetup;		// SPORT0 TX ISR -> IVG 9
 
-	/* Unmask peripheral SPORT0 RX interrupt in System Interrupt Mask Register `
-	   (SIC_IMASK bit 9 - DMA1/SPORT0 RX */
+	// Unmask peripheral SPORT0 RX interrupt in System Interrupt Mask Register `
+	   (SIC_IMASK bit 9 - DMA1/SPORT0 RX 
 	*pIMASK |= EVT_IVG9;
 	*pSIC_IMASK0	= (*pSIC_IMASK0 | IRQ_DMA1);
 	ssync();
 
-	/* Enable TSPEN bit 0 to start SPORT0 TDM Mode Transmitter */
+	// Enable TSPEN bit 0 to start SPORT0 TDM Mode Transmitter
 	*pSPORT0_TCR1 	= (*pSPORT0_TCR1 | TSPEN);
 	ssync();
 
-	/* Enable RSPEN bit 0 to start SPORT0 TDM Mode Receiver */
+	// Enable RSPEN bit 0 to start SPORT0 TDM Mode Receiver 
 	*pSPORT0_RCR1 	= (*pSPORT0_RCR1 | RSPEN);
 	ssync();
+*/
+
 }
 
 void initSPORT0(void)
 {
+	
+	/*
+
 	//Sets port C to SPORT0
 	*pPORTC_MUX = 0x0000;
 	//Switches 4 PORTC pins to be SPORT0 instead of GPIO
@@ -72,4 +77,7 @@ void initSPORT0(void)
 
 	*pSPORT0_TCR1 = 0x0000;
 	*pSPORT0_TCR2 = SLEN_16;
+
+	*/
+
 }

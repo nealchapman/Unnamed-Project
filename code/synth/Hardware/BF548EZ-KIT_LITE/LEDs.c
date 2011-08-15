@@ -1,11 +1,4 @@
-typedef enum LEDS_tag{
-	LED1 = (1<<6),
-	LED2 = (1<<7),
-	LED3 = (1<<8),
-	LED4 = (1<<9),
-	LED5 = (1<<10),
-	LED6 = (1<<12),
-	LAST_LED = (1<<13)}enLED;
+#include "../BF548/ports.h"
 
 void clearSetLED(const enLED led, const int bState)
 {
@@ -29,7 +22,7 @@ void clearSetLED(const enLED led, const int bState)
 	}
 }
 
-void initBF548EZ-KIT_LITELEDs(void);
+void initBF548EZKIT_LITELEDs(void);
 {
 	setPortDirection(G,0x0FC0,1);
 	//*pPORTG_FER &= ~0x0FC0;

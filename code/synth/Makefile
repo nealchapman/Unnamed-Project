@@ -9,8 +9,8 @@ CFLAGS += -mcpu=$(CPU)
 CFLAGS += -Wall
 CFLAGS += -D DO_CYCLE_COUNTS
 LDFLAGS = -mcpu=$(CPU) -Wl,-Map,$(TARGET).map
-#LIBS = -lm -lbfdsp
-LIBS = -lm /opt/uClinux/bfin-elf/bfin-elf/lib/libbfdsp.a
+LIBS = -lm -lbfdsp
+#LIBS = -lm /opt/uClinux/bfin-elf/bfin-elf/lib/libbfdsp.a
 
 TARGET = synth
 
@@ -18,7 +18,14 @@ SRCS = $(TARGET).c
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(TARGET).ldr
+#all: $(TARGET).ldr
+all:
+	cd Engine && make clean all
+	cd Hardware/BF548 && make clean all
+	cd Hardware/BF548EZ-KIT_LITE && make clean all
+	cd Modules && make clean all
+	cd Util && make clean all
+	cd Patch && make clean all
 
 $(TARGET).elf: $(OBJS)
 	$(LD) $(LDFLAGS) $^ $(LIBS) -o $@

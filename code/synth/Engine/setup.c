@@ -1,3 +1,8 @@
+#include <cycle_count.h>
+#include "display.h"
+#include "interface.h"
+#include "audio.h"
+
 cycle_t cycle_start = 0x0000;
 cycle_t cycle_stop = 0x0000;
 
@@ -12,5 +17,5 @@ void initEngine(void){
 
 void startEngine(void){
 	//~/Engine/audio.h
-	enableAudioISR();
+	enableAudioOut();
 }	

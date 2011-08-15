@@ -1,17 +1,16 @@
-typedef enum codecList{
-	AD1980 = 1;
-}supportedCodec;
+#include "audio.h"
+#include "../Hardware/BF548EZ-KIT_LITE/AD1980.h"
 
-
-void initAudio(void){
+void initAudio(void)
+{
 	initCodec();
-	configureAudioOut(AD1980);
+	configureAudioOut(1);
 }
 
 __attribute__((interrupt_handler))
 static void audioISR()
 {
-
+/*
 	START_CYCLE_COUNT(cycle_start);
 	z = pollButtons();
 
@@ -36,23 +35,27 @@ static void audioISR()
 
 	STOP_CYCLE_COUNT(cycle_stop,cycle_start);
 	
-	*pDMA1_IRQ_STATUS = 0x0001;
+	*pDMA1_IRQ_STATUS = 0x0001;*/
 }
 
-void configureAudioOut(const supportedCodecs codec){
+void configureAudioOut(int codec)
+{
 	configureAudioDMA();
 	setAudioDMAISR();
 }
 
-void initCodec(void){
-	//~/Hardware/BF548EZ-KIT_LIGHT/AD1980
+void initCodec(void)
+{
+	//~/Hardware/BF548EZ-KIT_LIGHT/AD1980.h
 	initAD1980();	
 }
 
-void configureAudioDMA(void){
+void configureAudioDMA(void)
+{
 
 }
 
-void setAudioDMAISR(void){
+void setAudioDMAISR(void)
+{
 
 }

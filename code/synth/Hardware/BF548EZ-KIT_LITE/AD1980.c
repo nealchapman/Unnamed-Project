@@ -1,3 +1,5 @@
+#include "../BF548/DMA.h"
+
 // names for AD1980 codec registers, used for iCodecRegs[]
 /*			register				address	*/
 /*          -------------		    ------- */
