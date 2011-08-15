@@ -4,13 +4,13 @@ short buttonCount = 0x0000;
 
 #define DEBOUNCE_COUNT 0XFF
 
-int pollBF548EZ-KIT_LITEButtons(void)
+int pollBF548EZKIT_LITEButtons(void)
 {
-
+/*
 	int buttonNow;
 
 	readPortState(B,0x0F00);
-//	buttonNow = (*pPORTB & 0x0F00) >> 2;
+	buttonNow = (*pPORTB & 0x0F00) >> 2;
 
 	if(buttonCount >= DEBOUNCE_COUNT)
 	{
@@ -28,12 +28,12 @@ int pollBF548EZ-KIT_LITEButtons(void)
 	}
 
 	return buttonState;
-
+*/
 }
 
-void initBF548EZ-KIT_LITEButtons(void)
+void initBF548EZKIT_LITEButtons(void)
 {
-	setPinDirection(V,0x0F00);
+///	setPinDirection(V,0x0F00);
 //	*pPORTB_FER &= ~0x0F00;
 //	*pPORTB_INEN = 0x0F00;
 }

@@ -1,7 +1,9 @@
 #include "../BF548/ports.h"
+#include "LEDs.h"
 
 void clearSetLED(const enLED led, const int bState)
 {
+/*
 	static unsigned short leds = 0;
 
 	if (bState == 0) {
@@ -19,12 +21,12 @@ void clearSetLED(const enLED led, const int bState)
 	else {
 		*pPORTG_SET = led; // toggle 
 		leds |= led;
-	}
+	}*/
 }
 
-void initBF548EZKIT_LITELEDs(void);
+void initBF548EZKIT_LITELEDs(void)
 {
-	setPortDirection(G,0x0FC0,1);
+///	setPortDirection(G,0x0FC0,1);
 	//*pPORTG_FER &= ~0x0FC0;
 	//*pPORTG_MUX &= ~0x0FC0;
 	//*pPORTG_DIR_SET = 0x0FC0;

@@ -1,14 +1,18 @@
+#include <stdint.h>
+
 static void initDelay(void)
 {
+/*
 	*pEVT11 =  (void *)delayTimerISR;
 	*pIMASK |= EVT_IVG11;
 	*pSIC_IMASK2	= (*pSIC_IMASK2 | IRQ_TIMER0);
 	ssync();
+*/
 }
 
 static void delayus(uint32_t delayTime)
 {
-
+/*
 	uint32_t delayCount = 0;
 	delayFinished = 0;
 
@@ -31,12 +35,15 @@ static void delayus(uint32_t delayTime)
 	while(!delayFinished);
 
 	*pTIMER_DISABLE0 |= TIMDIS0;
+*/
 
 }
 
 __attribute__((interrupt_handler))
 static void delayTimerISR(void)
 {
+	/*
 	*pTIMER_STATUS0	|= TIMIL0;
 	delayFinished = 1;
+	*/
 }

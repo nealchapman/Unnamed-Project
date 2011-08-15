@@ -26,7 +26,8 @@ all:
 	cd Modules && make clean all
 	cd Util && make clean all
 	cd Patch && make clean all
-
+	make $(TARGET).ldr
+	
 $(TARGET).elf: $(OBJS)
 	$(LD) $(LDFLAGS) $^ $(LIBS) -o $@
 

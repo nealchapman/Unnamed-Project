@@ -1,6 +1,8 @@
 #ifndef __DMA_H__
 #define __DMA_H__
 
+#include <stdint.h>
+
 int requestDMA(uint32_t channel, const char *device_id);
 void freeDMA(uint32_t channel);
 void enableDMA(uint32_t channel);
@@ -17,10 +19,10 @@ uint16_t setBFINDMAConfig(char direction, char flowMode, char intrMode, char DMA
 uint16_t getDMACurrIRQStatus(uint32_t channel);
 uint16_t getDMACurrXCount(uint32_t channel);
 uint16_t getDMACurrYCount(uint32_t channel);
-void setDMASG(uint32_t channel, struct dmasg_t *sg, uint32_t nrSG);
+//void setDMASG(uint32_t channel, struct dmasg_t *sg, uint32_t nrSG);
 void DMADisableIRQ(uint32_t channel);
 void DMAEnableIRQ(uint32_t channel);
 void clearDMAIRQStatus(uint32_t channel);
-uint32_t setDMACallback(uint32_t channel, dmaInterruptT callback, void *data);
+uint32_t setDMACallback(uint32_t channel, uint32_t *ISR, void *data);
 
 #endif //__DMA_H__

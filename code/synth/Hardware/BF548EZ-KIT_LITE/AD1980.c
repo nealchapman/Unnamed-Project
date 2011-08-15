@@ -1,4 +1,10 @@
 #include "../BF548/DMA.h"
+#include "../BF548/ports.h"
+
+#include "../../Util/delay.h"
+
+#include "AD1980.h"
+
 
 // names for AD1980 codec registers, used for iCodecRegs[]
 /*			register				address	*/
@@ -149,10 +155,10 @@ short 	sCodecRegs[SIZE_OF_CODEC_REGS] =						// array for codec registers
 short sCodecRegsReadBack[SIZE_OF_CODEC_REGS];
 
 void initAD1980(void){
-	AD1980Reset();
-	AD1980ConfigureDMA();
-	setAD1980ConfigureISR();
-	startAD1980Configure();
+	//AD1980Reset();
+	//AD1980ConfigureDMA();
+	//setAD1980ConfigureISR();
+	//startAD1980Configure();
 }
 
 void AD1980Reset(void)
@@ -161,39 +167,39 @@ void AD1980Reset(void)
 //	*pPORTB_MUX = 0x0000;
 //	*pPORTB_DIR_SET = (1<<3);
 //	*pPORTB_SET = (1<<3);
-	setPinDirection(port,pin);
-	setPin(port,pin,1);
+///	setPinDirection("B",(1<<3));
+///	setPin("B",pin,1);
 
 	//AD1980 Datasheet says 1us pulse for reset
 	//Set reset pulse time to 2us for safety 0x4B0
-	setPin(port,pin,0);
+///	setPin("B",(1<<3),0);
 //	*pPORTB_CLEAR = (1<<3);
 	delayus(20);
 //	*pPORTB_SET = (1<<3);
-	setPin(port,pin,1);
+///	setPin("B",(1<<3),1);
 	delayus(20);
 }
 
-void AD9180ConfigureDMA(void){
-	DMAReset(0);
-	DMAReset(1);
+void AD1980ConfigureDMA(void){
+///	DMAReset(0);
+///	DMAReset(1);
 //	*pDMA0_CONFIG = 0x0000;
 //	*pDMA1_CONFIG = 0x0000;
 //	*pDMA0_IRQ_STATUS = 0x0000;
 //	*pDMA1_IRQ_STATUS = 0x0000;
 
-	setDMAPeripheral(0,SPORT0RX);
-	setDMAPeripheral(1,SPORT0TX);
+///	setDMAPeripheral(0,SPORT0RX);
+///	setDMAPeripheral(1,SPORT0TX);
 //	*pDMA0_PERIPHERAL_MAP = PMAP_SPORT0RX;
 //	*pDMA1_PERIPHERAL_MAP = PMAP_SPORT0TX;
 
-	DMAConfig(0,blah);
+///	DMAConfig(0,blah);
 //	*pDMA0_CONFIG = FLOW_AUTO | DI_EN | WDSIZE_16 | WNR;
 //	*pDMA0_START_ADDR = (void *)Rx0Buffer;
 //	*pDMA0_X_COUNT = 8;
 //	*pDMA0_X_MODIFY = 2;
 
-	DMAConfig(1,blah);
+///	DMAConfig(1,blah);
 //	*pDMA1_CONFIG = FLOW_AUTO | DI_EN | WDSIZE_16;
 //	*pDMA1_START_ADDR = (void *)Tx0Buffer;
 //	*pDMA1_X_COUNT = 8;
@@ -204,13 +210,13 @@ void AD9180ConfigureDMA(void){
 }
 
 void setAD1980ConfigureISR(uint16_t *ISR){
-	setDMAISR(0,*ISR);
+///setDMAISR(0,*ISR);
 }
 
 __attribute__((interrupt_handler))
 static void  sport0TXISRSetup(void)
 {
-
+/*
 	if(slot16Mode)
 	{
 		if(firstSend)
@@ -252,5 +258,5 @@ static void  sport0TXISRSetup(void)
 	}
 
 	*pDMA1_IRQ_STATUS = 0x0001;
-
+*/
 }

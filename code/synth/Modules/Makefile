@@ -11,7 +11,7 @@ CFLAGS += -D DO_CYCLE_COUNTS
 LDFLAGS = -mcpu=$(CPU) -Wl,-Map,$(TARGET).map
 LIBS = -lm -lbfdsp
 
-TARGETS = audio display interface setup
+TARGETS = ADSR amp filt osc seq
 
 SRCS = $(patsubst %,%.c,$(TARGETS))
 ELFS = $(SRCS:.c=.elf)
