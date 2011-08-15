@@ -3,8 +3,9 @@
 
 #include <stdint.h>
 
-void setPinDirection(uint16_t port, uint16_t pin, uint16_t dir);
-void setPin(uint16_t port, uint16_t pin);
-void readPin(uint16_t port, uint16_t pin);	
+void setPinDirection(uint16_t port, uint16_t pinMask, uint16_t dir);
+void readPinDirection(uint16_t port, uint16_t pinMask);
+void setPin(uint16_t port, uint16_t pinMask);
+void readPin(uint16_t port, uint16_t pinMask);	
 
 #endif // __PORTS_H__

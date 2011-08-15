@@ -10,7 +10,6 @@ CFLAGS += -Wall
 CFLAGS += -D DO_CYCLE_COUNTS
 LDFLAGS = -mcpu=$(CPU) -Wl,-Map,$(TARGET).map
 LIBS = -lm -lbfdsp
-#LIBS = -lm /opt/uClinux/bfin-elf/bfin-elf/lib/libbfdsp.a
 
 TARGET = synth
 
