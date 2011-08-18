@@ -4,6 +4,7 @@
 #include "../../Util/delay.h"
 
 #include "AD1980.h"
+#include <stdint.h>
 
 
 // names for AD1980 codec registers, used for iCodecRegs[]
@@ -180,7 +181,8 @@ void AD1980Reset(void)
 	delayus(20);
 }
 
-void AD1980ConfigureDMA(void){
+void AD1980ConfigureDMA(void)
+{
 ///	DMAReset(0);
 ///	DMAReset(1);
 //	*pDMA0_CONFIG = 0x0000;
@@ -205,8 +207,10 @@ void AD1980ConfigureDMA(void){
 //	*pDMA1_X_COUNT = 8;
 //	*pDMA1_X_MODIFY = 2;
 
+	uint32_t x = 2000;
+
 	//MAGIC!!!
-	delayus(2000);
+	delayus(x);
 }
 
 void setAD1980ConfigureISR(uint16_t *ISR){

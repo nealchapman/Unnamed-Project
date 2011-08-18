@@ -1,7 +1,8 @@
-#include <cycle_count.h>
+
 #include "display.h"
 #include "interface.h"
 #include "audio.h"
+#include <cycle_count.h>
 
 cycle_t cycle_start = 0x0000;
 cycle_t cycle_stop = 0x0000;

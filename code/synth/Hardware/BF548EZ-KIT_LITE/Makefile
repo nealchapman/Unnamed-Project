@@ -21,6 +21,7 @@ BINS = $(SRCS:.c=.bin)
 OBJS = $(SRCS:.c=.o)
 
 all: $(OBJS)
+	ar rs ../board.a $(OBJS)
 
 $(patsubst %,%.elf,$(TARGETS)): $(OBJS)
 	$(LD) $(LDFLAGS) $^ $(LIBS) -o $@
@@ -35,6 +36,6 @@ load: $(patsubst %,%.ldr,$(TARGETS))
 	$(LDR) -l $< /dev/ttyS0
 
 clean:
-	rm -f $(ELFS) $(LDRS) $(MAPS) $(BINS) $(OBJS)
+	rm -f $(ELFS) $(LDRS) $(MAPS) $(BINS) $(OBJS) ../board.a
 
 .PHONY: all clean load

@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-static void initDelay(void)
+void initDelay(void)
 {
 /*
 	*pEVT11 =  (void *)delayTimerISR;
@@ -10,7 +10,7 @@ static void initDelay(void)
 */
 }
 
-static void delayus(uint32_t delayTime)
+void delayus(uint32_t delayTime)
 {
 /*
 	uint32_t delayCount = 0;
@@ -40,7 +40,7 @@ static void delayus(uint32_t delayTime)
 }
 
 __attribute__((interrupt_handler))
-static void delayTimerISR(void)
+void delayTimerISR(void)
 {
 	/*
 	*pTIMER_STATUS0	|= TIMIL0;

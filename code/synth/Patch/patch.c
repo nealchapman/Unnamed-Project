@@ -1,0 +1,4 @@
+void initPatch(void)
+{
+
+}

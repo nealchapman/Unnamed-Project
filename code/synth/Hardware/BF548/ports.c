@@ -1,4 +1,4 @@
-
+#include <stdint.h>
 
 void setPinDirection(uint16_t port, uint16_t pinMask, uint16_t dir)
 {

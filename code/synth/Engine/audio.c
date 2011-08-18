@@ -59,3 +59,8 @@ void setAudioDMAISR(void)
 {
 
 }
+
+void enableAudioOut(void)
+{
+
+}
